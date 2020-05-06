@@ -1,4 +1,4 @@
-package com.gome.arch.core.engine;
+package com.gome.arch.core.engine.identity;
 
 /**
  * @Classname IdentityService

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gome.arch.dao.mapper.BaseProcessNodeMapper">
+  <resultMap id="BaseResultMap" type="com.gome.arch.dao.bean.BaseProcessNode">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="process_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="node_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="node_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="ProcessBeanMap" type="com.gome.arch.dao.bean.ProcessPO">
+    <result column="process_id" property="processId"/>
+    <result column="node_order" property="nodeOrder"/>
+    <result column="node_id" property="nodeId"/>
+    <result column="node_name" property="nodeName"/>
+
+    <!--<association property="processId"  javaType="com.gome.arch.dao.bean.BaseProcess">-->
+      <!--<result property="processId" column="process_id"/>-->
+    <!--</association>-->
+
+    <!--<association property="nodeOrder" javaType="com.gome.arch.dao.bean.BaseProcessNode">-->
+      <!--<result column="node_order" property="nodeOrder"/>-->
+    <!--</association>-->
+
+    <!--<association property="nodeId" javaType="com.gome.arch.dao.bean.BaseProcessNode">-->
+      <!--<result column="node_id" property="nodeId"/>-->
+    <!--</association>-->
+
+    <!--<association property="nodeName" javaType="com.gome.arch.dao.bean.BaseNode">-->
+      <!--<result column="node_name" property="nodeName"/>-->
+    <!--</association>-->
+
+  </resultMap>
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, process_id, node_id, node_order
+  </sql>
+  <select id="selectByExample" parameterType="com.gome.arch.dao.bean.BaseProcessNodeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from base_process_node
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_process_node
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from base_process_node
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gome.arch.dao.bean.BaseProcessNode">
+    insert into base_process_node (id, process_id, node_id, 
+      node_order)
+    values (#{id,jdbcType=BIGINT}, #{processId,jdbcType=BIGINT}, #{nodeId,jdbcType=BIGINT}, 
+      #{nodeOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gome.arch.dao.bean.BaseProcessNode">
+    insert into base_process_node
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="processId != null">
+        process_id,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="nodeOrder != null">
+        node_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="processId != null">
+        #{processId,jdbcType=BIGINT},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="nodeOrder != null">
+        #{nodeOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gome.arch.dao.bean.BaseProcessNodeExample" resultType="java.lang.Long">
+    select count(*) from base_process_node
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update base_process_node
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.processId != null">
+        process_id = #{record.processId,jdbcType=BIGINT},
+      </if>
+      <if test="record.nodeId != null">
+        node_id = #{record.nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.nodeOrder != null">
+        node_order = #{record.nodeOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update base_process_node
+    set id = #{record.id,jdbcType=BIGINT},
+      process_id = #{record.processId,jdbcType=BIGINT},
+      node_id = #{record.nodeId,jdbcType=BIGINT},
+      node_order = #{record.nodeOrder,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gome.arch.dao.bean.BaseProcessNode">
+    update base_process_node
+    <set>
+      <if test="processId != null">
+        process_id = #{processId,jdbcType=BIGINT},
+      </if>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="nodeOrder != null">
+        node_order = #{nodeOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gome.arch.dao.bean.BaseProcessNode">
+    update base_process_node
+    set process_id = #{processId,jdbcType=BIGINT},
+      node_id = #{nodeId,jdbcType=BIGINT},
+      node_order = #{nodeOrder,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <!--自扩展方法-->
+  <select id="getProcessById" resultMap="ProcessBeanMap" parameterType="java.lang.Long">
+    SELECT bp.process_id as process_id, bpn.node_order as node_order,bn.node_id as node_id,bn.node_name as node_name FROM base_process as bp ,base_process_node as bpn, base_node as bn
+	WHERE bp.process_id = bpn.process_id and bpn.node_id = bn.node_id and bp.process_id = #{processId}
+    ORDER BY bpn.node_order ASC;
+  </select>
+</mapper>

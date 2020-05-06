@@ -1,4 +1,6 @@
-package com.gome.arch.core.engine;
+package com.gome.arch.core.engine.task;
+
+import com.gome.arch.service.dto.TaskTO;
 
 /**
  * @Classname TaskService
@@ -8,4 +10,5 @@ package com.gome.arch.core.engine;
  */
 public interface TaskService {
 
+    public String addTask(TaskTO taskTO);
 }
