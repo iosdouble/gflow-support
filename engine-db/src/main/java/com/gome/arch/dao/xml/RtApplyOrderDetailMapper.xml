@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gome.arch.dao.mapper.RtApplyOrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.gome.arch.dao.bean.RtApplyOrderDetail">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="apply_order_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gome.arch.dao.bean.RtApplyOrderDetail">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="apply_order_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="apply_order_detail" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, apply_order_detail_id
+  </sql>
+  <sql id="Blob_Column_List">
+    apply_order_detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetailExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rt_apply_order_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rt_apply_order_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rt_apply_order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from rt_apply_order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetail">
+    insert into rt_apply_order_detail (id, apply_order_detail_id, apply_order_detail
+      )
+    values (#{id,jdbcType=BIGINT}, #{applyOrderDetailId,jdbcType=BIGINT}, #{applyOrderDetail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetail">
+    insert into rt_apply_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applyOrderDetailId != null">
+        apply_order_detail_id,
+      </if>
+      <if test="applyOrderDetail != null">
+        apply_order_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applyOrderDetailId != null">
+        #{applyOrderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="applyOrderDetail != null">
+        #{applyOrderDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetailExample" resultType="java.lang.Long">
+    select count(*) from rt_apply_order_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rt_apply_order_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyOrderDetailId != null">
+        apply_order_detail_id = #{record.applyOrderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyOrderDetail != null">
+        apply_order_detail = #{record.applyOrderDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update rt_apply_order_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      apply_order_detail_id = #{record.applyOrderDetailId,jdbcType=BIGINT},
+      apply_order_detail = #{record.applyOrderDetail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rt_apply_order_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      apply_order_detail_id = #{record.applyOrderDetailId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetail">
+    update rt_apply_order_detail
+    <set>
+      <if test="applyOrderDetailId != null">
+        apply_order_detail_id = #{applyOrderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="applyOrderDetail != null">
+        apply_order_detail = #{applyOrderDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetail">
+    update rt_apply_order_detail
+    set apply_order_detail_id = #{applyOrderDetailId,jdbcType=BIGINT},
+      apply_order_detail = #{applyOrderDetail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gome.arch.dao.bean.RtApplyOrderDetail">
+    update rt_apply_order_detail
+    set apply_order_detail_id = #{applyOrderDetailId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

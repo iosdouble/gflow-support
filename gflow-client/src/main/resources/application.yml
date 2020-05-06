@@ -1,20 +1,21 @@
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&useSSL=false
-#mybatis:
-#  mapper-locations: classpath:com/gome/arch/dao/xml/*.xml
-#  type-aliases-package: com.gome.arch.dao.bean
-#
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: 123456
+#    url: jdbc:mysql://localhost:3306/gome_flow?characterEncoding=utf-8&useSSL=false
+##mybatis:
+##  mapper-locations: classpath:com/gome/arch/dao/xml/*.xml
+##  type-aliases-package: com.gome.arch.dao.bean
+##
+#####################数据库扩展配置#######################
 arch:
   support:
     mysql:
       standalone:
         enabled: true
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&useSSL=false
+        url: jdbc:mysql://localhost:3306/gome_flow?characterEncoding=utf-8&useSSL=false
         username: root
         password: 123456
         maxActive: 100 # 最大连接数
