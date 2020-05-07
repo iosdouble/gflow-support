@@ -1,5 +1,9 @@
 package com.gome.arch.core.engine;
 
+import com.gome.arch.dao.bean.ProcessPO;
+
+import java.util.List;
+
 /**
  * @Classname ProcessEngine
  * @Description TODO
@@ -7,4 +11,5 @@ package com.gome.arch.core.engine;
  * @Created by nihui
  */
 public interface ProcessEngine {
+    public List<ProcessPO> createProcess(Long processId);
 }

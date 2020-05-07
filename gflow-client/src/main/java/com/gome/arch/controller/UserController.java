@@ -46,7 +46,7 @@ public class UserController {
         return "OK";
     }
 
-    @GetMapping("/getProcess")
+    @GetMapping("/getFlow")
     public List<BaseProcess> getAll(){
         return baseProcessService.getAllProcess();
     }
