@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @Classname RtApplyOrderDetailServiceImpl
- * @Description TODO
+ * @Description TODO 工单详情
  * @Date 2020/5/6 6:07 PM
  * @Created by nihui
  */

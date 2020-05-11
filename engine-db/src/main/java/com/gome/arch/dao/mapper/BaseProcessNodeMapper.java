@@ -2,7 +2,7 @@ package com.gome.arch.dao.mapper;
 
 import com.gome.arch.dao.bean.BaseProcessNode;
 import com.gome.arch.dao.bean.BaseProcessNodeExample;
-import com.gome.arch.dao.bean.ProcessPO;
+import com.gome.arch.dpo.ProcessPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,7 +1,7 @@
 package com.gome.arch.controller;
 
 import com.gome.arch.core.engine.ProcessEngine;
-import com.gome.arch.dao.bean.ProcessPO;
+import com.gome.arch.dpo.ProcessPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

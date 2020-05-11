@@ -4,6 +4,7 @@ import com.gome.arch.service.dto.TaskTO;
 import com.gome.arch.service.dvo.TaskVO;
 import com.gome.arch.core.engine.task.TaskService;
 import com.gome.arch.uuid.IdWorker;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +39,7 @@ public class TaskController {
         return "OK" + new Date() + s;
 
     }
+
+
 
 }

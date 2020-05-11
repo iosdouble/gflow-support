@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * @Classname RtApprovalUserServiceImpl
- * @Description TODO
+ * @Description TODO 工单与审批人对应关系
  * @Date 2020/5/6 5:08 PM
  * @Created by nihui
  */
+
 @Service
 public class RtApprovalUserServiceImpl implements RtApprovalUserService {
 

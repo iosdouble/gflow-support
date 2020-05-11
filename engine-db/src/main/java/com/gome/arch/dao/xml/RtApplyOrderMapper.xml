@@ -13,6 +13,31 @@
       <arg column="process_node_totalnumber" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
+
+
+  <resultMap id="ApprovalOrderBeanMap" type="com.gome.arch.dpo.ApprovalOrderPO">
+    <result column="apply_order_detail_id" property="applyOrderDetailId"/>
+    <result column="submitter_id" property="submitterId"/>
+    <result column="process_id" property="processId"/>
+    <result column="current_node_id" property="currentNodeId"/>
+    <result column="next_node_id" property="nextNodeId"/>
+    <result column="process_finish_status" property="processFinishStatus"/>
+    <result column="process_node_totalnumber" property="processNodeTotalnumber"/>
+
+  </resultMap>
+
+  <resultMap id="ApprovalOrderExtBeanMap" type="com.gome.arch.dpo.ApprovalOrderPOExt">
+    <result column="apply_order_detail_id" property="applyOrderDetailId"/>
+    <result column="submitter_id" property="submitterId"/>
+    <result column="process_id" property="processId"/>
+    <result column="current_node_id" property="currentNodeId"/>
+    <result column="next_node_id" property="nextNodeId"/>
+    <result column="process_finish_status" property="processFinishStatus"/>
+    <result column="process_node_totalnumber" property="processNodeTotalnumber"/>
+    <result column="apply_order_detail" property="applyOrderDetail"/>
+
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -252,4 +277,17 @@
       process_node_totalnumber = #{processNodeTotalnumber,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="getApprovalListByUserId" resultMap="ApprovalOrderBeanMap" parameterType="java.lang.Long">
+    SELECT rau.apply_order_detail_id,rau.submitter_id,rau.process_id,rao.current_node_id,rao.next_node_id,rao.process_finish_status,rao.process_node_totalnumber FROM rt_approval_user as rau , rt_apply_order as rao
+	WHERE rau.node_id = rao.current_node_id AND rau.apply_order_detail_id = rao.apply_order_detail_id  AND rao.current_node_finish_status = 0
+	AND rau.approval_user_id = #{userid};
+  </select>
+
+  <select id="getApprovalDetailListByUserId" resultMap="ApprovalOrderExtBeanMap" parameterType="java.lang.Long">
+    SELECT rau.apply_order_detail_id,rau.submitter_id,rau.process_id,rao.current_node_id,rao.next_node_id,rao.process_finish_status,rao.process_node_totalnumber,raod.apply_order_detail FROM
+	rt_approval_user as rau , rt_apply_order as rao,rt_apply_order_detail as raod
+	WHERE rau.node_id = rao.current_node_id AND rau.apply_order_detail_id = rao.apply_order_detail_id AND rau.apply_order_detail_id = raod.apply_order_detail_id  AND rao.current_node_finish_status = 0
+	AND rau.approval_user_id = #{userid};
+  </select>
 </mapper>

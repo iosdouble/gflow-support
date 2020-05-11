@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 /app/archcloud/${APP_NAME} /Users/frankie/Documents/workspace/arch-cloud-application/${APP_NAME}-->
+	<springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+	<!--<property name="LOG_BASE_PATH" value="/app/archcloud/${APP_NAME}" />-->
+	<property name="LOG_BASE_PATH" value="/Users/nihui/Documents/Gome/gflow/app/archcloud/${APP_NAME}" />
+	<property name="EVENT_LOG_PATH" value="${LOG_BASE_PATH}/eventlog" />
+	<property name="APP_LOG_PATH" value="${LOG_BASE_PATH}/applog" />
+	<property name="HOST_NAME" value="${HOSTNAME:-UNKNOWN}"/>
+	
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+  	<jmxConfigurator/>
+  	
+	<!-- 控制台日志输出 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+		</encoder>	
+	</appender>
+	
+	<!-- 第三方框架日志输出 ，如启动日志，mybatis日志等 -->
+	<appender name="thirdPartyAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!-- rollover daily -->  
+			<fileNamePattern>${APP_LOG_PATH}/thirdParty.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>  
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->  
+		    <maxFileSize>50MB</maxFileSize>  
+		    <maxHistory>30</maxHistory>  
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- core-parent及support项目内部日志输出 -->
+	<appender name="catCoreAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!-- rollover daily -->  
+			<fileNamePattern>${APP_LOG_PATH}/core.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>  
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->  
+		    <maxFileSize>50MB</maxFileSize>  
+		    <maxHistory>30</maxHistory>  
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 系统异常输出 -->
+	<appender name="systemExceptionAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!-- rollover daily -->  
+			<fileNamePattern>${APP_LOG_PATH}/systemException.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>  
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->  
+		    <maxFileSize>50MB</maxFileSize>  
+		    <maxHistory>30</maxHistory>  
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 业务异常输出 -->
+	<appender name="businessExceptionAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!-- rollover daily -->  
+			<fileNamePattern>${APP_LOG_PATH}/businessException.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>  
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->  
+		    <maxFileSize>50MB</maxFileSize>  
+		    <maxHistory>30</maxHistory>  
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 应用日志输出 -->
+	<appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!-- rollover daily -->  
+			<fileNamePattern>${APP_LOG_PATH}/info.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>  
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->  
+		    <maxFileSize>50MB</maxFileSize>  
+		    <maxHistory>30</maxHistory>  
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- eventLog输出 -->
+	<appender name="eventLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!-- rollover daily -->  
+			<fileNamePattern>${EVENT_LOG_PATH}/eventLog.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>  
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->  
+		    <maxFileSize>50MB</maxFileSize>  
+		    <maxHistory>30</maxHistory>  
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%m%n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 审计日志输出 -->
+	<appender name="auditAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">  
+			<!-- rollover daily -->  
+			<fileNamePattern>${APP_LOG_PATH}/audit.log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>  
+			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->  
+		    <maxFileSize>50MB</maxFileSize>  
+		    <maxHistory>30</maxHistory>  
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 日志输出级别 -->
+	<root level="INFO">
+		<appender-ref ref="console" />
+	</root>
+	<logger name="org.springframework" level="INFO" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="thirdPartyAppender" />
+	</logger>
+	<logger name="cat.core" level="ERROR" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="catCoreAppender" />
+	</logger>
+	<logger name="cat.system.exception" level="ERROR" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="systemExceptionAppender" />
+	</logger>
+	<logger name="cat.busi ness.exception" level="ERROR" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="businessExceptionAppender" />
+	</logger>
+	<logger name="cat.info" level="INFO" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="infoAppender" />
+	</logger>
+	<logger name="cat.event" level="INFO" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="eventLogAppender" />
+	</logger>
+	<logger name="cat.audit" level="INFO" additivity="false">
+		<appender-ref ref="console" />
+		<appender-ref ref="auditAppender" />
+	</logger>
+</configuration>

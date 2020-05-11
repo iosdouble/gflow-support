@@ -10,7 +10,7 @@
     </constructor>
   </resultMap>
 
-  <resultMap id="ProcessBeanMap" type="com.gome.arch.dao.bean.ProcessPO">
+  <resultMap id="ProcessBeanMap" type="com.gome.arch.dpo.ProcessPO">
     <result column="process_id" property="processId"/>
     <result column="node_order" property="nodeOrder"/>
     <result column="node_id" property="nodeId"/>

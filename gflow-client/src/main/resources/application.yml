@@ -8,6 +8,9 @@
 ##  mapper-locations: classpath:com/gome/arch/dao/xml/*.xml
 ##  type-aliases-package: com.gome.arch.dao.bean
 ##
+spring:
+  application:
+    name: gflow-support
 #####################数据库扩展配置#######################
 arch:
   support:
@@ -25,3 +28,17 @@ arch:
       mapperSqlXmls: classpath:com/gome/arch/dao/xml/*.xml
       mapperBeanPackages: com.gome.arch.dao.bean
       mapperInterfacePackages: com.gome.arch.dao.mapper
+      pagehelper:
+        enabled: true
+        offsetAsPageNum: true  #默认为false，为 true 时，会将 RowBounds 中的 offset 参数当成 pageNum 使用
+        rowBoundsWithCount: false #默认为false，为true时，使用 RowBounds 分页会进行 count 查询。
+        pageSizeZero: false #默认为false，为 true 时，如果 pageSize=0 或者 RowBounds.limit = 0 就会查询出全部的结果
+        reasonable: false  #默认为false，为 true 时，pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），会查询最后一页
+        supportMethodsArguments: false #默认值false，支持通过 Mapper 接口参数来传递分页参数，自动根据上面 params 配置的字段中取值
+        dialect: #自定义分页逻辑需要设置这个值为分页的类
+        helperDialect: mysql  #配置分页对应的数据库
+        autoRuntimeDialect: false #默认值为 false。设置为 true 时，允许在运行时根据多数据源自动识别对应方言的分页
+        autoDialect:
+        closeConn: true #默认值为 true。当使用运行时动态数据源或没有设置 helperDialect 属性自动获取数据库类型时，会自动获取一个数据库连接， 通过该属性来设置是否关闭获取的这个连接
+        params: count=countSql  #为了支持startPage(Object params)方法，增加了该参数来配置参数映射
+

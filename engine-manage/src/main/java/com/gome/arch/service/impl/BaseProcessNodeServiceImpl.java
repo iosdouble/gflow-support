@@ -1,6 +1,6 @@
 package com.gome.arch.service.impl;
 
-import com.gome.arch.dao.bean.ProcessPO;
+import com.gome.arch.dpo.ProcessPO;
 import com.gome.arch.dao.mapper.BaseProcessNodeMapper;
 import com.gome.arch.service.BaseProcessNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
