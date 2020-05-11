@@ -2,6 +2,7 @@ package com.gome.arch.core.engine.runtime;
 
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
+import com.gome.arch.service.dvo.ApprovalDealVO;
 
 /**
  * @Classname RuntimeService
@@ -18,5 +19,12 @@ public interface RuntimeService {
      * @param limit
      * @return
      */
-    PageInfo<ApprovalOrderPOExt> pageOrderApplies(Long userid,int offset, int limit);
+    public PageInfo<ApprovalOrderPOExt> pageOrderApplies(Long userid,int offset, int limit);
+
+
+    public int updateApprovalAgree(ApprovalDealVO approvalDealVO);
+
+
+    public int updateApprovalReject(ApprovalDealVO approvalDealVO);
+
 }

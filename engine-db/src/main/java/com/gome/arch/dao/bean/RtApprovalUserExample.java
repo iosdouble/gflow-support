@@ -463,6 +463,66 @@ public class RtApprovalUserExample {
             addCriterion("approval_user_id not between", value1, value2, "approvalUserId");
             return (Criteria) this;
         }
+
+        public Criteria andNodeOrderIsNull() {
+            addCriterion("node_order is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderIsNotNull() {
+            addCriterion("node_order is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderEqualTo(Integer value) {
+            addCriterion("node_order =", value, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderNotEqualTo(Integer value) {
+            addCriterion("node_order <>", value, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderGreaterThan(Integer value) {
+            addCriterion("node_order >", value, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderGreaterThanOrEqualTo(Integer value) {
+            addCriterion("node_order >=", value, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderLessThan(Integer value) {
+            addCriterion("node_order <", value, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderLessThanOrEqualTo(Integer value) {
+            addCriterion("node_order <=", value, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderIn(List<Integer> values) {
+            addCriterion("node_order in", values, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderNotIn(List<Integer> values) {
+            addCriterion("node_order not in", values, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderBetween(Integer value1, Integer value2) {
+            addCriterion("node_order between", value1, value2, "nodeOrder");
+            return (Criteria) this;
+        }
+
+        public Criteria andNodeOrderNotBetween(Integer value1, Integer value2) {
+            addCriterion("node_order not between", value1, value2, "nodeOrder");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

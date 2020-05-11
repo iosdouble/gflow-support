@@ -1,7 +1,10 @@
 package com.gome.arch.service;
 
+import com.gome.arch.dao.bean.RtApprovalUser;
 import com.gome.arch.service.dto.TaskTO;
 import com.gome.arch.service.dvo.ApprovalUserVO;
+
+import java.util.List;
 
 
 /**
@@ -11,5 +14,11 @@ import com.gome.arch.service.dvo.ApprovalUserVO;
  * @Created by nihui
  */
 public interface RtApprovalUserService {
+
+    //增加处理人信息
     public int addApprovalUserRelation(TaskTO taskTO);
+
+    //根据工单号获取处理信息
+    public List<RtApprovalUser> getRelationByApplyId(Long applyId);
+
 }

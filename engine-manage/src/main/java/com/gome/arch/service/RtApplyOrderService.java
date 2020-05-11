@@ -2,7 +2,9 @@ package com.gome.arch.service;
 
 import com.gome.arch.dpo.ApprovalOrderPO;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
+import com.gome.arch.service.dto.ApprovalOrderTO;
 import com.gome.arch.service.dto.TaskTO;
+import com.gome.arch.service.dvo.ApprovalDealVO;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public interface RtApplyOrderService {
     public List<ApprovalOrderPOExt> getApprovalDetailListByUserId(Long userid);
 
     //审批成功
-    public int updateApprovalOK();
+    public int updateApplyOrderOK(ApprovalOrderTO approvalOrderTO);
 
     //审批拒绝
     public int updateApprovalRegject();

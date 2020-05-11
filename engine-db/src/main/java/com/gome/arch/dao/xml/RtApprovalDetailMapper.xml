@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gome.arch.dao.mapper.RtApprovalDetailMapper">
+  <resultMap id="BaseResultMap" type="com.gome.arch.dao.bean.RtApprovalDetail">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="current_node_deal_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="current_process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="apply_order_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_person_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gome.arch.dao.bean.RtApprovalDetail">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="current_node_deal_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="current_process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="apply_order_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_person_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="approval_person_note" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, current_node_deal_id, current_process_id, apply_order_id, approval_person_id, 
+    create_time, last_update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    approval_person_note
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.gome.arch.dao.bean.RtApprovalDetailExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rt_approval_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.gome.arch.dao.bean.RtApprovalDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rt_approval_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rt_approval_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from rt_approval_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gome.arch.dao.bean.RtApprovalDetail">
+    insert into rt_approval_detail (id, current_node_deal_id, current_process_id, 
+      apply_order_id, approval_person_id, create_time, 
+      last_update_time, approval_person_note
+      )
+    values (#{id,jdbcType=BIGINT}, #{currentNodeDealId,jdbcType=BIGINT}, #{currentProcessId,jdbcType=INTEGER}, 
+      #{applyOrderId,jdbcType=BIGINT}, #{approvalPersonId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{approvalPersonNote,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gome.arch.dao.bean.RtApprovalDetail">
+    insert into rt_approval_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="currentNodeDealId != null">
+        current_node_deal_id,
+      </if>
+      <if test="currentProcessId != null">
+        current_process_id,
+      </if>
+      <if test="applyOrderId != null">
+        apply_order_id,
+      </if>
+      <if test="approvalPersonId != null">
+        approval_person_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="approvalPersonNote != null">
+        approval_person_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="currentNodeDealId != null">
+        #{currentNodeDealId,jdbcType=BIGINT},
+      </if>
+      <if test="currentProcessId != null">
+        #{currentProcessId,jdbcType=INTEGER},
+      </if>
+      <if test="applyOrderId != null">
+        #{applyOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="approvalPersonId != null">
+        #{approvalPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalPersonNote != null">
+        #{approvalPersonNote,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gome.arch.dao.bean.RtApprovalDetailExample" resultType="java.lang.Long">
+    select count(*) from rt_approval_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rt_approval_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.currentNodeDealId != null">
+        current_node_deal_id = #{record.currentNodeDealId,jdbcType=BIGINT},
+      </if>
+      <if test="record.currentProcessId != null">
+        current_process_id = #{record.currentProcessId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyOrderId != null">
+        apply_order_id = #{record.applyOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.approvalPersonId != null">
+        approval_person_id = #{record.approvalPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.approvalPersonNote != null">
+        approval_person_note = #{record.approvalPersonNote,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update rt_approval_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      current_node_deal_id = #{record.currentNodeDealId,jdbcType=BIGINT},
+      current_process_id = #{record.currentProcessId,jdbcType=INTEGER},
+      apply_order_id = #{record.applyOrderId,jdbcType=BIGINT},
+      approval_person_id = #{record.approvalPersonId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      approval_person_note = #{record.approvalPersonNote,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rt_approval_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      current_node_deal_id = #{record.currentNodeDealId,jdbcType=BIGINT},
+      current_process_id = #{record.currentProcessId,jdbcType=INTEGER},
+      apply_order_id = #{record.applyOrderId,jdbcType=BIGINT},
+      approval_person_id = #{record.approvalPersonId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gome.arch.dao.bean.RtApprovalDetail">
+    update rt_approval_detail
+    <set>
+      <if test="currentNodeDealId != null">
+        current_node_deal_id = #{currentNodeDealId,jdbcType=BIGINT},
+      </if>
+      <if test="currentProcessId != null">
+        current_process_id = #{currentProcessId,jdbcType=INTEGER},
+      </if>
+      <if test="applyOrderId != null">
+        apply_order_id = #{applyOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="approvalPersonId != null">
+        approval_person_id = #{approvalPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approvalPersonNote != null">
+        approval_person_note = #{approvalPersonNote,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gome.arch.dao.bean.RtApprovalDetail">
+    update rt_approval_detail
+    set current_node_deal_id = #{currentNodeDealId,jdbcType=BIGINT},
+      current_process_id = #{currentProcessId,jdbcType=INTEGER},
+      apply_order_id = #{applyOrderId,jdbcType=BIGINT},
+      approval_person_id = #{approvalPersonId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      approval_person_note = #{approvalPersonNote,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gome.arch.dao.bean.RtApprovalDetail">
+    update rt_approval_detail
+    set current_node_deal_id = #{currentNodeDealId,jdbcType=BIGINT},
+      current_process_id = #{currentProcessId,jdbcType=INTEGER},
+      apply_order_id = #{applyOrderId,jdbcType=BIGINT},
+      approval_person_id = #{approvalPersonId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

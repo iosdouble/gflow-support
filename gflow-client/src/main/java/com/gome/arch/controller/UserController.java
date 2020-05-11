@@ -1,19 +1,16 @@
 package com.gome.arch.controller;
 
 import com.gome.arch.dao.bean.BaseProcess;
+import com.gome.arch.dao.bean.RtApprovalUser;
 import com.gome.arch.dao.bean.User;
-import com.gome.arch.dpo.ApprovalOrderPO;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
 import com.gome.arch.dpo.ProcessPO;
-import com.gome.arch.service.BaseProcessNodeService;
-import com.gome.arch.service.BaseProcessService;
-import com.gome.arch.service.RtApplyOrderService;
-import com.gome.arch.service.UserService;
+import com.gome.arch.service.*;
+import com.gome.arch.service.dto.ApprovalOrderTO;
+import com.gome.arch.service.dvo.ApprovalDealVO;
 import com.gome.arch.uuid.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +37,13 @@ public class UserController {
 
     @Autowired
     private RtApplyOrderService rtApplyOrderService;
+
+    @Autowired
+    private RtApprovalUserService rtApprovalUserService;
+
+    @Autowired
+    private RtApprovalDetailService rtApprovalDetailService;
+
 
     @GetMapping("/add")
     public String add(){
@@ -70,5 +74,23 @@ public class UserController {
     @GetMapping("/getOrder")
     public List<ApprovalOrderPOExt> getOrder(@RequestParam(name = "userid") Long userid){
         return rtApplyOrderService.getApprovalDetailListByUserId(userid);
+    }
+
+    @GetMapping("/getDealList")
+    public List<RtApprovalUser> getDealList(@RequestParam(name = "id") Long id){
+        return rtApprovalUserService.getRelationByApplyId(id);
+    }
+
+    @PostMapping("/approval")
+    public int getApproval(@RequestBody ApprovalDealVO approvalDealVO){
+        return rtApprovalDetailService.insertApprovalDetail(approvalDealVO);
+    }
+
+    @GetMapping("/update")
+    public int update(@RequestParam(name = "node") Long node){
+        ApprovalOrderTO approvalOrderTO = new ApprovalOrderTO();
+        approvalOrderTO.setApplyId(1259680642995879936L);
+        approvalOrderTO.setCurrentNode(node);
+        return rtApplyOrderService.updateApplyOrderOK(approvalOrderTO);
     }
 }

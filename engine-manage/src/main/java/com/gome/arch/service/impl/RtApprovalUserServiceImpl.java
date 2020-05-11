@@ -2,6 +2,7 @@ package com.gome.arch.service.impl;
 
 
 import com.gome.arch.dao.bean.RtApprovalUser;
+import com.gome.arch.dao.bean.RtApprovalUserExample;
 import com.gome.arch.dao.mapper.RtApprovalUserMapper;
 import com.gome.arch.service.RtApprovalUserService;
 import com.gome.arch.service.dto.TaskTO;
@@ -9,6 +10,8 @@ import com.gome.arch.service.dvo.ApprovalUserVO;
 import com.gome.arch.uuid.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Classname RtApprovalUserServiceImpl
@@ -23,6 +26,7 @@ public class RtApprovalUserServiceImpl implements RtApprovalUserService {
     @Autowired
     private RtApprovalUserMapper rtApprovalUserMapper;
 
+
     @Autowired
     private IdWorker idWorker;
 
@@ -35,9 +39,19 @@ public class RtApprovalUserServiceImpl implements RtApprovalUserService {
             rtApprovalUser.setSubmitterId(taskTO.getApplyUserCode());
             rtApprovalUser.setProcessId(taskTO.getProcessId());
             rtApprovalUser.setNodeId(approvalUserVO.getNodeId());
+            rtApprovalUser.setNodeOrder(approvalUserVO.getApprovalOrder());
             rtApprovalUser.setApprovalUserId(approvalUserVO.getApprovalUserId());
             rtApprovalUserMapper.insert(rtApprovalUser);
         }
         return 1;
+    }
+
+    @Override
+    public List<RtApprovalUser> getRelationByApplyId(Long applyId) {
+        RtApprovalUserExample rtApprovalUserExample = new RtApprovalUserExample();
+        RtApprovalUserExample.Criteria criteria = rtApprovalUserExample.createCriteria();
+        criteria.andApplyOrderDetailIdEqualTo(applyId);
+        List<RtApprovalUser> rtApprovalUsers = rtApprovalUserMapper.selectByExample(rtApprovalUserExample);
+        return rtApprovalUsers;
     }
 }
