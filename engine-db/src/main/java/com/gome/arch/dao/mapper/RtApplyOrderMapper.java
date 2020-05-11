@@ -9,8 +9,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
-
-
 @Mapper
 public interface RtApplyOrderMapper extends Serializable {
     long countByExample(RtApplyOrderExample example);
@@ -42,5 +40,4 @@ public interface RtApplyOrderMapper extends Serializable {
     List<ApprovalOrderPO> getApprovalListByUserId(Long userid);
 
     List<ApprovalOrderPOExt> getApprovalDetailListByUserId(Long userid);
-
 }

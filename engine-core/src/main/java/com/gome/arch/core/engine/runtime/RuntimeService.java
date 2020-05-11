@@ -10,5 +10,13 @@ import com.gome.arch.dpo.ApprovalOrderPOExt;
  * @Created by nihui
  */
 public interface RuntimeService {
+
+    /**
+     * 根据审批人ID获取对应人员审批的列表信息
+     * @param userid
+     * @param offset
+     * @param limit
+     * @return
+     */
     PageInfo<ApprovalOrderPOExt> pageOrderApplies(Long userid,int offset, int limit);
 }

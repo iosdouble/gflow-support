@@ -1,5 +1,7 @@
 package com.gome.arch.dao.bean;
 
+import java.util.Date;
+
 public class RtApplyOrder {
     private Long id;
 
@@ -17,7 +19,11 @@ public class RtApplyOrder {
 
     private Long processNodeTotalnumber;
 
-    public RtApplyOrder(Long id, Long applyOrderDetailId, Long currentNodeId, Long nextNodeId, Integer currentNodeFinishStatus, Integer processFinishStatus, Integer porcessId, Long processNodeTotalnumber) {
+    private Date createTime;
+
+    private Date lastUpdateTime;
+
+    public RtApplyOrder(Long id, Long applyOrderDetailId, Long currentNodeId, Long nextNodeId, Integer currentNodeFinishStatus, Integer processFinishStatus, Integer porcessId, Long processNodeTotalnumber, Date createTime, Date lastUpdateTime) {
         this.id = id;
         this.applyOrderDetailId = applyOrderDetailId;
         this.currentNodeId = currentNodeId;
@@ -26,6 +32,8 @@ public class RtApplyOrder {
         this.processFinishStatus = processFinishStatus;
         this.porcessId = porcessId;
         this.processNodeTotalnumber = processNodeTotalnumber;
+        this.createTime = createTime;
+        this.lastUpdateTime = lastUpdateTime;
     }
 
     public RtApplyOrder() {
@@ -94,5 +102,21 @@ public class RtApplyOrder {
 
     public void setProcessNodeTotalnumber(Long processNodeTotalnumber) {
         this.processNodeTotalnumber = processNodeTotalnumber;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
     }
 }

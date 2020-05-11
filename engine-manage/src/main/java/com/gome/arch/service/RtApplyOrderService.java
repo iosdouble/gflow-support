@@ -8,15 +8,23 @@ import java.util.List;
 
 /**
  * @Classname RtApplyOrderService
- * @Description TODO
+ * @Description TODO 工单相关内容的处理
  * @Date 2020/5/7 3:01 PM
  * @Created by nihui
  */
 public interface RtApplyOrderService {
 
+    // 提交新的工单信息
     public int insertNewApplyOrder(TaskTO taskTO);
 
     public List<ApprovalOrderPO> getApprovalListByUserId(Long userid);
 
+    //获取工单流程列表
     public List<ApprovalOrderPOExt> getApprovalDetailListByUserId(Long userid);
+
+    //审批成功
+    public int updateApprovalOK();
+
+    //审批拒绝
+    public int updateApprovalRegject();
 }

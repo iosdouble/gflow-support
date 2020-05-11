@@ -11,6 +11,8 @@
       <arg column="process_finish_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="porcess_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="process_node_totalnumber" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
 
@@ -98,7 +100,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, apply_order_detail_id, current_node_id, next_node_id, current_node_finish_status, 
-    process_finish_status, porcess_id, process_node_totalnumber
+    process_finish_status, porcess_id, process_node_totalnumber, create_time, last_update_time
   </sql>
   <select id="selectByExample" parameterType="com.gome.arch.dao.bean.RtApplyOrderExample" resultMap="BaseResultMap">
     select
@@ -127,10 +129,12 @@
   <insert id="insert" parameterType="com.gome.arch.dao.bean.RtApplyOrder">
     insert into rt_apply_order (id, apply_order_detail_id, current_node_id, 
       next_node_id, current_node_finish_status, process_finish_status, 
-      porcess_id, process_node_totalnumber)
+      porcess_id, process_node_totalnumber, create_time, 
+      last_update_time)
     values (#{id,jdbcType=BIGINT}, #{applyOrderDetailId,jdbcType=BIGINT}, #{currentNodeId,jdbcType=BIGINT}, 
       #{nextNodeId,jdbcType=BIGINT}, #{currentNodeFinishStatus,jdbcType=INTEGER}, #{processFinishStatus,jdbcType=INTEGER}, 
-      #{porcessId,jdbcType=INTEGER}, #{processNodeTotalnumber,jdbcType=BIGINT})
+      #{porcessId,jdbcType=INTEGER}, #{processNodeTotalnumber,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.gome.arch.dao.bean.RtApplyOrder">
     insert into rt_apply_order
@@ -159,6 +163,12 @@
       <if test="processNodeTotalnumber != null">
         process_node_totalnumber,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -184,6 +194,12 @@
       </if>
       <if test="processNodeTotalnumber != null">
         #{processNodeTotalnumber,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -220,6 +236,12 @@
       <if test="record.processNodeTotalnumber != null">
         process_node_totalnumber = #{record.processNodeTotalnumber,jdbcType=BIGINT},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -234,7 +256,9 @@
       current_node_finish_status = #{record.currentNodeFinishStatus,jdbcType=INTEGER},
       process_finish_status = #{record.processFinishStatus,jdbcType=INTEGER},
       porcess_id = #{record.porcessId,jdbcType=INTEGER},
-      process_node_totalnumber = #{record.processNodeTotalnumber,jdbcType=BIGINT}
+      process_node_totalnumber = #{record.processNodeTotalnumber,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -263,6 +287,12 @@
       <if test="processNodeTotalnumber != null">
         process_node_totalnumber = #{processNodeTotalnumber,jdbcType=BIGINT},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -274,9 +304,12 @@
       current_node_finish_status = #{currentNodeFinishStatus,jdbcType=INTEGER},
       process_finish_status = #{processFinishStatus,jdbcType=INTEGER},
       porcess_id = #{porcessId,jdbcType=INTEGER},
-      process_node_totalnumber = #{processNodeTotalnumber,jdbcType=BIGINT}
+      process_node_totalnumber = #{processNodeTotalnumber,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
 
   <select id="getApprovalListByUserId" resultMap="ApprovalOrderBeanMap" parameterType="java.lang.Long">
     SELECT rau.apply_order_detail_id,rau.submitter_id,rau.process_id,rao.current_node_id,rao.next_node_id,rao.process_finish_status,rao.process_node_totalnumber FROM rt_approval_user as rau , rt_apply_order as rao

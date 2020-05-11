@@ -5,7 +5,7 @@ import com.gome.arch.service.dto.TaskTO;
 
 /**
  * @Classname RtApplyOrderDetailService
- * @Description TODO
+ * @Description TODO 工单详情处理
  * @Date 2020/5/6 6:06 PM
  * @Created by nihui
  */

@@ -72,6 +72,16 @@ public class RtApplyOrderServiceImpl implements RtApplyOrderService {
         return rtApplyOrderMapper.getApprovalDetailListByUserId(userid);
     }
 
+    @Override
+    public int updateApprovalOK() {
+        return 0;
+    }
+
+    @Override
+    public int updateApprovalRegject() {
+        return 0;
+    }
+
 
     /**
      * 根据流程ID获取流程对应的节点关系
