@@ -4,7 +4,6 @@ package com.gome.arch.service.impl;
 
 import com.gome.arch.dao.bean.RtApplyOrderExample;
 import com.gome.arch.dao.bean.RtApprovalUser;
-import com.gome.arch.dao.bean.RtApprovalUserExample;
 import com.gome.arch.dao.mapper.RtApprovalUserMapper;
 import com.gome.arch.dpo.ApprovalOrderPO;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
@@ -15,8 +14,6 @@ import com.gome.arch.dao.mapper.RtApplyOrderMapper;
 import com.gome.arch.service.RtApplyOrderService;
 import com.gome.arch.service.dto.ApprovalOrderTO;
 import com.gome.arch.service.dto.TaskTO;
-import com.gome.arch.service.dvo.ApprovalDealVO;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

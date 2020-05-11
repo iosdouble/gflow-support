@@ -2,7 +2,6 @@ package com.gome.arch.service.impl;
 
 import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.dao.mapper.RtApprovalDetailMapper;
-import com.gome.arch.service.RtApplyOrderService;
 import com.gome.arch.service.RtApprovalDetailService;
 import com.gome.arch.service.dvo.ApprovalDealVO;
 import com.gome.arch.uuid.IdWorker;
