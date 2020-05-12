@@ -15,15 +15,12 @@ import java.util.List;
  * @Created by nihui
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public  class BaseVO {
-
-    private Integer processId;
-    private List<ApprovalUserVO> approvalUserVoList;
     //用户ID
     @NullAndRegexValid(paramName="申请用户Code",notNull=true,regex="[0-9]+")
     private Long applyUserCode;
+
+    private String applyDetail;
 
 
 }

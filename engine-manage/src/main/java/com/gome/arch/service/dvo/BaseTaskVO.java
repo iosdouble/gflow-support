@@ -5,18 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
- * @Classname TaskVO
- * @Description TODO 提交任务视图对象
- * @Date 2020/5/6 4:02 PM
+ * @Classname BaseTaskVO
+ * @Description TODO
+ * @Date 2020/5/12 11:25 AM
  * @Created by nihui
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskVO extends BaseVO {
-    private Integer processId;
-    private List<ApprovalUserVO> approvalUserVoList;
+public class BaseTaskVO extends BaseVO {
+    private String systemType;
+
 }

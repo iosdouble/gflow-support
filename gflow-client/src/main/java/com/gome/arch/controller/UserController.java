@@ -9,6 +9,7 @@ import com.gome.arch.service.*;
 import com.gome.arch.service.dto.ApprovalOrderTO;
 import com.gome.arch.service.dvo.ApprovalDealVO;
 import com.gome.arch.uuid.IdWorker;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ import java.util.List;
  * @Date 2020/4/20 10:59 AM
  * @Created by nihui
  */
+@Api(value = "测试接口",description = "测试接口")
 @RestController
 public class UserController {
 

@@ -3,6 +3,7 @@ package com.gome.arch.core.engine.task.impl;
 import com.gome.arch.dao.mapper.RtApplyOrderDetailMapper;
 import com.gome.arch.service.RtApplyOrderDetailService;
 import com.gome.arch.service.RtApplyOrderService;
+import com.gome.arch.service.dto.BaseTaskTO;
 import com.gome.arch.service.dvo.ApprovalUserVO;
 import com.gome.arch.core.engine.task.TaskService;
 import com.gome.arch.service.dto.TaskTO;
@@ -30,10 +31,15 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public String addTask(TaskTO taskTO) {
+    public String startTask(TaskTO taskTO) {
        rtApprovalUserService.addApprovalUserRelation(taskTO);
        rtApplyOrderDetailService.addApplyOrderDetail(taskTO);
        rtApplyOrderService.insertNewApplyOrder(taskTO);
        return "处理成功";
+    }
+
+    @Override
+    public String addTask(BaseTaskTO baseTaskTO) {
+        return null;
     }
 }
