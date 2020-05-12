@@ -13,13 +13,16 @@ public class RtApprovalUser {
 
     private Long approvalUserId;
 
-    public RtApprovalUser(Long id, Long applyOrderDetailId, Long submitterId, Integer processId, Long nodeId, Long approvalUserId) {
+    private Integer nodeOrder;
+
+    public RtApprovalUser(Long id, Long applyOrderDetailId, Long submitterId, Integer processId, Long nodeId, Long approvalUserId, Integer nodeOrder) {
         this.id = id;
         this.applyOrderDetailId = applyOrderDetailId;
         this.submitterId = submitterId;
         this.processId = processId;
         this.nodeId = nodeId;
         this.approvalUserId = approvalUserId;
+        this.nodeOrder = nodeOrder;
     }
 
     public RtApprovalUser() {
@@ -72,5 +75,13 @@ public class RtApprovalUser {
 
     public void setApprovalUserId(Long approvalUserId) {
         this.approvalUserId = approvalUserId;
+    }
+
+    public Integer getNodeOrder() {
+        return nodeOrder;
+    }
+
+    public void setNodeOrder(Integer nodeOrder) {
+        this.nodeOrder = nodeOrder;
     }
 }

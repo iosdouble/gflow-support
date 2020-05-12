@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
-
 @Mapper
 public interface RtApprovalUserMapper extends Serializable {
     long countByExample(RtApprovalUserExample example);
@@ -29,4 +28,12 @@ public interface RtApprovalUserMapper extends Serializable {
     int updateByPrimaryKeySelective(RtApprovalUser record);
 
     int updateByPrimaryKey(RtApprovalUser record);
+
+
+    /**
+     * 根据工单号获取审批规则
+     * @param applyId
+     * @return
+     */
+    public List<RtApprovalUser> getDealUserListByApplyId(Long applyId);
 }

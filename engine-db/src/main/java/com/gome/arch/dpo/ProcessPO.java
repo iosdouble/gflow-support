@@ -1,4 +1,4 @@
-package com.gome.arch.dao.bean;
+package com.gome.arch.dpo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.gome.arch.service.impl;
 
-import com.gome.arch.dao.bean.ProcessPO;
+import com.gome.arch.dpo.ProcessPO;
 import com.gome.arch.dao.mapper.BaseProcessNodeMapper;
 import com.gome.arch.service.BaseProcessNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +23,10 @@ public class BaseProcessNodeServiceImpl implements BaseProcessNodeService {
     @Override
     public List<ProcessPO> getProcessById(Long processId) {
         return baseProcessNodeMapper.getProcessById(processId);
+    }
+
+    @Override
+    public List<ProcessPO> getProcess() {
+        return baseProcessNodeMapper.getProcess();
     }
 }

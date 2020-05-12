@@ -21,7 +21,6 @@ public class ApprovalUserVO {
     private Long nodeId;
     //审批人ID
     private Long approvalUserId;
-
     //审批人域账户
     private String approvalUserDomainAccount;
 }

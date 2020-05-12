@@ -1,6 +1,14 @@
 package com.gome.arch.controller;
 
+import com.gome.arch.core.engine.ProcessEngine;
+import com.gome.arch.dpo.ProcessPO;
+import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @Classname BaseProcessController
@@ -8,6 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2020/5/6 3:25 PM
  * @Created by nihui
  */
+@Api(value = "获取基本的流程管理",description = "基本流程管理")
 @RestController
 public class BaseProcessController {
+    @Autowired
+    private ProcessEngine processEngine;
+
+    @GetMapping("/getProcessById")
+    public List<ProcessPO> getProcessById(@RequestParam(name = "pid") Long processId){
+        return processEngine.createProcess(processId);
+    }
+
+    @GetMapping("/getProcess")
+    public List<ProcessPO> getProcess(){
+        return processEngine.createProcess();
+    }
+
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @Classname TaskVO
  * @Description TODO 提交任务视图对象
@@ -15,5 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskVO extends BaseVO {
-    private String applyDetail;
+    private Integer processId;
+    private List<ApprovalUserVO> approvalUserVoList;
 }

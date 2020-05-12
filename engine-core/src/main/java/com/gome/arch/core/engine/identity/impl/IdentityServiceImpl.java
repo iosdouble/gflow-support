@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @Classname IdentityServiceImpl
- * @Description TODO
+ * @Description TODO 鉴权服务封装
  * @Date 2020/4/23 1:46 PM
  * @Created by nihui
  */
