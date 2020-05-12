@@ -55,7 +55,7 @@ public class TaskController {
         BeanUtils.copyProperties(taskVO,taskTO);
         taskTO.setApplyId(idWorker.nextId());
         taskTO.setProcessId(taskVO.getProcessId());
-        String s = taskService.addTask(taskTO);
+        String s = taskService.startTask(taskTO);
         responseEntity.setCode(200);
         responseEntity.setMsg("normal");
         responseEntity.setData("OK" + new Date() + s);

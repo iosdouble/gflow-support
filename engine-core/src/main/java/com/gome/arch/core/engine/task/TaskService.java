@@ -14,4 +14,6 @@ public interface TaskService {
     public String startTask(TaskTO taskTO);
 
     public String addTask(BaseTaskTO baseTaskTO);
+
+    public String endTask();
 }
