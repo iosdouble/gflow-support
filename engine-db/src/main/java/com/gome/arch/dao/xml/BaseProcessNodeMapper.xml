@@ -223,4 +223,11 @@
 	WHERE bp.process_id = bpn.process_id and bpn.node_id = bn.node_id and bp.process_id = #{processId}
     ORDER BY bpn.node_order ASC;
   </select>
+
+  <!--自扩展方法-->
+  <select id="getProcess" resultMap="ProcessBeanMap">
+     SELECT bp.process_id , bpn.node_order,bn.node_id,bn.node_name FROM base_process as bp ,base_process_node as bpn, base_node as bn
+	 WHERE bp.process_id = bpn.process_id and bpn.node_id = bn.node_id and bp.process_isuseable = 1
+     ORDER BY bpn.node_order ASC;
+  </select>
 </mapper>

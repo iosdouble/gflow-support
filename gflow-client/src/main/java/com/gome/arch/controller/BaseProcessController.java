@@ -22,9 +22,14 @@ public class BaseProcessController {
     @Autowired
     private ProcessEngine processEngine;
 
-    @GetMapping("/getProcess")
+    @GetMapping("/getProcessById")
     public List<ProcessPO> getProcessById(@RequestParam(name = "pid") Long processId){
         return processEngine.createProcess(processId);
+    }
+
+    @GetMapping("/getProcess")
+    public List<ProcessPO> getProcess(){
+        return processEngine.createProcess();
     }
 
 }

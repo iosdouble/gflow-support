@@ -63,11 +63,11 @@ public class UserController {
         return baseProcessService.getAllProcess();
     }
 
-    @GetMapping("/getProcessById")
-    public List<ProcessPO> getProcess(@RequestParam(name = "id") Long processId){
-        List<ProcessPO> processById = baseProcessNodeService.getProcessById(processId);
-        return processById;
-    }
+//    @GetMapping("/getProcessById")
+//    public List<ProcessPO> getProcess(@RequestParam(name = "id") Long processId){
+//        List<ProcessPO> processById = baseProcessNodeService.getProcessById(processId);
+//        return processById;
+//    }
     @GetMapping("getId")
     public Long getId(){
         return idWorker.nextId();

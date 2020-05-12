@@ -1,6 +1,5 @@
 package com.gome.arch.service.dvo;
 
-import com.gome.arch.service.dvo.base.BaseVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,13 +7,12 @@ import lombok.NoArgsConstructor;
 /**
  * @Classname BaseTaskVO
  * @Description TODO
- * @Date 2020/5/12 11:25 AM
+ * @Date 2020/5/12 4:52 PM
  * @Created by nihui
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class BaseTaskVO extends BaseVO {
-
-
+public class BaseTaskVO {
+    private Long applyUserCode;
+    private String systemType;
+    private String applyContentDetail;
 }

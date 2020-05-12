@@ -22,9 +22,19 @@ public interface RuntimeService {
     public PageInfo<ApprovalOrderPOExt> pageOrderApplies(Long userid,int offset, int limit);
 
 
+    /**
+     * 审批同意
+     * @param approvalDealVO
+     * @return
+     */
     public int updateApprovalAgree(ApprovalDealVO approvalDealVO);
 
 
+    /**
+     * 审批拒绝
+     * @param approvalDealVO
+     * @return
+     */
     public int updateApprovalReject(ApprovalDealVO approvalDealVO);
 
 }

@@ -414,6 +414,66 @@ public class BaseApplyOrderExample {
             addCriterion("system_type not between", value1, value2, "systemType");
             return (Criteria) this;
         }
+
+        public Criteria andDealStateIsNull() {
+            addCriterion("deal_state is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateIsNotNull() {
+            addCriterion("deal_state is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateEqualTo(Integer value) {
+            addCriterion("deal_state =", value, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateNotEqualTo(Integer value) {
+            addCriterion("deal_state <>", value, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateGreaterThan(Integer value) {
+            addCriterion("deal_state >", value, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("deal_state >=", value, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateLessThan(Integer value) {
+            addCriterion("deal_state <", value, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateLessThanOrEqualTo(Integer value) {
+            addCriterion("deal_state <=", value, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateIn(List<Integer> values) {
+            addCriterion("deal_state in", values, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateNotIn(List<Integer> values) {
+            addCriterion("deal_state not in", values, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateBetween(Integer value1, Integer value2) {
+            addCriterion("deal_state between", value1, value2, "dealState");
+            return (Criteria) this;
+        }
+
+        public Criteria andDealStateNotBetween(Integer value1, Integer value2) {
+            addCriterion("deal_state not between", value1, value2, "dealState");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

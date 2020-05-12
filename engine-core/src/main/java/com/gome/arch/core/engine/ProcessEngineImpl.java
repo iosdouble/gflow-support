@@ -23,4 +23,11 @@ public class ProcessEngineImpl implements ProcessEngine {
     public List<ProcessPO> createProcess(Long processId) {
         return baseProcessNodeService.getProcessById(processId);
     }
+
+    @Override
+    public List<ProcessPO> createProcess() {
+        return baseProcessNodeService.getProcess();
+    }
+
+
 }

@@ -5,17 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Classname BaseTaskTO
+ * @Classname ApplyDetailTO
  * @Description TODO
- * @Date 2020/5/12 1:56 PM
+ * @Date 2020/5/12 4:15 PM
  * @Created by nihui
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseTaskTO {
+public class ApplyDetailTO {
     private Long applyId;
-    private Long applyUserCode;
-    private String systemType;
-    private String applyContentDetail;
+    private String applyOrderDetail;
 }

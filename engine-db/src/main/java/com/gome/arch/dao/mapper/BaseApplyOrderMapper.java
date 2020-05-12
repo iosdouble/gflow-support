@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
-
 @Mapper
 public interface BaseApplyOrderMapper extends Serializable {
     long countByExample(BaseApplyOrderExample example);

@@ -1,6 +1,8 @@
 package com.gome.arch.service;
 
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
+import com.gome.arch.service.dto.ApplyDetailTO;
+import com.gome.arch.service.dto.BaseApplyTO;
 import com.gome.arch.service.dto.TaskTO;
 
 /**
@@ -11,5 +13,5 @@ import com.gome.arch.service.dto.TaskTO;
  */
 public interface RtApplyOrderDetailService {
 
-    public int addApplyOrderDetail(TaskTO taskTO);
+    public int addApplyOrderDetail(ApplyDetailTO applyDetailTO);
 }

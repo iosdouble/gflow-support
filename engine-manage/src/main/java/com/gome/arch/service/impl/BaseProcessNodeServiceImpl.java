@@ -24,4 +24,9 @@ public class BaseProcessNodeServiceImpl implements BaseProcessNodeService {
     public List<ProcessPO> getProcessById(Long processId) {
         return baseProcessNodeMapper.getProcessById(processId);
     }
+
+    @Override
+    public List<ProcessPO> getProcess() {
+        return baseProcessNodeMapper.getProcess();
+    }
 }

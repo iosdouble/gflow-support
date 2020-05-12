@@ -37,4 +37,7 @@ public interface BaseProcessNodeMapper extends Serializable {
      * @return
      */
     List<ProcessPO> getProcessById(Long processId);
+
+    List<ProcessPO> getProcess();
+
 }

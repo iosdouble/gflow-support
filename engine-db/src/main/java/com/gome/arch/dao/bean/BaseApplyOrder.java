@@ -13,12 +13,15 @@ public class BaseApplyOrder {
 
     private String systemType;
 
-    public BaseApplyOrder(Long id, Long applyOrderDetailId, Date createTime, Long applyUserCode, String systemType) {
+    private Integer dealState;
+
+    public BaseApplyOrder(Long id, Long applyOrderDetailId, Date createTime, Long applyUserCode, String systemType, Integer dealState) {
         this.id = id;
         this.applyOrderDetailId = applyOrderDetailId;
         this.createTime = createTime;
         this.applyUserCode = applyUserCode;
         this.systemType = systemType;
+        this.dealState = dealState;
     }
 
     public BaseApplyOrder() {
@@ -63,5 +66,13 @@ public class BaseApplyOrder {
 
     public void setSystemType(String systemType) {
         this.systemType = systemType == null ? null : systemType.trim();
+    }
+
+    public Integer getDealState() {
+        return dealState;
+    }
+
+    public void setDealState(Integer dealState) {
+        this.dealState = dealState;
     }
 }

@@ -7,4 +7,5 @@ package com.gome.arch.core.engine.history;
  * @Created by nihui
  */
 public interface HistoryService {
+
 }

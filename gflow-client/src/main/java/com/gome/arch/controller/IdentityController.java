@@ -12,4 +12,5 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "鉴权服务管理",description = "鉴权服务")
 @RestController
 public class IdentityController {
+
 }
