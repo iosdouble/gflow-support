@@ -1,4 +1,4 @@
-package com.gome.arch.controller;
+package com.gome.arch.controller.v1;
 
 import com.gome.arch.dao.bean.BaseProcess;
 import com.gome.arch.dao.bean.RtApprovalUser;

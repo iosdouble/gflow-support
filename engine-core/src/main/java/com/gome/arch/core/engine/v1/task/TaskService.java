@@ -1,11 +1,9 @@
-package com.gome.arch.core.engine.task;
+package com.gome.arch.core.engine.v1.task;
 
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.dao.bean.BaseApplyOrder;
 import com.gome.arch.service.dto.BaseTaskTO;
 import com.gome.arch.service.dto.TaskTO;
-
-import java.util.List;
 
 /**
  * @Classname TaskService

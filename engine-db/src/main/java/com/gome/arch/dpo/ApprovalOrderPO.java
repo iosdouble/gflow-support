@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
  * @Date 2020/5/11 10:35 AM
  * @Created by nihui
  */
+@Deprecated
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

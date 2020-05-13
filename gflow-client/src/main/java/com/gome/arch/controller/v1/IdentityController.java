@@ -1,4 +1,4 @@
-package com.gome.arch.controller;
+package com.gome.arch.controller.v1;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RestController;

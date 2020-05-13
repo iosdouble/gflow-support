@@ -1,6 +1,6 @@
-package com.gome.arch.core.engine.identity.impl;
+package com.gome.arch.core.engine.v1.identity.impl;
 
-import com.gome.arch.core.engine.identity.IdentityService;
+import com.gome.arch.core.engine.v1.identity.IdentityService;
 import org.springframework.stereotype.Service;
 
 /**

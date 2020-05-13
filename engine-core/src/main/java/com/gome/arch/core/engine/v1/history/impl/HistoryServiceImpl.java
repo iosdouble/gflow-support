@@ -1,6 +1,6 @@
-package com.gome.arch.core.engine.history.impl;
+package com.gome.arch.core.engine.v1.history.impl;
 
-import com.gome.arch.core.engine.history.HistoryService;
+import com.gome.arch.core.engine.v1.history.HistoryService;
 import org.springframework.stereotype.Service;
 
 /**
