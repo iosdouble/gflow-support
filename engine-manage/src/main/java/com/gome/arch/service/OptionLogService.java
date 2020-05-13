@@ -1,5 +1,7 @@
 package com.gome.arch.service;
 
+import com.gome.arch.dpo.LogPO;
+
 /**
  * @Classname OptionLogService
  * @Description TODO
@@ -7,4 +9,6 @@ package com.gome.arch.service;
  * @Created by nihui
  */
 public interface OptionLogService {
+
+    public int addOptionLog(LogPO logTO);
 }
