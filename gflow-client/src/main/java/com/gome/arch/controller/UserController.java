@@ -4,10 +4,10 @@ import com.gome.arch.dao.bean.BaseProcess;
 import com.gome.arch.dao.bean.RtApprovalUser;
 import com.gome.arch.dao.bean.User;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
-import com.gome.arch.dpo.ProcessPO;
 import com.gome.arch.service.*;
 import com.gome.arch.service.dto.ApprovalOrderTO;
-import com.gome.arch.service.dvo.ApprovalDealVO;
+import com.gome.arch.service.dto.ApprovalDealTO;
+import com.gome.arch.service.dvo.response.ResponseEntity;
 import com.gome.arch.uuid.IdWorker;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +63,16 @@ public class UserController {
         return baseProcessService.getAllProcess();
     }
 
+    @GetMapping("/changeProcess")
+    public ResponseEntity<String> changeProcessUseAble(@RequestParam(name = "current") Long currentProcessId, @RequestParam(name = "next") Long nextProcessId){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("numal");
+        String s = baseProcessService.updateProcessUseAble(currentProcessId, nextProcessId);
+        responseEntity.setData(s);
+        return responseEntity;
+    }
+
 //    @GetMapping("/getProcessById")
 //    public List<ProcessPO> getProcess(@RequestParam(name = "id") Long processId){
 //        List<ProcessPO> processById = baseProcessNodeService.getProcessById(processId);
@@ -84,7 +94,7 @@ public class UserController {
     }
 
     @PostMapping("/approval")
-    public int getApproval(@RequestBody ApprovalDealVO approvalDealVO){
+    public int getApproval(@RequestBody ApprovalDealTO approvalDealVO){
         return rtApprovalDetailService.insertApprovalDetail(approvalDealVO);
     }
 

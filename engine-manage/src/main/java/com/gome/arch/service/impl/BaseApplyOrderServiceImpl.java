@@ -41,10 +41,11 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
     }
 
     @Override
-    public List<BaseApplyOrder> getApplyOrderList(Integer state) {
+    public List<BaseApplyOrder> getApplyOrderList(Long applyUserCode, Integer state) {
         BaseApplyOrderExample baseApplyOrderExample = new BaseApplyOrderExample();
         BaseApplyOrderExample.Criteria criteria = baseApplyOrderExample.createCriteria();
         criteria.andDealStateEqualTo(state);
+        criteria.andApplyUserCodeEqualTo(applyUserCode);
         List<BaseApplyOrder> baseApplyOrders = baseApplyOrderMapper.selectByExample(baseApplyOrderExample);
         return baseApplyOrders;
     }

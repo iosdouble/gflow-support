@@ -10,7 +10,6 @@ import com.gome.arch.core.engine.task.TaskService;
 import com.gome.arch.service.dvo.response.ResponseEntity;
 import com.gome.arch.uuid.IdWorker;
 import io.swagger.annotations.Api;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +41,10 @@ public class TaskController {
     @PostMapping("/addTask")
     public ResponseEntity<String> addTask(@RequestBody BaseTaskVO baseTaskVO){
         log.info(" addTask "+baseTaskVO.toString());
+        Long applyId = idWorker.nextId();
         ResponseEntity responseEntity = new ResponseEntity();
         BaseTaskTO baseTaskTO = new BaseTaskTO();
-        baseTaskTO.setApplyId(idWorker.nextId());
+        baseTaskTO.setApplyId(applyId);
         baseTaskTO.setApplyUserCode(baseTaskVO.getApplyUserCode());
         baseTaskTO.setSystemType(baseTaskVO.getSystemType());
         baseTaskTO.setApplyContentDetail(baseTaskVO.getApplyContentDetail());
@@ -82,9 +82,9 @@ public class TaskController {
         return responseEntity;
     }
 
-    @GetMapping("/getList")
+    @GetMapping("/getStartList")
     public PageInfo<BaseApplyOrder> getTaskList(){
-        return taskService.getStartTaskList(2,5);
+        return taskService.getStartTaskList(1994L,1,10);
     }
 
 

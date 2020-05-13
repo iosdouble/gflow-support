@@ -87,9 +87,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public PageInfo<BaseApplyOrder> getStartTaskList(Integer offset,Integer limit) {
+    public PageInfo<BaseApplyOrder> getStartTaskList(Long applyUserCode,Integer offset,Integer limit) {
         PageHelper.offsetPage(offset, limit);
-        List<BaseApplyOrder> applyOrderList = baseApplyOrderService.getApplyOrderList(0);
+        List<BaseApplyOrder> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode,0);
         PageInfo<BaseApplyOrder> pageInfo = new PageInfo<BaseApplyOrder>(applyOrderList);
         return pageInfo;
     }

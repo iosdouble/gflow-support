@@ -3,13 +3,13 @@ package com.gome.arch.controller;
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.core.engine.runtime.RuntimeService;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
+import com.gome.arch.service.dto.ApprovalDealTO;
+import com.gome.arch.service.dvo.ApprovalDealVO;
+import com.gome.arch.service.dvo.response.ResponseEntity;
 import io.swagger.annotations.Api;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,22 +27,33 @@ public class RuntimeController {
     @Autowired
     private RuntimeService runtimeService;
 
-    /***
-     * 根据用户ID获取审批列表
-     * @param userid
-     * @return
-     */
+
+    @Deprecated
     @GetMapping("/getTaskList")
-    public PageInfo<ApprovalOrderPOExt> getOrder(@RequestParam(name = "userid") Long userid){
-        return runtimeService.pageOrderApplies(userid,2,5);
+    public PageInfo<ApprovalOrderPOExt> getOrder(){
+        Long userid = 1994L;
+        PageInfo<ApprovalOrderPOExt> approvalOrderPOExtPageInfo = runtimeService.pageOrderApplies(userid, 1, 5);
+        return approvalOrderPOExtPageInfo;
     }
 
     /***
      * 审批指定任务
      */
     @PostMapping("/approvalTask")
-    public String approvalTask(){
-        return "OK";
+    public ResponseEntity<String> approvalTask(@RequestBody ApprovalDealVO approvalDealVO){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("numal");
+
+        ApprovalDealTO approvalDealTO = new ApprovalDealTO();
+        BeanUtils.copyProperties(approvalDealTO,approvalDealVO);
+        if (approvalDealVO.getStatus()==1){
+            runtimeService.updateApprovalAgree(approvalDealTO);
+        }else if (approvalDealVO.getStatus()==0){
+            runtimeService.updateApprovalReject(approvalDealTO);
+        }
+        responseEntity.setData("OK");
+        return responseEntity;
     }
 
 

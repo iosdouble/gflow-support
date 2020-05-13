@@ -3,7 +3,7 @@ package com.gome.arch.service.impl;
 import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.dao.mapper.RtApprovalDetailMapper;
 import com.gome.arch.service.RtApprovalDetailService;
-import com.gome.arch.service.dvo.ApprovalDealVO;
+import com.gome.arch.service.dto.ApprovalDealTO;
 import com.gome.arch.uuid.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,15 @@ import java.util.Date;
 @Service
 public class RtApprovalDetailServiceImpl implements RtApprovalDetailService {
 
+    /**
+     * 记录处理详情
+     */
     @Autowired
     private RtApprovalDetailMapper rtApprovalDetailMapper;
-
-
     @Autowired
     private IdWorker idWorker;
     @Override
-    public int insertApprovalDetail(ApprovalDealVO approvalDealVO) {
+    public int insertApprovalDetail(ApprovalDealTO approvalDealVO) {
         RtApprovalDetail rtApprovalDetail = new RtApprovalDetail();
         rtApprovalDetail.setId(idWorker.nextId());
         rtApprovalDetail.setApplyOrderId(approvalDealVO.getApplyOrderId());

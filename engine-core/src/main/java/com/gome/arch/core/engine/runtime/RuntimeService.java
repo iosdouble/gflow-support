@@ -2,7 +2,7 @@ package com.gome.arch.core.engine.runtime;
 
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
-import com.gome.arch.service.dvo.ApprovalDealVO;
+import com.gome.arch.service.dto.ApprovalDealTO;
 
 /**
  * @Classname RuntimeService
@@ -27,7 +27,7 @@ public interface RuntimeService {
      * @param approvalDealVO
      * @return
      */
-    public int updateApprovalAgree(ApprovalDealVO approvalDealVO);
+    public int updateApprovalAgree(ApprovalDealTO approvalDealVO);
 
 
     /**
@@ -35,6 +35,6 @@ public interface RuntimeService {
      * @param approvalDealVO
      * @return
      */
-    public int updateApprovalReject(ApprovalDealVO approvalDealVO);
+    public int updateApprovalReject(ApprovalDealTO approvalDealVO);
 
 }

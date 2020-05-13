@@ -22,6 +22,7 @@ public class BaseProcessController {
     @Autowired
     private ProcessEngine processEngine;
 
+    @Deprecated
     @GetMapping("/getProcessById")
     public List<ProcessPO> getProcessById(@RequestParam(name = "pid") Long processId){
         return processEngine.createProcess(processId);

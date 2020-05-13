@@ -16,7 +16,7 @@ import java.util.Properties;
 @Getter
 @Setter
 public class MyBatisPageHelperProperties {
-    public static final String PAGEHELPER_PREFIX = "auth.support.mybatis.pagehelper";
+    public static final String PAGEHELPER_PREFIX = "arch.support.mybatis.pagehelper";
 
     private boolean enabled;
 

@@ -15,5 +15,5 @@ public interface BaseApplyOrderService {
 
     public String addApplyOrder(BaseApplyTO baseApplyTO);
 
-    public List<BaseApplyOrder> getApplyOrderList(Integer state);
+    public List<BaseApplyOrder> getApplyOrderList(Long applyUserCode,Integer state);
 }
