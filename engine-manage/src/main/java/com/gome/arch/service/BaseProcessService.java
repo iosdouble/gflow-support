@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 public interface BaseProcessService {
+
     public List<BaseProcess> getAllProcess();
 
     public String updateProcessUseAble(Long currentProcessId,Long useAbleProcessId);

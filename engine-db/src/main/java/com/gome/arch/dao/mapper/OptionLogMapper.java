@@ -2,11 +2,12 @@ package com.gome.arch.dao.mapper;
 
 import com.gome.arch.dao.bean.OptionLog;
 import com.gome.arch.dao.bean.OptionLogExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
-
+@Mapper
 public interface OptionLogMapper extends Serializable {
     long countByExample(OptionLogExample example);
 
