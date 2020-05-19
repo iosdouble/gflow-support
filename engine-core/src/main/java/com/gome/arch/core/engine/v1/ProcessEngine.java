@@ -14,4 +14,8 @@ public interface ProcessEngine {
     public List<ProcessPO> createProcess(Long processId);
 
     public List<ProcessPO> createProcess();
+
+    public Integer changProcessIsUseAble(Long processId,Boolean isUseaable);
+
+
 }

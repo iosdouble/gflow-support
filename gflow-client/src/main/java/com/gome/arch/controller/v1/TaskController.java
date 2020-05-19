@@ -2,6 +2,7 @@ package com.gome.arch.controller.v1;
 
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.dao.bean.BaseApplyOrder;
+import com.gome.arch.service.dto.BaseApplyOrderTO;
 import com.gome.arch.service.dto.BaseTaskTO;
 import com.gome.arch.service.dto.TaskTO;
 import com.gome.arch.service.dvo.BaseTaskVO;
@@ -83,8 +84,13 @@ public class TaskController {
     }
 
     @GetMapping("/getStartList")
-    public PageInfo<BaseApplyOrder> getTaskList(){
-        return taskService.getStartTaskList(1994L,1,10);
+    public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(){
+        ResponseEntity<PageInfo<BaseApplyOrderTO>> responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("nurmal");
+        PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList(1994L, 1, 10);
+        responseEntity.setData(startTaskList);
+        return responseEntity;
     }
 
 

@@ -8,4 +8,9 @@ package com.gome.arch.core.engine.v1.history;
  */
 public interface HistoryService {
 
+    /***
+     * 获取审批进度
+     */
+    public String getApprovalFlow();
+
 }

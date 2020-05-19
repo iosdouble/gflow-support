@@ -63,15 +63,18 @@ public class UserController {
         return baseProcessService.getAllProcess();
     }
 
+    @Deprecated
     @GetMapping("/changeProcess")
     public ResponseEntity<String> changeProcessUseAble(@RequestParam(name = "current") Long currentProcessId, @RequestParam(name = "next") Long nextProcessId){
         ResponseEntity responseEntity = new ResponseEntity();
         responseEntity.setCode(200);
         responseEntity.setMsg("numal");
-        String s = baseProcessService.updateProcessUseAble(currentProcessId, nextProcessId);
-        responseEntity.setData(s);
+//        String s = baseProcessService.updateProcessUseAble(currentProcessId, nextProcessId);
+//        responseEntity.setData(s);
         return responseEntity;
     }
+
+
 
 //    @GetMapping("/getProcessById")
 //    public List<ProcessPO> getProcess(@RequestParam(name = "id") Long processId){

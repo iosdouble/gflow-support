@@ -54,6 +54,12 @@ public class RuntimeController {
         return responseEntity;
     }
 
+    @GetMapping("/getApprovalDetail")
+    public ResponseEntity<String> getApprovalDetail(@RequestParam(name = "applyId") Long applyId){
+        return null;
+    }
+
+
 
 
 

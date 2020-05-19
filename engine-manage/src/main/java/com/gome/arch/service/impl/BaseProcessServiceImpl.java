@@ -33,9 +33,19 @@ public class BaseProcessServiceImpl implements BaseProcessService {
     }
 
     @Override
-    public String updateProcessUseAble(Long currentProcess, Long useAbleProcess) {
-        changeUnuseable(currentProcess);
-        changeUseable(useAbleProcess);
+    public String updateProcessUseAble(Long useAbleProcessId) {
+        changeUseable(useAbleProcessId);
+        return "OK";
+    }
+
+    @Override
+    public Integer checkAvailableProcess() {
+        return baseProcessMapper.getAvailableProcess();
+    }
+
+    @Override
+    public String updateProcessUnuseAble(Long currentProcessId) {
+        changeUnuseable(currentProcessId);
         return "OK";
     }
 

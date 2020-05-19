@@ -70,4 +70,24 @@ public class RuntimeServiceImpl implements RuntimeService {
         return 0;
     }
 
+    /**
+     * 获取审批详情
+     * @param applyId
+     * @return
+     */
+    @Override
+    public String getApprovalDetail(Long applyId) {
+        return null;
+    }
+
+    /**
+     * 撤回工单
+     * @param applyId
+     * @return
+     */
+    @Override
+    public String reCallWorkOrder(Long applyId) {
+        return null;
+    }
+
 }

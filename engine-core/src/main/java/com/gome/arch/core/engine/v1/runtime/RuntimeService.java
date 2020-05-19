@@ -37,4 +37,15 @@ public interface RuntimeService {
      */
     public int updateApprovalReject(ApprovalDealTO approvalDealVO);
 
+
+    /**
+     * 获取审批详情
+     */
+    public String getApprovalDetail(Long applyId);
+
+    /**
+     * 撤回工单
+     */
+    public String reCallWorkOrder(Long applyId);
+
 }

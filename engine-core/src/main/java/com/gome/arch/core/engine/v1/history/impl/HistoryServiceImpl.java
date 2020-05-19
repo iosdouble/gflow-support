@@ -11,4 +11,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class HistoryServiceImpl implements HistoryService {
+    @Override
+    public String getApprovalFlow() {
+        return null;
+    }
 }

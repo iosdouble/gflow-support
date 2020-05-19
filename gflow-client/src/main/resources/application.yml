@@ -8,11 +8,52 @@
 ##  mapper-locations: classpath:com/gome/arch/dao/xml/*.xml
 ##  type-aliases-package: com.gome.arch.dao.bean
 ##
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.115.3.1:8080/eureka/,http://10.115.3.2:8080/eureka/
+    enabled: true
+    eureka-service-url-poll-interval-seconds: 300
+    eureka-server-total-connections-per-host: 10
+    eureka-server-total-connections: 30
+    fetch-registry: true
+  instance:
+    hostname: localhost
+    health-check-url-path: ${management.endpoints.web.basePath}/health
+    status-page-url-path: ${management.endpoints.web.basePath}/info
 
+#单机直连其他微服务用于调试
+#app-middleware-impl:
+#  feign:
+#    url:  10.144.37.87:8080
 
-spring:
-  application:
-    name: gflow-support
+#eureka:
+#  server:
+#    enableSelfPreservation: false
+#    evictionIntervalTimerInMs: 5000
+#  instance:
+#    preferIpAddress: true
+#    leaseRenewalIntervalInSeconds: 10
+#    leaseExpirationDurationInSeconds: 30
+#    healthCheckUrlPath: ${management.endpoints.web.basePath}/health
+#    statusPageUrlPath: ${management.endpoints.web.basePath}/info
+#    metadataMap:
+#      cluster: MIDDLEWARE
+#      management.context-path: ${management.endpoints.web.basePath}
+#  client:
+#    enabled: true
+#    eurekaServiceUrlPollIntervalSeconds: 300
+#    eurekaServerTotalConnections: 30
+#    eurekaServerTotalConnectionsPerHost: 10
+#    fetchRegistry: true
+#    registerWithEureka: true
+#    availabilityZones:
+#      defaultRegion: defaultZone
+#    region: defaultRegion
+#    healthcheck:
+#      enabled: true
+#    serviceUrl:
+#      defaultZone: http://10.115.3.1:8080/eureka/,http://10.115.3.2:8080/eureka/
 #####################数据库扩展配置#######################
 arch:
   support:
@@ -42,8 +83,43 @@ arch:
         autoRuntimeDialect: false #默认值为 false。设置为 true 时，允许在运行时根据多数据源自动识别对应方言的分页
         autoDialect:
         closeConn: true #默认值为 true。当使用运行时动态数据源或没有设置 helperDialect 属性自动获取数据库类型时，会自动获取一个数据库连接， 通过该属性来设置是否关闭获取的这个连接
-        params: count=countSql #为了支持startPage(Object params)方法，增加了该参数来配置参数映射
-
+        params: count=countSql  #为了支持startPage(Object params)方法，增加了该参数来配置参数映射
+spring:
+  application:
+    name: gome-flow-service
+management:
+  server:
+    port: 8081
+  endpoints:
+    enabled-by-default: false
+    web:
+      basePath: /mgmt
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true
+      showDetails: ALWAYS
+    info:
+      enabled: true
+    env:
+      enabled: true
+    logfile:
+      enabled: true
+    loggers:
+      enabled: true
+    mappings:
+      enabled: true
+    beans:
+      enabled: true
+    httptrace:
+      enabled: true
+    threaddump:
+      enabled: true
+    heapdump:
+      enabled: true
+    metrics:
+      enabled: true
 
 
 

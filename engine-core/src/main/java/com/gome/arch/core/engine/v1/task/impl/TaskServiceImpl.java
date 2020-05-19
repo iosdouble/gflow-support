@@ -6,11 +6,8 @@ import com.gome.arch.dao.bean.BaseApplyOrder;
 import com.gome.arch.service.BaseApplyOrderService;
 import com.gome.arch.service.RtApplyOrderDetailService;
 import com.gome.arch.service.RtApplyOrderService;
-import com.gome.arch.service.dto.ApplyDetailTO;
-import com.gome.arch.service.dto.BaseApplyTO;
-import com.gome.arch.service.dto.BaseTaskTO;
+import com.gome.arch.service.dto.*;
 import com.gome.arch.core.engine.v1.task.TaskService;
-import com.gome.arch.service.dto.TaskTO;
 import com.gome.arch.service.RtApprovalUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,10 +79,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public PageInfo<BaseApplyOrder> getStartTaskList(Long applyUserCode,Integer offset,Integer limit) {
+    public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode,Integer offset,Integer limit) {
         PageHelper.offsetPage(offset, limit);
-        List<BaseApplyOrder> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode,0);
-        PageInfo<BaseApplyOrder> pageInfo = new PageInfo<BaseApplyOrder>(applyOrderList);
+//        List<BaseApplyOrder> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode,0);
+        List<BaseApplyOrderTO> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode,0);
+        PageInfo<BaseApplyOrderTO> pageInfo = new PageInfo<BaseApplyOrderTO>(applyOrderList);
         return pageInfo;
     }
 }

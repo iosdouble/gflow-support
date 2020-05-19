@@ -2,6 +2,7 @@ package com.gome.arch.core.engine.v1.task;
 
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.dao.bean.BaseApplyOrder;
+import com.gome.arch.service.dto.BaseApplyOrderTO;
 import com.gome.arch.service.dto.BaseTaskTO;
 import com.gome.arch.service.dto.TaskTO;
 
@@ -23,5 +24,6 @@ public interface TaskService {
     public String endTask();
 
     //获取开启任务列表
-    public PageInfo<BaseApplyOrder> getStartTaskList(Long applyUserCode ,Integer offset,Integer limit);
+//    public PageInfo<BaseApplyOrder> getStartTaskList(Long applyUserCode ,Integer offset,Integer limit);
+    public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode , Integer offset, Integer limit);
 }

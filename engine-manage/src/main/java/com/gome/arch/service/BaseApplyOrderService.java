@@ -1,6 +1,7 @@
 package com.gome.arch.service;
 
 import com.gome.arch.dao.bean.BaseApplyOrder;
+import com.gome.arch.service.dto.BaseApplyOrderTO;
 import com.gome.arch.service.dto.BaseApplyTO;
 
 import java.util.List;
@@ -15,5 +16,6 @@ public interface BaseApplyOrderService {
 
     public String addApplyOrder(BaseApplyTO baseApplyTO);
 
-    public List<BaseApplyOrder> getApplyOrderList(Long applyUserCode,Integer state);
+//    public List<BaseApplyOrder> getApplyOrderList(Long applyUserCode,Integer state);
+    public List<BaseApplyOrderTO> getApplyOrderList(Long applyUserCode, Integer state);
 }

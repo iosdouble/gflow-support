@@ -29,4 +29,9 @@ public interface BaseProcessMapper extends Serializable {
     int updateByPrimaryKeySelective(BaseProcess record);
 
     int updateByPrimaryKey(BaseProcess record);
+
+    /**
+     * 扩展自定义方法
+     */
+    Integer getAvailableProcess();
 }

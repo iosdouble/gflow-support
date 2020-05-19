@@ -16,5 +16,11 @@ public interface BaseProcessService {
 
     public List<BaseProcess> getAllProcess();
 
-    public String updateProcessUseAble(Long currentProcessId,Long useAbleProcessId);
+    public String updateProcessUseAble(Long useAbleProcessId);
+
+    public Integer checkAvailableProcess();
+
+    public String updateProcessUnuseAble(Long currentProcessId);
+
+
 }

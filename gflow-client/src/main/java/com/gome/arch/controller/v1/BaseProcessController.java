@@ -2,7 +2,9 @@ package com.gome.arch.controller.v1;
 
 import com.gome.arch.core.engine.v1.ProcessEngine;
 import com.gome.arch.dpo.ProcessPO;
+import com.gome.arch.service.dvo.response.ResponseEntity;
 import io.swagger.annotations.Api;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,8 +31,36 @@ public class BaseProcessController {
     }
 
     @GetMapping("/getProcess")
-    public List<ProcessPO> getProcess(){
-        return processEngine.createProcess();
+    public ResponseEntity<List<ProcessPO>> getProcess(){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("numal");
+        List<ProcessPO> process = processEngine.createProcess();
+        responseEntity.setData(process);
+        return responseEntity;
+    }
+
+    @GetMapping("/startProcessUseable")
+    public ResponseEntity<String> startProcess(@RequestParam(name = "processId") Long processId){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("nurmal");
+        Integer integer = processEngine.changProcessIsUseAble(processId, true);
+        if (integer==1){
+            responseEntity.setData("已存在使用中的流程");
+        }
+        responseEntity.setData("更新成功");
+        return responseEntity;
+    }
+
+    @GetMapping("/startProcessUnuseAble")
+    public ResponseEntity<String> startProcessUn(@RequestParam(name = "processId") Long processId){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("nurmal");
+        processEngine.changProcessIsUseAble(processId,false);
+        responseEntity.setData("更新成功");
+        return responseEntity;
     }
 
 }
