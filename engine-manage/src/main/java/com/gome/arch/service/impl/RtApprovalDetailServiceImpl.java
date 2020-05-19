@@ -1,6 +1,7 @@
 package com.gome.arch.service.impl;
 
 import com.gome.arch.dao.bean.RtApprovalDetail;
+import com.gome.arch.dao.bean.RtApprovalDetailExample;
 import com.gome.arch.dao.mapper.RtApprovalDetailMapper;
 import com.gome.arch.service.RtApprovalDetailService;
 import com.gome.arch.service.dto.ApprovalDealTO;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Classname RtApprovalDetailServiceImpl
@@ -39,6 +41,14 @@ public class RtApprovalDetailServiceImpl implements RtApprovalDetailService {
         rtApprovalDetail.setLastUpdateTime(new Date());
         rtApprovalDetailMapper.insert(rtApprovalDetail);
         return 0;
+    }
+
+    @Override
+    public List<RtApprovalDetail> getApprovalFlowDetailByApplyID(Long applyId) {
+        RtApprovalDetailExample rtApprovalDetailExample = new RtApprovalDetailExample();
+        RtApprovalDetailExample.Criteria criteria = rtApprovalDetailExample.createCriteria();
+        criteria.andApplyOrderIdEqualTo(applyId);
+        return rtApprovalDetailMapper.selectByExample(rtApprovalDetailExample);
     }
 
 }

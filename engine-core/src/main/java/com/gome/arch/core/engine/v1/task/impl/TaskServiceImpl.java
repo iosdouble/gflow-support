@@ -46,8 +46,13 @@ public class TaskServiceImpl implements TaskService {
      */
     @Override
     public String startTask(TaskTO taskTO) {
+        //增加审批人处理
        rtApprovalUserService.addApprovalUserRelation(taskTO);
+       //增加审批处理
        rtApplyOrderService.insertNewApplyOrder(taskTO);
+
+       baseApplyOrderService.updateBaseApplyOrder(taskTO.getApplyId());
+
        return "处理成功";
     }
 
@@ -74,9 +79,10 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public String endTask() {
-        return null;
+    public String endTask(Long applyId) {
+        return baseApplyOrderService.deleteBaseApplyOrder(applyId);
     }
+
 
     @Override
     public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode,Integer offset,Integer limit) {

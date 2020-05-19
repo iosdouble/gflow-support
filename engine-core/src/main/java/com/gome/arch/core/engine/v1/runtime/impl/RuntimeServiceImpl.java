@@ -3,7 +3,10 @@ package com.gome.arch.core.engine.v1.runtime.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.core.engine.v1.runtime.RuntimeService;
+import com.gome.arch.dao.bean.RtApplyOrderDetail;
+import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
+import com.gome.arch.service.RtApplyOrderDetailService;
 import com.gome.arch.service.RtApplyOrderService;
 import com.gome.arch.service.RtApprovalDetailService;
 import com.gome.arch.service.dto.ApprovalDealTO;
@@ -25,12 +28,17 @@ public class RuntimeServiceImpl implements RuntimeService {
      */
     @Autowired
     private RtApplyOrderService rtApplyOrderService;
-
+    /**
+     * 工单详情操作
+     */
+    @Autowired
+    private RtApplyOrderDetailService rtApplyOrderDetailService;
     /**
      * 运行时工单处理服务
      */
     @Autowired
     private RtApprovalDetailService rtApprovalDetailService;
+
 
     /**
      * 根据用户ID获取审批列表
@@ -71,14 +79,15 @@ public class RuntimeServiceImpl implements RuntimeService {
     }
 
     /**
-     * 获取审批详情
+     * 获取审批列表
      * @param applyId
      * @return
      */
     @Override
-    public String getApprovalDetail(Long applyId) {
-        return null;
+    public List<RtApprovalDetail> getApprovalDetail(Long applyId) {
+        return rtApprovalDetailService.getApprovalFlowDetailByApplyID(applyId);
     }
+
 
     /**
      * 撤回工单
@@ -88,6 +97,12 @@ public class RuntimeServiceImpl implements RuntimeService {
     @Override
     public String reCallWorkOrder(Long applyId) {
         return null;
+    }
+
+    @Override
+    public RtApplyOrderDetail getApplyOrderDetailByApplyId(Long applyId) {
+        List<RtApplyOrderDetail> approvalApplyDetailByApplyId = rtApplyOrderDetailService.getApprovalApplyDetailByApplyId(applyId);
+        return approvalApplyDetailByApplyId.get(0);
     }
 
 }

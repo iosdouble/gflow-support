@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ApprovalOrderPO {
 
-    private Long applyOrderDetailId;
+    private String applyOrderDetailId;
     private Long submitterId;
     private Integer processId;
     private Integer currentNodeId;

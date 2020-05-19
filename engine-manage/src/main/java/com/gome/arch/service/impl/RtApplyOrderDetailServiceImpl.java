@@ -2,7 +2,9 @@ package com.gome.arch.service.impl;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
+import com.gome.arch.dao.bean.RtApplyOrderDetailExample;
 import com.gome.arch.dao.mapper.RtApplyOrderDetailMapper;
+import com.gome.arch.json.JsonUtil;
 import com.gome.arch.service.RtApplyOrderDetailService;
 import com.gome.arch.service.dto.ApplyDetailTO;
 import com.gome.arch.service.dto.BaseApplyTO;
@@ -10,6 +12,8 @@ import com.gome.arch.service.dto.TaskTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Classname RtApplyOrderDetailServiceImpl
@@ -23,14 +27,26 @@ public class RtApplyOrderDetailServiceImpl implements RtApplyOrderDetailService 
 
     @Autowired
     private RtApplyOrderDetailMapper rtApplyOrderDetailMapper;
+
     @Override
     public int addApplyOrderDetail(ApplyDetailTO applyDetailTO) {
-        log.info("get applyDetailTo"+applyDetailTO.toString());
+        log.info("add applyDetailTo "+applyDetailTO.toString());
         RtApplyOrderDetail rtApplyOrderDetail = new RtApplyOrderDetail();
         rtApplyOrderDetail.setId(applyDetailTO.getApplyId());
         rtApplyOrderDetail.setApplyOrderDetail(applyDetailTO.getApplyOrderDetail());
         rtApplyOrderDetail.setApplyOrderDetailId(applyDetailTO.getApplyId());
         int insert = rtApplyOrderDetailMapper.insert(rtApplyOrderDetail);
         return insert;
+    }
+
+    @Override
+    public List<RtApplyOrderDetail> getApprovalApplyDetailByApplyId(Long applyId) {
+        log.info("get appDetail "+applyId);
+        RtApplyOrderDetailExample rtApplyOrderDetailExample =  new RtApplyOrderDetailExample();
+        RtApplyOrderDetailExample.Criteria criteria = rtApplyOrderDetailExample.createCriteria();
+        criteria.andApplyOrderDetailIdEqualTo(applyId);
+        List<RtApplyOrderDetail> rtApplyOrderDetails = rtApplyOrderDetailMapper.selectByExampleWithBLOBs(rtApplyOrderDetailExample);
+        log.debug("applyOrder Detail "+JsonUtil.toJson(rtApplyOrderDetails));
+        return rtApplyOrderDetails;
     }
 }

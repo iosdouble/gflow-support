@@ -1,6 +1,9 @@
 package com.gome.arch.service;
 
+import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.service.dto.ApprovalDealTO;
+
+import java.util.List;
 
 /**
  * @Classname RtApprovalDetailService
@@ -11,4 +14,8 @@ import com.gome.arch.service.dto.ApprovalDealTO;
 public interface RtApprovalDetailService {
 
     public int insertApprovalDetail(ApprovalDealTO approvalDealVO);
+
+    public List<RtApprovalDetail> getApprovalFlowDetailByApplyID(Long applyId);
+
+
 }

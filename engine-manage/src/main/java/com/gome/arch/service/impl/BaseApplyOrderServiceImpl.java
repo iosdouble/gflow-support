@@ -34,7 +34,7 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
     public String addApplyOrder(BaseApplyTO baseApplyTO) {
         BaseApplyOrder baseApplyOrder = new BaseApplyOrder();
         baseApplyOrder.setId(idWorker.nextId());
-        baseApplyOrder.setApplyOrderDetailId(idWorker.nextId());
+        baseApplyOrder.setApplyOrderDetailId(baseApplyTO.getApplyId());
         baseApplyOrder.setApplyUserCode(1994L);
         baseApplyOrder.setSystemType("cd");
         baseApplyOrder.setCreateTime(new Date());
@@ -51,13 +51,44 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
         criteria.andApplyUserCodeEqualTo(applyUserCode);
         List<BaseApplyOrder> baseApplyOrders = baseApplyOrderMapper.selectByExample(baseApplyOrderExample);
         List<BaseApplyOrderTO> baseApplyOrderTOList = new ArrayList<>();
-        for (BaseApplyOrder baseApplyOrder: baseApplyOrders) {
+        for (BaseApplyOrder baseApplyOrder : baseApplyOrders) {
             BaseApplyOrderTO baseApplyOrderTO = new BaseApplyOrderTO();
             baseApplyOrderTO.setId(String.valueOf(baseApplyOrder.getId()));
             baseApplyOrderTO.setApplyOrderDetailId(String.valueOf(baseApplyOrder.getApplyOrderDetailId()));
-            BeanUtils.copyProperties(baseApplyOrder,baseApplyOrderTO);
+            BeanUtils.copyProperties(baseApplyOrder, baseApplyOrderTO);
             baseApplyOrderTOList.add(baseApplyOrderTO);
         }
         return baseApplyOrderTOList;
+    }
+
+    @Override
+    public String updateBaseApplyOrder(Long applyId) {
+        BaseApplyOrder record = new BaseApplyOrder();
+        record.setDealState(1);
+        BaseApplyOrderExample example = new BaseApplyOrderExample();
+        BaseApplyOrderExample.Criteria criteria = example.createCriteria();
+        criteria.andApplyOrderDetailIdEqualTo(applyId);
+        int i = baseApplyOrderMapper.updateByExampleSelective(record, example);
+        if (i>=0){
+            return "OK";
+        }else {
+            return "ERROR";
+        }
+
+    }
+
+    @Override
+    public String deleteBaseApplyOrder(Long applyId) {
+        BaseApplyOrder record = new BaseApplyOrder();
+        record.setDealState(2);
+        BaseApplyOrderExample example = new BaseApplyOrderExample();
+        BaseApplyOrderExample.Criteria criteria = example.createCriteria();
+        criteria.andApplyOrderDetailIdEqualTo(applyId);
+        int i = baseApplyOrderMapper.updateByExampleSelective(record, example);
+        if (i>=0){
+            return "OK";
+        }else {
+            return "ERROR";
+        }
     }
 }

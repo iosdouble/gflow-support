@@ -18,4 +18,8 @@ public interface BaseApplyOrderService {
 
 //    public List<BaseApplyOrder> getApplyOrderList(Long applyUserCode,Integer state);
     public List<BaseApplyOrderTO> getApplyOrderList(Long applyUserCode, Integer state);
+
+    public String updateBaseApplyOrder(Long applyId);
+
+    public String deleteBaseApplyOrder(Long applyId);
 }

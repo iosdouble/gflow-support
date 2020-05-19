@@ -16,11 +16,9 @@ import java.util.List;
  */
 @Data
 public class BaseVO {
-    //用户ID
-    @NullAndRegexValid(paramName="申请用户Code",notNull=true,regex="[0-9]+")
-    private Long applyUserCode;
-
-    private String applyDetail;
-
+    //流程ID
+    private Integer processId;
+    //工单号
+    private Long applyId;
 
 }

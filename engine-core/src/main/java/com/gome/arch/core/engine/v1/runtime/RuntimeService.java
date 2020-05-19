@@ -1,8 +1,12 @@
 package com.gome.arch.core.engine.v1.runtime;
 
 import com.github.pagehelper.PageInfo;
+import com.gome.arch.dao.bean.RtApplyOrderDetail;
+import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
 import com.gome.arch.service.dto.ApprovalDealTO;
+
+import java.util.List;
 
 /**
  * @Classname RuntimeService
@@ -41,11 +45,17 @@ public interface RuntimeService {
     /**
      * 获取审批详情
      */
-    public String getApprovalDetail(Long applyId);
+    public List<RtApprovalDetail> getApprovalDetail(Long applyId);
 
     /**
      * 撤回工单
      */
     public String reCallWorkOrder(Long applyId);
+
+
+    public RtApplyOrderDetail getApplyOrderDetailByApplyId(Long applyId);
+
+
+
 
 }

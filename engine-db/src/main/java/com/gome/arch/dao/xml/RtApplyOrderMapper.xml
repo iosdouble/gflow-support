@@ -29,7 +29,7 @@
   </resultMap>
 
   <resultMap id="ApprovalOrderExtBeanMap" type="com.gome.arch.dpo.ApprovalOrderPOExt">
-    <result column="apply_order_detail_id" property="applyOrderDetailId"/>
+    <result column="apply_order_detail_id" property="applyOrderDetailId" javaType="java.lang.String"/>
     <result column="submitter_id" property="submitterId"/>
     <result column="process_id" property="processId"/>
     <result column="current_node_id" property="currentNodeId"/>

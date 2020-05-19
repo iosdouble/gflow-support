@@ -21,9 +21,10 @@ public interface TaskService {
     public String addTask(BaseTaskTO baseTaskTO);
 
     //结束任务
-    public String endTask();
+    public String endTask(Long applyId);
 
     //获取开启任务列表
 //    public PageInfo<BaseApplyOrder> getStartTaskList(Long applyUserCode ,Integer offset,Integer limit);
     public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode , Integer offset, Integer limit);
+
 }
