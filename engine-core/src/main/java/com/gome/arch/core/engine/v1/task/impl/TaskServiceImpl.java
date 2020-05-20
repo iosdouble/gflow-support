@@ -3,12 +3,9 @@ package com.gome.arch.core.engine.v1.task.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.dao.bean.BaseApplyOrder;
-import com.gome.arch.service.BaseApplyOrderService;
-import com.gome.arch.service.RtApplyOrderDetailService;
-import com.gome.arch.service.RtApplyOrderService;
+import com.gome.arch.service.*;
 import com.gome.arch.service.dto.*;
 import com.gome.arch.core.engine.v1.task.TaskService;
-import com.gome.arch.service.RtApprovalUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +35,9 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private BaseApplyOrderService baseApplyOrderService;
 
+    @Autowired
+    private HiApprovalUserFlowService hiApprovalUserFlowService;
+
 
     /**
      * 开启任务主要是对处理人和运行时操作进行操作
@@ -48,6 +48,8 @@ public class TaskServiceImpl implements TaskService {
     public String startTask(TaskTO taskTO) {
         //增加审批人处理
        rtApprovalUserService.addApprovalUserRelation(taskTO);
+       //增加历史处理记录
+       hiApprovalUserFlowService.addApprovalFlowRelation(taskTO);
        //增加审批处理
        rtApplyOrderService.insertNewApplyOrder(taskTO);
 

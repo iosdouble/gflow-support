@@ -1,7 +1,12 @@
 package com.gome.arch.core.engine.v1.history.impl;
 
 import com.gome.arch.core.engine.v1.history.HistoryService;
+import com.gome.arch.dao.bean.HiApprovalUserFlow;
+import com.gome.arch.service.HiApprovalUserFlowService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Classname HistoryServiceImpl
@@ -11,8 +16,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class HistoryServiceImpl implements HistoryService {
+
+    @Autowired
+    private HiApprovalUserFlowService hiApprovalUserFlowService;
     @Override
-    public String getApprovalFlow() {
-        return null;
+    public List<HiApprovalUserFlow> getApprovalFlow(Long applyId) {
+
+        List<HiApprovalUserFlow> approvalFlowHistory = hiApprovalUserFlowService.getApprovalFlowHistory(applyId);
+
+        return approvalFlowHistory;
     }
 }

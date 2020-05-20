@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 public class ApprovalDealVO {
 
     private Integer processId;
-    private Long dealUserId;
     private Long applyOrderId;
     private Long currentNode;
     //审批意见

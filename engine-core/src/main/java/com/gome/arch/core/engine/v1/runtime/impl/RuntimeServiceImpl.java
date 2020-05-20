@@ -6,10 +6,13 @@ import com.gome.arch.core.engine.v1.runtime.RuntimeService;
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
 import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
+import com.gome.arch.json.JsonUtil;
 import com.gome.arch.service.RtApplyOrderDetailService;
 import com.gome.arch.service.RtApplyOrderService;
 import com.gome.arch.service.RtApprovalDetailService;
 import com.gome.arch.service.dto.ApprovalDealTO;
+import com.gome.arch.service.dto.ApprovalOrderTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,7 @@ import java.util.List;
  * @Created by nihui
  */
 @Service
+@Slf4j
 public class RuntimeServiceImpl implements RuntimeService {
     /**
      * 运行时工单服务
@@ -55,16 +59,20 @@ public class RuntimeServiceImpl implements RuntimeService {
         return pageInfo;
     }
 
+
     /**
      * 审批同意
-     * @param approvalDealVO
+     * @param approvalDealTO
      * @return
      */
     @Override
-    public int updateApprovalAgree(ApprovalDealTO approvalDealVO) {
-        rtApprovalDetailService.insertApprovalDetail(approvalDealVO);
-
-//        rtApplyOrderService.updateApplyOrderOK(approvalDealVO.getApplyOrderId());
+    public int updateApprovalAgree(ApprovalDealTO approvalDealTO) {
+        log.info("======== ApprovalDealTO  "+ JsonUtil.toJson(approvalDealTO));
+        rtApprovalDetailService.insertApprovalDetail(approvalDealTO);
+        ApprovalOrderTO  approvalOrderTO = new ApprovalOrderTO();
+        approvalOrderTO.setApplyId(approvalDealTO.getApplyOrderId());
+        approvalOrderTO.setCurrentNode(approvalDealTO.getCurrentNode());
+        rtApplyOrderService.updateApplyOrderOK(approvalOrderTO);
         return 0;
     }
 

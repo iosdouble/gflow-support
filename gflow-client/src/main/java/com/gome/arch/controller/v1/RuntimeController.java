@@ -5,10 +5,12 @@ import com.gome.arch.core.engine.v1.runtime.RuntimeService;
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
 import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
+import com.gome.arch.json.JsonUtil;
 import com.gome.arch.service.dto.ApprovalDealTO;
 import com.gome.arch.service.dvo.ApprovalDealVO;
 import com.gome.arch.service.dvo.response.ResponseEntity;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,7 @@ import java.util.List;
  */
 @Api(value = "运行时操作管理",description = "运行时流程管理")
 @RestController
-
+@Slf4j
 public class RuntimeController {
 
     @Autowired
@@ -43,12 +45,14 @@ public class RuntimeController {
      */
     @PostMapping("/approvalTask")
     public ResponseEntity<String> approvalTask(@RequestBody ApprovalDealVO approvalDealVO){
+        log.info("========  "+ JsonUtil.toJson(approvalDealVO));
         ResponseEntity responseEntity = new ResponseEntity();
         responseEntity.setCode(200);
         responseEntity.setMsg("numal");
 
         ApprovalDealTO approvalDealTO = new ApprovalDealTO();
-        BeanUtils.copyProperties(approvalDealTO,approvalDealVO);
+        BeanUtils.copyProperties(approvalDealVO,approvalDealTO);
+        approvalDealTO.setDealUserId(1994L);
         if (approvalDealVO.getStatus()==1){
             runtimeService.updateApprovalAgree(approvalDealTO);
         }else if (approvalDealVO.getStatus()==0){

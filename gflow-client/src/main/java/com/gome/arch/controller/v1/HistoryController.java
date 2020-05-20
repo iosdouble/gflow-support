@@ -1,8 +1,15 @@
 package com.gome.arch.controller.v1;
 
+import com.gome.arch.core.engine.v1.history.HistoryService;
+import com.gome.arch.dao.bean.HiApprovalUserFlow;
+import com.gome.arch.service.dvo.response.ResponseEntity;
 import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @Classname HistoryController
@@ -14,8 +21,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HistoryController {
 
+    @Autowired
+    private HistoryService historyService;
+
     @GetMapping("/history")
     public String getHistory(){
         return "OK";
+    }
+
+
+    @GetMapping("/getApprovalFlow")
+    public ResponseEntity getApprovalFlowHistory(@RequestParam(name = "applyid") Long applyId){
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("nurmal");
+        List<HiApprovalUserFlow> approvalFlow = historyService.getApprovalFlow(applyId);
+        responseEntity.setData(approvalFlow);
+        return responseEntity;
     }
 }

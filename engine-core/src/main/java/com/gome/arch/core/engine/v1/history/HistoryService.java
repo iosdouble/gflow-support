@@ -1,5 +1,9 @@
 package com.gome.arch.core.engine.v1.history;
 
+import com.gome.arch.dao.bean.HiApprovalUserFlow;
+
+import java.util.List;
+
 /**
  * @Classname HistoryService
  * @Description TODO 查询历史数据服务
@@ -11,6 +15,6 @@ public interface HistoryService {
     /***
      * 获取审批进度
      */
-    public String getApprovalFlow();
+    public List<HiApprovalUserFlow> getApprovalFlow(Long applyId);
 
 }

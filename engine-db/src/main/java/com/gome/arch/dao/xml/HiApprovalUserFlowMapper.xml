@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gome.arch.dao.mapper.HiApprovalUserFlowMapper">
+  <resultMap id="BaseResultMap" type="com.gome.arch.dao.bean.HiApprovalUserFlow">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="apply_order_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="submitter_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="node_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_user_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="node_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="apply_user_domain_dccount" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="apply_user_email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="approval_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, apply_order_detail_id, submitter_id, process_id, node_id, approval_user_id, node_order, 
+    apply_user_domain_dccount, apply_user_email, approval_state, last_update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlowExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hi_approval_user_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hi_approval_user_flow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hi_approval_user_flow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlow">
+    insert into hi_approval_user_flow (id, apply_order_detail_id, submitter_id, 
+      process_id, node_id, approval_user_id, 
+      node_order, apply_user_domain_dccount, apply_user_email, 
+      approval_state, last_update_time)
+    values (#{id,jdbcType=BIGINT}, #{applyOrderDetailId,jdbcType=BIGINT}, #{submitterId,jdbcType=BIGINT}, 
+      #{processId,jdbcType=INTEGER}, #{nodeId,jdbcType=BIGINT}, #{approvalUserId,jdbcType=BIGINT}, 
+      #{nodeOrder,jdbcType=INTEGER}, #{applyUserDomainDccount,jdbcType=VARCHAR}, #{applyUserEmail,jdbcType=VARCHAR}, 
+      #{approvalState,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlow">
+    insert into hi_approval_user_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applyOrderDetailId != null">
+        apply_order_detail_id,
+      </if>
+      <if test="submitterId != null">
+        submitter_id,
+      </if>
+      <if test="processId != null">
+        process_id,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="approvalUserId != null">
+        approval_user_id,
+      </if>
+      <if test="nodeOrder != null">
+        node_order,
+      </if>
+      <if test="applyUserDomainDccount != null">
+        apply_user_domain_dccount,
+      </if>
+      <if test="applyUserEmail != null">
+        apply_user_email,
+      </if>
+      <if test="approvalState != null">
+        approval_state,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applyOrderDetailId != null">
+        #{applyOrderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="submitterId != null">
+        #{submitterId,jdbcType=BIGINT},
+      </if>
+      <if test="processId != null">
+        #{processId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="approvalUserId != null">
+        #{approvalUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nodeOrder != null">
+        #{nodeOrder,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserDomainDccount != null">
+        #{applyUserDomainDccount,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserEmail != null">
+        #{applyUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalState != null">
+        #{approvalState,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlowExample" resultType="java.lang.Long">
+    select count(*) from hi_approval_user_flow
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update hi_approval_user_flow
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyOrderDetailId != null">
+        apply_order_detail_id = #{record.applyOrderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.submitterId != null">
+        submitter_id = #{record.submitterId,jdbcType=BIGINT},
+      </if>
+      <if test="record.processId != null">
+        process_id = #{record.processId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeId != null">
+        node_id = #{record.nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.approvalUserId != null">
+        approval_user_id = #{record.approvalUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.nodeOrder != null">
+        node_order = #{record.nodeOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyUserDomainDccount != null">
+        apply_user_domain_dccount = #{record.applyUserDomainDccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyUserEmail != null">
+        apply_user_email = #{record.applyUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approvalState != null">
+        approval_state = #{record.approvalState,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update hi_approval_user_flow
+    set id = #{record.id,jdbcType=BIGINT},
+      apply_order_detail_id = #{record.applyOrderDetailId,jdbcType=BIGINT},
+      submitter_id = #{record.submitterId,jdbcType=BIGINT},
+      process_id = #{record.processId,jdbcType=INTEGER},
+      node_id = #{record.nodeId,jdbcType=BIGINT},
+      approval_user_id = #{record.approvalUserId,jdbcType=BIGINT},
+      node_order = #{record.nodeOrder,jdbcType=INTEGER},
+      apply_user_domain_dccount = #{record.applyUserDomainDccount,jdbcType=VARCHAR},
+      apply_user_email = #{record.applyUserEmail,jdbcType=VARCHAR},
+      approval_state = #{record.approvalState,jdbcType=INTEGER},
+      last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlow">
+    update hi_approval_user_flow
+    <set>
+      <if test="applyOrderDetailId != null">
+        apply_order_detail_id = #{applyOrderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="submitterId != null">
+        submitter_id = #{submitterId,jdbcType=BIGINT},
+      </if>
+      <if test="processId != null">
+        process_id = #{processId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="approvalUserId != null">
+        approval_user_id = #{approvalUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nodeOrder != null">
+        node_order = #{nodeOrder,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserDomainDccount != null">
+        apply_user_domain_dccount = #{applyUserDomainDccount,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserEmail != null">
+        apply_user_email = #{applyUserEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalState != null">
+        approval_state = #{approvalState,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlow">
+    update hi_approval_user_flow
+    set apply_order_detail_id = #{applyOrderDetailId,jdbcType=BIGINT},
+      submitter_id = #{submitterId,jdbcType=BIGINT},
+      process_id = #{processId,jdbcType=INTEGER},
+      node_id = #{nodeId,jdbcType=BIGINT},
+      approval_user_id = #{approvalUserId,jdbcType=BIGINT},
+      node_order = #{nodeOrder,jdbcType=INTEGER},
+      apply_user_domain_dccount = #{applyUserDomainDccount,jdbcType=VARCHAR},
+      apply_user_email = #{applyUserEmail,jdbcType=VARCHAR},
+      approval_state = #{approvalState,jdbcType=INTEGER},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -62,7 +62,7 @@ public class TaskController {
     @PostMapping("/startTask")
     public ResponseEntity<String> startTask(@RequestBody TaskVO taskVO){
         ResponseEntity responseEntity = new ResponseEntity();
-        log.info("=========================== "+ JsonUtil.toJson(taskVO));
+        log.info("============TaskVO=============== "+ JsonUtil.toJson(taskVO));
         TaskTO taskTO = new TaskTO();
         BeanUtils.copyProperties(taskVO,taskTO);
         taskTO.setApplyId(taskVO.getApplyId());
