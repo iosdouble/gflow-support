@@ -1,5 +1,6 @@
 package com.gome.arch.service.impl;
 
+import com.gome.arch.constant.STATE;
 import com.gome.arch.dao.bean.HiApprovalUserFlow;
 import com.gome.arch.dao.bean.HiApprovalUserFlowExample;
 import com.gome.arch.dao.bean.RtApprovalUser;
@@ -42,7 +43,7 @@ public class HiApprovalUserFlowServiceImpl implements HiApprovalUserFlowService 
             hiApprovalUserFlow.setNodeId(approvalUserVO.getNodeId());
             hiApprovalUserFlow.setNodeOrder(approvalUserVO.getApprovalOrder());
             hiApprovalUserFlow.setApprovalUserId(approvalUserVO.getApprovalUserId());
-            hiApprovalUserFlow.setApprovalState(0);
+            hiApprovalUserFlow.setApprovalState(STATE.INIT);
             hiApprovalUserFlow.setLastUpdateTime(new Date());
             hiApprovalUserFlowMapper.insert(hiApprovalUserFlow);
         }

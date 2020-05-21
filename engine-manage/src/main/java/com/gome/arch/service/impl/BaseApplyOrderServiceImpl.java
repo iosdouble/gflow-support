@@ -68,32 +68,28 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
 
     @Override
     public String updateBaseApplyOrder(Long applyId) {
+        log.info("update base applyorder {}",applyId);
         BaseApplyOrder record = new BaseApplyOrder();
-        record.setDealState(1);
+        record.setDealState(STATE.DOING);
         BaseApplyOrderExample example = new BaseApplyOrderExample();
         BaseApplyOrderExample.Criteria criteria = example.createCriteria();
         criteria.andApplyOrderDetailIdEqualTo(applyId);
-        int i = baseApplyOrderMapper.updateByExampleSelective(record, example);
-        if (i>=0){
-            return "OK";
-        }else {
-            return "ERROR";
-        }
+        int count = baseApplyOrderMapper.updateByExampleSelective(record, example);
+        log.debug("option success or fail row number {}",count);
+        return "SUCCESS";
 
     }
 
     @Override
     public String deleteBaseApplyOrder(Long applyId) {
+        log.info("delete applyorder {}",applyId);
         BaseApplyOrder record = new BaseApplyOrder();
-        record.setDealState(2);
+        record.setDealState(STATE.DELETE);
         BaseApplyOrderExample example = new BaseApplyOrderExample();
         BaseApplyOrderExample.Criteria criteria = example.createCriteria();
         criteria.andApplyOrderDetailIdEqualTo(applyId);
-        int i = baseApplyOrderMapper.updateByExampleSelective(record, example);
-        if (i>=0){
-            return "OK";
-        }else {
-            return "ERROR";
-        }
+        int count = baseApplyOrderMapper.updateByExampleSelective(record, example);
+        log.debug("option success or fail row number {}",count);
+        return "SUCCESS";
     }
 }

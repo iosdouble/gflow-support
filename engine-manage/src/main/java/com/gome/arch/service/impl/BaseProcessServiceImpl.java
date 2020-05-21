@@ -1,5 +1,6 @@
 package com.gome.arch.service.impl;
 
+import com.gome.arch.constant.USEABLE;
 import com.gome.arch.dao.bean.BaseProcess;
 import com.gome.arch.dao.bean.BaseProcessExample;
 import com.gome.arch.dao.mapper.BaseProcessMapper;
@@ -49,20 +50,29 @@ public class BaseProcessServiceImpl implements BaseProcessService {
         return "OK";
     }
 
+    /**
+     * 禁用
+     * @param currentProcess
+     */
     private void changeUnuseable(Long currentProcess) {
         BaseProcess baseProcess = new BaseProcess();
         BaseProcessExample baseProcessExample = new BaseProcessExample();
         BaseProcessExample.Criteria criteria = baseProcessExample.createCriteria();
         criteria.andProcessIdEqualTo(currentProcess);
-        baseProcess.setProcessIsuseable(0);
+        baseProcess.setProcessIsuseable(USEABLE.NOT_USEABLE);
         baseProcessMapper.updateByExampleSelective(baseProcess,baseProcessExample);
     }
+
+    /**
+     * 启用
+     * @param userAbleProcess
+     */
     private void changeUseable(Long userAbleProcess) {
         BaseProcess baseProcess = new BaseProcess();
         BaseProcessExample baseProcessExample = new BaseProcessExample();
         BaseProcessExample.Criteria criteria = baseProcessExample.createCriteria();
         criteria.andProcessIdEqualTo(userAbleProcess);
-        baseProcess.setProcessIsuseable(1);
+        baseProcess.setProcessIsuseable(USEABLE.IS_USEABLE);
         baseProcessMapper.updateByExampleSelective(baseProcess,baseProcessExample);
     }
 
