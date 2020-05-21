@@ -2,6 +2,7 @@ package com.gome.arch.core.engine.v1.task.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.gome.arch.constant.STATE;
 import com.gome.arch.dao.bean.BaseApplyOrder;
 import com.gome.arch.json.JsonUtil;
 import com.gome.arch.service.*;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-@Transactional(rollbackFor=Exception.class,propagation=Propagation.REQUIRED)
+@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 public class TaskServiceImpl implements TaskService {
     @Autowired
     private RtApprovalUserService rtApprovalUserService;
@@ -35,32 +36,41 @@ public class TaskServiceImpl implements TaskService {
     private BaseApplyOrderService baseApplyOrderService;
     @Autowired
     private HiApprovalUserFlowService hiApprovalUserFlowService;
+
     /**
      * 开启任务主要是对处理人和运行时操作进行操作
+     *
      * @param taskTO
      * @return
      */
     @Override
     public String startTask(TaskTO taskTO) {
-        //增加审批人处理
-       //rtApprovalUserService.addApprovalUserRelation(taskTO);
-       //增加历史处理记录
-       hiApprovalUserFlowService.addApprovalFlowRelation(taskTO);
-       //增加审批处理
-       rtApplyOrderService.insertNewApplyOrder(taskTO);
-       //更新基础工单状态
-       baseApplyOrderService.updateBaseApplyOrder(taskTO.getApplyId());
-       return "处理成功";
+        log.info("开启流程 {}",JsonUtil.toJson(taskTO));
+        try {
+            //增加审批人处理
+            //rtApprovalUserService.addApprovalUserRelation(taskTO);
+            //增加历史处理记录
+            hiApprovalUserFlowService.addApprovalFlowRelation(taskTO);
+            //增加审批处理
+            rtApplyOrderService.insertNewApplyOrder(taskTO);
+            //更新基础工单状态
+            baseApplyOrderService.updateBaseApplyOrder(taskTO.getApplyId());
+            return String.valueOf(taskTO.getApplyId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "0";
+        }
     }
 
     /**
      * 添加工单
+     *
      * @param baseTaskTO
      * @return 返回信息为工单号
      */
     @Override
     public String addTask(BaseTaskTO baseTaskTO) {
-        log.info("start add apply info " + JsonUtil.toJson(baseTaskTO));
+        log.info("start add apply info {} ",JsonUtil.toJson(baseTaskTO));
         BaseApplyTO baseApplyTO = new BaseApplyTO();
         baseApplyTO.setApplyId(baseTaskTO.getApplyId());
         baseApplyTO.setApplyUserCode(baseTaskTO.getApplyUserCode());
@@ -73,21 +83,23 @@ public class TaskServiceImpl implements TaskService {
         baseApplyOrderDetialService.addApplyOrderDetail(applyDetailTO);
         long code = baseApplyTO.getApplyId();
         String response = String.valueOf(code);
-        log.info("end add task "+ response);
+        log.info("end add task " + response);
         return response;
     }
 
     @Override
     public String endTask(Long applyId) {
-        return baseApplyOrderService.deleteBaseApplyOrder(applyId);
+        baseApplyOrderService.deleteBaseApplyOrder(applyId);
+        String code = String.valueOf(applyId);
+        return code;
     }
 
 
     @Override
-    public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode,Integer offset,Integer limit) {
+    public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode, Integer offset, Integer limit) {
         PageHelper.offsetPage(offset, limit);
 //        List<BaseApplyOrder> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode,0);
-        List<BaseApplyOrderTO> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode,0);
+        List<BaseApplyOrderTO> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode, STATE.INIT);
         PageInfo<BaseApplyOrderTO> pageInfo = new PageInfo<BaseApplyOrderTO>(applyOrderList);
         return pageInfo;
     }

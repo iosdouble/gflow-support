@@ -47,15 +47,23 @@ public class TaskController {
         log.info(JsonUtil.toJson(baseTaskVO));
         Long applyId = idWorker.nextId();
         ResponseEntity responseEntity = new ResponseEntity();
-        BaseTaskTO baseTaskTO = new BaseTaskTO();
-        baseTaskTO.setApplyId(applyId);
-        baseTaskTO.setApplyUserCode(baseTaskVO.getApplyUserCode());
-        baseTaskTO.setSystemType(baseTaskVO.getSystemType());
-        baseTaskTO.setApplyContentDetail(baseTaskVO.getApplyContentDetail());
-        String s = taskService.addTask(baseTaskTO);
-        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
-        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
-        responseEntity.setData(s);
+        try{
+            BaseTaskTO baseTaskTO = new BaseTaskTO();
+            baseTaskTO.setApplyId(applyId);
+            baseTaskTO.setApplyUserCode(baseTaskVO.getApplyUserCode());
+            baseTaskTO.setSystemType(baseTaskVO.getSystemType());
+            baseTaskTO.setApplyContentDetail(baseTaskVO.getApplyContentDetail());
+            String orderId = taskService.addTask(baseTaskTO);
+            responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+            responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
+            responseEntity.setData(orderId);
+        }catch (Exception e){
+            log.info(" error {}",e);
+            e.printStackTrace();
+            responseEntity.setCode(HTTPSTATE.HTTP_ERROR.getStateCode());
+            responseEntity.setMsg(HTTPSTATE.HTTP_ERROR.getStateKey());
+            responseEntity.setData("0");
+        }
         return responseEntity;
     }
 
