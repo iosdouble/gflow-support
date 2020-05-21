@@ -13,6 +13,8 @@ import com.gome.arch.core.engine.v1.task.TaskService;
 import com.gome.arch.service.dvo.response.ResponseEntity;
 import com.gome.arch.uuid.IdWorker;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ import java.util.Date;
  * @Date 2020/5/6 3:56 PM
  * @Created by nihui
  */
-@Api(value = "基本任务管理",description = "流程任务管理")
+@Api(value = "任务操作接口",description = "流程任务管理",tags = {"任务操作接口"})
 @Slf4j
 @RestController
 public class TaskController {
@@ -38,6 +40,8 @@ public class TaskController {
     private TaskService taskService;
 
 
+    @ApiOperation(value = "用户第三方接口调用",notes = "第三方系统调用，向流程管理中添加自己的任务操作")
+    @ApiParam(name = "baseTaskVO",value = "封装的任务信息")
     @PostMapping("/addTask")
     public ResponseEntity<String> addTask(@RequestBody BaseTaskVO baseTaskVO){
         log.info(JsonUtil.toJson(baseTaskVO));
@@ -61,8 +65,9 @@ public class TaskController {
      * @return
      */
     @PostMapping("/startTask")
+    @ApiOperation(value = "开启任务接口",notes = "用户开启当前任务指定的流程操作，并且选择审批人等操作")
     public ResponseEntity<String> startTask(@RequestBody TaskVO taskVO){
-        log.info("============= startTask ============== "+ JsonUtil.toJson(taskVO));
+        log.info("startTask {}",JsonUtil.toJson(taskVO));
         ResponseEntity responseEntity = new ResponseEntity();
         TaskTO taskTO = new TaskTO();
         BeanUtils.copyProperties(taskVO,taskTO);
@@ -79,9 +84,10 @@ public class TaskController {
      * 废除工单
      * @return
      */
+    @ApiOperation(value = "废除工单接口",notes = "在用户提交工单之后，如果出现不需要进行流程操作的时候，可以调用这个接口来对指定工单号进行废除操作")
     @DeleteMapping("/endTask")
     public ResponseEntity<String> endTask(@RequestParam(name = "applyId") Long applyId){
-        log.info("========== endTask ============="+ applyId);
+        log.info("endTask {}",applyId);
         ResponseEntity responseEntity = new ResponseEntity();
         responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
         responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
@@ -91,8 +97,9 @@ public class TaskController {
     }
 
     @GetMapping("/getStartList")
+    @ApiOperation(value = "获取工单列表操作信息",notes = "获取到指定用户当前，所有操作状态的工单信息")
     public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(){
-        log.info("==========getStartList=========");
+        log.info(" getStartList {} ",new Date());
         ResponseEntity<PageInfo<BaseApplyOrderTO>> responseEntity = new ResponseEntity<>();
         responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
         responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
@@ -100,6 +107,4 @@ public class TaskController {
         responseEntity.setData(startTaskList);
         return responseEntity;
     }
-
-
 }

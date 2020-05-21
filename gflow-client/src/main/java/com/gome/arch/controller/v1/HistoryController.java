@@ -18,18 +18,12 @@ import java.util.List;
  * @Date 2020/5/11 1:57 PM
  * @Created by nihui
  */
-@Api(value = "历史操作管理",description = "历史数据管理")
+@Api(value = "历史操作管理",description = "历史数据管理",tags = {"历史数据获取"})
 @RestController
 public class HistoryController {
 
     @Autowired
     private HistoryService historyService;
-
-    @GetMapping("/history")
-    public String getHistory(){
-        return "OK";
-    }
-
 
     @GetMapping("/getApprovalFlow")
     public ResponseEntity getApprovalFlowHistory(@RequestParam(name = "applyid") Long applyId){

@@ -12,6 +12,7 @@ import com.gome.arch.uuid.IdWorker;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @Api(value = "测试接口",description = "测试接口")
 @RestController
+@ApiIgnore
 public class UserController {
 
     @Autowired

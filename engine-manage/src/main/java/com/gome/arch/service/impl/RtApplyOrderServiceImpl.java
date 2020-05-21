@@ -2,6 +2,7 @@ package com.gome.arch.service.impl;
 
 
 
+import com.gome.arch.constant.STATE;
 import com.gome.arch.dao.bean.*;
 import com.gome.arch.dao.mapper.*;
 import com.gome.arch.dpo.ApprovalOrderPO;
@@ -58,8 +59,8 @@ public class RtApplyOrderServiceImpl implements RtApplyOrderService {
         record.setApplyOrderDetailId(taskTO.getApplyId());
         record.setCurrentNodeId(Long.valueOf(node.get(1)));
         record.setNextNodeId(Long.valueOf(node.get(2)));
-        record.setCurrentNodeFinishStatus(0);
-        record.setProcessFinishStatus(0);
+        record.setCurrentNodeFinishStatus(STATE.INIT);
+        record.setProcessFinishStatus(STATE.INIT);
         record.setPorcessId(taskTO.getProcessId());
         record.setProcessNodeTotalnumber(Long.valueOf(getProcessTotalNumber(Long.valueOf(taskTO.getProcessId()))));
         record.setCreateTime(new Date());
@@ -104,7 +105,7 @@ public class RtApplyOrderServiceImpl implements RtApplyOrderService {
         rtApplyOrder.setCurrentNodeId(relationByApplyId.get(approvalOrderTO.getCurrentNode()));
         Long nextNode = relationByApplyId.get(relationByApplyId.get(approvalOrderTO.getCurrentNode()));
         if (approvalOrderTO.getNextNode() == 0){
-            rtApplyOrder.setProcessFinishStatus(1);
+            rtApplyOrder.setProcessFinishStatus(STATE.FINISH);
         }
         if (nextNode!=null){
             log.info("这里执行了");
@@ -135,7 +136,7 @@ public class RtApplyOrderServiceImpl implements RtApplyOrderService {
         RtApplyOrderExample rtApplyOrderExample = new RtApplyOrderExample();
         RtApplyOrderExample.Criteria criteria = rtApplyOrderExample.createCriteria();
         criteria.andApplyOrderDetailIdEqualTo(applyId);
-        rtApplyOrder.setProcessFinishStatus(1);
+        rtApplyOrder.setProcessFinishStatus(STATE.FINISH);
         rtApplyOrderMapper.updateByExampleSelective(rtApplyOrder,rtApplyOrderExample);
         return 0;
     }

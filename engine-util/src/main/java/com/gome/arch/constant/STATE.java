@@ -13,5 +13,6 @@ public final class STATE {
     public final static int FINISH = 2;
     public final static int REJECT = 3;
     public final static int FAIL = 4;
+    public final static int DELETE = 5;
 
 }

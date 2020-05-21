@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -18,8 +19,9 @@ import java.util.List;
  * @Date 2020/5/6 3:25 PM
  * @Created by nihui
  */
-@Api(value = "获取基本的流程管理",description = "基本流程管理")
+@Api(value = "获取基本的流程管理",description = "基本流程管理,用于测试以及其他地方调用的管理操作",tags = {"流程相关操作的管理"})
 @RestController
+@ApiIgnore
 public class BaseProcessController {
     @Autowired
     private ProcessEngine processEngine;

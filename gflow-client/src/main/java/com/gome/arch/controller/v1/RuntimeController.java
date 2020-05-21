@@ -1,7 +1,9 @@
 package com.gome.arch.controller.v1;
 
 import com.github.pagehelper.PageInfo;
+import com.gome.arch.constant.APPROVAL;
 import com.gome.arch.constant.HTTPSTATE;
+import com.gome.arch.constant.STATE;
 import com.gome.arch.core.engine.v1.runtime.RuntimeService;
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
 import com.gome.arch.dao.bean.RtApprovalDetail;
@@ -24,7 +26,7 @@ import java.util.List;
  * @Date 2020/5/11 11:33 AM
  * @Created by nihui
  */
-@Api(value = "运行时操作管理",description = "运行时流程管理")
+@Api(value = "运行时操作管理",description = "运行时流程管理",tags = {"运行时操作管理"})
 @RestController
 @Slf4j
 public class RuntimeController {
@@ -50,13 +52,12 @@ public class RuntimeController {
         ResponseEntity responseEntity = new ResponseEntity();
         responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
         responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
-
         ApprovalDealTO approvalDealTO = new ApprovalDealTO();
         BeanUtils.copyProperties(approvalDealVO,approvalDealTO);
         approvalDealTO.setDealUserId(1994L);
-        if (approvalDealVO.getStatus()==1){
+        if (approvalDealVO.getStatus()==APPROVAL.AGREE){
             runtimeService.updateApprovalAgree(approvalDealTO);
-        }else if (approvalDealVO.getStatus()==0){
+        }else if (approvalDealVO.getStatus()==APPROVAL.REJECT){
             runtimeService.updateApprovalReject(approvalDealTO);
         }
         responseEntity.setData("OK");
