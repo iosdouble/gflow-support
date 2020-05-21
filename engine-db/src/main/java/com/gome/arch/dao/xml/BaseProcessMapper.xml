@@ -237,4 +237,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+
+  <select id="getAvailableProcess" resultType="java.lang.Integer">
+    select count(*) from base_process where process_isuseable = 1;
+  </select>
+
 </mapper>

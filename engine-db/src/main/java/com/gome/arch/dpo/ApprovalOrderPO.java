@@ -10,12 +10,13 @@ import lombok.NoArgsConstructor;
  * @Date 2020/5/11 10:35 AM
  * @Created by nihui
  */
+@Deprecated
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApprovalOrderPO {
 
-    private Long applyOrderDetailId;
+    private String applyOrderDetailId;
     private Long submitterId;
     private Integer processId;
     private Integer currentNodeId;

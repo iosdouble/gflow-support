@@ -4,7 +4,6 @@ import com.gome.arch.dpo.ApprovalOrderPO;
 import com.gome.arch.dpo.ApprovalOrderPOExt;
 import com.gome.arch.service.dto.ApprovalOrderTO;
 import com.gome.arch.service.dto.TaskTO;
-import com.gome.arch.service.dvo.ApprovalDealVO;
 
 import java.util.List;
 
@@ -27,6 +26,12 @@ public interface RtApplyOrderService {
     //审批成功
     public int updateApplyOrderOK(ApprovalOrderTO approvalOrderTO);
 
+    public int finishApplyOrder(Long applyId,Integer state);
+
+    public int finishBaseApplyOrder(Long applyId,Integer state);
+
     //审批拒绝
     public int updateApprovalRegject();
+
+    public int reBackApplyOrder(Long applyId);
 }

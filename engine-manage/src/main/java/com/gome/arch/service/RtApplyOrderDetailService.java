@@ -1,9 +1,12 @@
 package com.gome.arch.service;
 
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
+import com.gome.arch.dao.bean.RtApprovalDetail;
 import com.gome.arch.service.dto.ApplyDetailTO;
 import com.gome.arch.service.dto.BaseApplyTO;
 import com.gome.arch.service.dto.TaskTO;
+
+import java.util.List;
 
 /**
  * @Classname RtApplyOrderDetailService
@@ -13,5 +16,7 @@ import com.gome.arch.service.dto.TaskTO;
  */
 public interface RtApplyOrderDetailService {
 
-    public int addApplyOrderDetail(ApplyDetailTO applyDetailTO);
+    public String addApplyOrderDetail(ApplyDetailTO applyDetailTO);
+
+    public List<RtApplyOrderDetail> getApprovalApplyDetailByApplyId(Long applyId);
 }

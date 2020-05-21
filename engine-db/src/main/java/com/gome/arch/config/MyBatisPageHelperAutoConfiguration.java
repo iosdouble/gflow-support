@@ -2,6 +2,7 @@ package com.gome.arch.config;
 
 import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -22,8 +23,9 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ConditionalOnClass(value={DataSource.class,SqlSessionFactory.class,PageInterceptor.class})
-@ConditionalOnBean(name={"mysqlSqlSessionTemplate"})
-@ConditionalOnProperty(prefix = "auch.support.mybatis.pagehelper", name = "enabled", havingValue = "true", matchIfMissing = false)
+//@ConditionalOnBean(name={"mysqlSqlSessionTemplateSelf"})
+//@ConditionalOnBean(value = SqlSessionTemplate.class)
+@ConditionalOnProperty(prefix = "arch.support.mybatis.pagehelper", name = "enabled", havingValue = "true", matchIfMissing = false)
 @AutoConfigureAfter(MybatisAutoConfiguration.class)
 @EnableConfigurationProperties(value={MyBatisPageHelperProperties.class})
 public class MyBatisPageHelperAutoConfiguration {

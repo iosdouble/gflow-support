@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
  * @Created by nihui
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class TaskTO extends BaseTO {
-    private String applyDetail;
+
 }

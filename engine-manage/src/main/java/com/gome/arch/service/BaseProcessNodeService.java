@@ -15,7 +15,7 @@ public interface BaseProcessNodeService {
 
     public List<ProcessPO> getProcessById(Long processId);
 
-
     public List<ProcessPO> getProcess();
+
 
 }

@@ -1,14 +1,21 @@
 package com.gome.arch.service.impl;
 
+import com.gome.arch.constant.STATE;
 import com.gome.arch.dao.bean.BaseApplyOrder;
 import com.gome.arch.dao.bean.BaseApplyOrderExample;
 import com.gome.arch.dao.mapper.BaseApplyOrderMapper;
 import com.gome.arch.service.BaseApplyOrderService;
+import com.gome.arch.service.dto.BaseApplyOrderTO;
 import com.gome.arch.service.dto.BaseApplyTO;
 import com.gome.arch.uuid.IdWorker;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,11 +26,11 @@ import java.util.List;
  * @Created by nihui
  */
 @Service
+@Slf4j
+@Transactional(rollbackFor=Exception.class,propagation=Propagation.REQUIRED)
 public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
-
     @Autowired
     private IdWorker idWorker;
-
     @Autowired
     private BaseApplyOrderMapper baseApplyOrderMapper;
 
@@ -31,21 +38,62 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
     public String addApplyOrder(BaseApplyTO baseApplyTO) {
         BaseApplyOrder baseApplyOrder = new BaseApplyOrder();
         baseApplyOrder.setId(idWorker.nextId());
-        baseApplyOrder.setApplyOrderDetailId(idWorker.nextId());
-        baseApplyOrder.setApplyUserCode(1994L);
-        baseApplyOrder.setSystemType("cd");
+        baseApplyOrder.setApplyOrderDetailId(baseApplyTO.getApplyId());
+        baseApplyOrder.setApplyUserCode(baseApplyTO.getApplyUserCode());
+        baseApplyOrder.setSystemType(baseApplyTO.getSystemType());
         baseApplyOrder.setCreateTime(new Date());
-        baseApplyOrder.setDealState(0);
-        baseApplyOrderMapper.insert(baseApplyOrder);
-        return "OK";
+        baseApplyOrder.setDealState(STATE.INIT);
+        int insert = baseApplyOrderMapper.insert(baseApplyOrder);
+        log.debug(" option success or fail row number {}",insert);
+        return "SUCCESS";
     }
 
     @Override
-    public List<BaseApplyOrder> getApplyOrderList(Integer state) {
+    public List<BaseApplyOrderTO> getApplyOrderList(Long applyUserCode, Integer state) {
         BaseApplyOrderExample baseApplyOrderExample = new BaseApplyOrderExample();
         BaseApplyOrderExample.Criteria criteria = baseApplyOrderExample.createCriteria();
-        criteria.andDealStateEqualTo(state);
+//        criteria.andDealStateEqualTo(state);
+        criteria.andApplyUserCodeEqualTo(applyUserCode);
         List<BaseApplyOrder> baseApplyOrders = baseApplyOrderMapper.selectByExample(baseApplyOrderExample);
-        return baseApplyOrders;
+        List<BaseApplyOrderTO> baseApplyOrderTOList = new ArrayList<>();
+        for (BaseApplyOrder baseApplyOrder : baseApplyOrders) {
+            BaseApplyOrderTO baseApplyOrderTO = new BaseApplyOrderTO();
+            baseApplyOrderTO.setId(String.valueOf(baseApplyOrder.getId()));
+            baseApplyOrderTO.setApplyOrderDetailId(String.valueOf(baseApplyOrder.getApplyOrderDetailId()));
+            BeanUtils.copyProperties(baseApplyOrder, baseApplyOrderTO);
+            baseApplyOrderTOList.add(baseApplyOrderTO);
+        }
+        return baseApplyOrderTOList;
+    }
+
+    @Override
+    public String updateBaseApplyOrder(Long applyId) {
+        BaseApplyOrder record = new BaseApplyOrder();
+        record.setDealState(1);
+        BaseApplyOrderExample example = new BaseApplyOrderExample();
+        BaseApplyOrderExample.Criteria criteria = example.createCriteria();
+        criteria.andApplyOrderDetailIdEqualTo(applyId);
+        int i = baseApplyOrderMapper.updateByExampleSelective(record, example);
+        if (i>=0){
+            return "OK";
+        }else {
+            return "ERROR";
+        }
+
+    }
+
+    @Override
+    public String deleteBaseApplyOrder(Long applyId) {
+        BaseApplyOrder record = new BaseApplyOrder();
+        record.setDealState(2);
+        BaseApplyOrderExample example = new BaseApplyOrderExample();
+        BaseApplyOrderExample.Criteria criteria = example.createCriteria();
+        criteria.andApplyOrderDetailIdEqualTo(applyId);
+        int i = baseApplyOrderMapper.updateByExampleSelective(record, example);
+        if (i>=0){
+            return "OK";
+        }else {
+            return "ERROR";
+        }
     }
 }

@@ -25,14 +25,6 @@ public class BaseTO {
     //用户ID
     @NullAndRegexValid(paramName="申请用户Code",notNull=true,regex="[0-9]+")
     private Long applyUserCode;
-//    @NotNull(message="deptCode参数不能为空")
-
-    //用户中文名称
-    private String userCnName;
-    //域账户
-    private String applyUserDomainAccount;
-    //申请人邮箱
-    private String applyUserEmail;
     //申请时间
     private String applyTime;
 }

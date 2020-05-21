@@ -17,6 +17,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskVO extends BaseVO {
-    private Integer processId;
     private List<ApprovalUserVO> approvalUserVoList;
 }

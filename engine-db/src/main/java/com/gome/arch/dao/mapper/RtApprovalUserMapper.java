@@ -35,5 +35,6 @@ public interface RtApprovalUserMapper extends Serializable {
      * @param applyId
      * @return
      */
+    @Deprecated
     public List<RtApprovalUser> getDealUserListByApplyId(Long applyId);
 }
