@@ -1,5 +1,6 @@
 package com.gome.arch.controller.v1;
 
+import com.gome.arch.constant.HTTPSTATE;
 import com.gome.arch.core.engine.v1.history.HistoryService;
 import com.gome.arch.dao.bean.HiApprovalUserFlow;
 import com.gome.arch.service.dvo.response.ResponseEntity;
@@ -33,10 +34,12 @@ public class HistoryController {
     @GetMapping("/getApprovalFlow")
     public ResponseEntity getApprovalFlowHistory(@RequestParam(name = "applyid") Long applyId){
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.setCode(200);
-        responseEntity.setMsg("nurmal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         List<HiApprovalUserFlow> approvalFlow = historyService.getApprovalFlow(applyId);
         responseEntity.setData(approvalFlow);
         return responseEntity;
     }
+
+
 }

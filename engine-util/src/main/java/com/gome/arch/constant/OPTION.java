@@ -1,4 +1,4 @@
-package com.gome.arch.core.constant;
+package com.gome.arch.constant;
 
 /**
  * @Classname OPTION

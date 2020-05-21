@@ -53,8 +53,12 @@ public interface RuntimeService {
     public String reCallWorkOrder(Long applyId);
 
 
+    /**
+     * 根据工单号获取详情信息
+     * @param applyId
+     * @return
+     */
     public RtApplyOrderDetail getApplyOrderDetailByApplyId(Long applyId);
-
 
 
 

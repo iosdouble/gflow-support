@@ -1,6 +1,7 @@
 package com.gome.arch.controller.v1;
 
 import com.github.pagehelper.PageInfo;
+import com.gome.arch.constant.HTTPSTATE;
 import com.gome.arch.dao.bean.BaseApplyOrder;
 import com.gome.arch.json.JsonUtil;
 import com.gome.arch.service.dto.BaseApplyOrderTO;
@@ -39,7 +40,7 @@ public class TaskController {
 
     @PostMapping("/addTask")
     public ResponseEntity<String> addTask(@RequestBody BaseTaskVO baseTaskVO){
-        log.info(" addTask "+baseTaskVO.toString());
+        log.info(JsonUtil.toJson(baseTaskVO));
         Long applyId = idWorker.nextId();
         ResponseEntity responseEntity = new ResponseEntity();
         BaseTaskTO baseTaskTO = new BaseTaskTO();
@@ -48,8 +49,8 @@ public class TaskController {
         baseTaskTO.setSystemType(baseTaskVO.getSystemType());
         baseTaskTO.setApplyContentDetail(baseTaskVO.getApplyContentDetail());
         String s = taskService.addTask(baseTaskTO);
-        responseEntity.setCode(200);
-        responseEntity.setMsg("normal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         responseEntity.setData(s);
         return responseEntity;
     }
@@ -61,15 +62,15 @@ public class TaskController {
      */
     @PostMapping("/startTask")
     public ResponseEntity<String> startTask(@RequestBody TaskVO taskVO){
+        log.info("============= startTask ============== "+ JsonUtil.toJson(taskVO));
         ResponseEntity responseEntity = new ResponseEntity();
-        log.info("============TaskVO=============== "+ JsonUtil.toJson(taskVO));
         TaskTO taskTO = new TaskTO();
         BeanUtils.copyProperties(taskVO,taskTO);
         taskTO.setApplyId(taskVO.getApplyId());
         taskTO.setProcessId(taskVO.getProcessId());
         String s = taskService.startTask(taskTO);
-        responseEntity.setCode(200);
-        responseEntity.setMsg("normal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         responseEntity.setData("OK" + new Date() + s);
         return responseEntity;
     }
@@ -80,9 +81,10 @@ public class TaskController {
      */
     @DeleteMapping("/endTask")
     public ResponseEntity<String> endTask(@RequestParam(name = "applyId") Long applyId){
+        log.info("========== endTask ============="+ applyId);
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.setCode(200);
-        responseEntity.setMsg("normal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         String s = taskService.endTask(applyId);
         responseEntity.setData(s);
         return responseEntity;
@@ -90,9 +92,10 @@ public class TaskController {
 
     @GetMapping("/getStartList")
     public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(){
+        log.info("==========getStartList=========");
         ResponseEntity<PageInfo<BaseApplyOrderTO>> responseEntity = new ResponseEntity<>();
-        responseEntity.setCode(200);
-        responseEntity.setMsg("nurmal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList(1994L, 0, 10);
         responseEntity.setData(startTaskList);
         return responseEntity;

@@ -19,6 +19,7 @@ public class ApprovalDealTO {
     private Long dealUserId;
     private Long applyOrderId;
     private Long currentNode;
+    private Long nextNode;
     //审批意见
     private String opinion;
     //审批处理状态

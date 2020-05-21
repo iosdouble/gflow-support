@@ -16,6 +16,9 @@ public interface HiApprovalUserFlowService {
 
     public int addApprovalFlowRelation(TaskTO taskTO);
 
-
     public List<HiApprovalUserFlow> getApprovalFlowHistory(Long  applyId);
+
+    public int updateFlowHistory();
+
+    public int updateApprovalFlowStatus(Long applyId,Integer state);
 }

@@ -16,4 +16,5 @@ import lombok.NoArgsConstructor;
 public class ApprovalOrderTO {
     private Long applyId;
     private Long currentNode;
+    private Long nextNode;
 }

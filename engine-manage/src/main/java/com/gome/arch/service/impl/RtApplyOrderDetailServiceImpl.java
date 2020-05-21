@@ -29,14 +29,15 @@ public class RtApplyOrderDetailServiceImpl implements RtApplyOrderDetailService 
     private RtApplyOrderDetailMapper rtApplyOrderDetailMapper;
 
     @Override
-    public int addApplyOrderDetail(ApplyDetailTO applyDetailTO) {
-        log.info("add applyDetailTo "+applyDetailTO.toString());
+    public String addApplyOrderDetail(ApplyDetailTO applyDetailTO) {
+        log.info("add applyorder detail  "+ JsonUtil.toJson(applyDetailTO));
         RtApplyOrderDetail rtApplyOrderDetail = new RtApplyOrderDetail();
         rtApplyOrderDetail.setId(applyDetailTO.getApplyId());
         rtApplyOrderDetail.setApplyOrderDetail(applyDetailTO.getApplyOrderDetail());
         rtApplyOrderDetail.setApplyOrderDetailId(applyDetailTO.getApplyId());
         int insert = rtApplyOrderDetailMapper.insert(rtApplyOrderDetail);
-        return insert;
+        log.debug(" option success or fail row number {}",insert);
+        return "SUCCESS";
     }
 
     @Override

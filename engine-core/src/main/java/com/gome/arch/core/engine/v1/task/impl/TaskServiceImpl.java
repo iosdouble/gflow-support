@@ -3,6 +3,7 @@ package com.gome.arch.core.engine.v1.task.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.dao.bean.BaseApplyOrder;
+import com.gome.arch.json.JsonUtil;
 import com.gome.arch.service.*;
 import com.gome.arch.service.dto.*;
 import com.gome.arch.core.engine.v1.task.TaskService;
@@ -24,8 +25,6 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor=Exception.class,propagation=Propagation.REQUIRED)
 public class TaskServiceImpl implements TaskService {
-
-
     @Autowired
     private RtApprovalUserService rtApprovalUserService;
     @Autowired
@@ -34,11 +33,8 @@ public class TaskServiceImpl implements TaskService {
     private RtApplyOrderService rtApplyOrderService;
     @Autowired
     private BaseApplyOrderService baseApplyOrderService;
-
     @Autowired
     private HiApprovalUserFlowService hiApprovalUserFlowService;
-
-
     /**
      * 开启任务主要是对处理人和运行时操作进行操作
      * @param taskTO
@@ -47,25 +43,24 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public String startTask(TaskTO taskTO) {
         //增加审批人处理
-       rtApprovalUserService.addApprovalUserRelation(taskTO);
+       //rtApprovalUserService.addApprovalUserRelation(taskTO);
        //增加历史处理记录
        hiApprovalUserFlowService.addApprovalFlowRelation(taskTO);
        //增加审批处理
        rtApplyOrderService.insertNewApplyOrder(taskTO);
-
+       //更新基础工单状态
        baseApplyOrderService.updateBaseApplyOrder(taskTO.getApplyId());
-
        return "处理成功";
     }
 
     /**
-     * 添加任务主要是对工单基础信息进行绑定操作
+     * 添加工单
      * @param baseTaskTO
-     * @return
+     * @return 返回信息为工单号
      */
     @Override
     public String addTask(BaseTaskTO baseTaskTO) {
-        log.info("start add apply info " + baseTaskTO.toString() );
+        log.info("start add apply info " + JsonUtil.toJson(baseTaskTO));
         BaseApplyTO baseApplyTO = new BaseApplyTO();
         baseApplyTO.setApplyId(baseTaskTO.getApplyId());
         baseApplyTO.setApplyUserCode(baseTaskTO.getApplyUserCode());
@@ -76,8 +71,10 @@ public class TaskServiceImpl implements TaskService {
         applyDetailTO.setApplyId(baseTaskTO.getApplyId());
         applyDetailTO.setApplyOrderDetail(baseTaskTO.getApplyContentDetail());
         baseApplyOrderDetialService.addApplyOrderDetail(applyDetailTO);
-        log.info("end add task ");
-        return "OK";
+        long code = baseApplyTO.getApplyId();
+        String response = String.valueOf(code);
+        log.info("end add task "+ response);
+        return response;
     }
 
     @Override

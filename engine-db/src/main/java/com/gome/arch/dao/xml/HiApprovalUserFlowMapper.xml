@@ -16,6 +16,18 @@
       <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
+
+  <resultMap id="BaseRtApprovalUsertMap" type="com.gome.arch.dao.bean.RtApprovalUser">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="apply_order_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="submitter_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="node_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_user_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="node_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -299,4 +311,8 @@
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="getDealUserListByApplyId" resultMap="BaseRtApprovalUsertMap" parameterType="java.lang.Long">
+        SELECT id,apply_order_detail_id,submitter_id,process_id,node_id,approval_user_id,node_order FROM hi_approval_user_flow WHERE apply_order_detail_id = #{applyId} ORDER BY node_order ASC;
+    </select>
 </mapper>

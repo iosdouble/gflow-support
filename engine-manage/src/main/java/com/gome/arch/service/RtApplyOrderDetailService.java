@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface RtApplyOrderDetailService {
 
-    public int addApplyOrderDetail(ApplyDetailTO applyDetailTO);
+    public String addApplyOrderDetail(ApplyDetailTO applyDetailTO);
 
     public List<RtApplyOrderDetail> getApprovalApplyDetailByApplyId(Long applyId);
 }

@@ -57,4 +57,20 @@ public class HiApprovalUserFlowServiceImpl implements HiApprovalUserFlowService 
         List<HiApprovalUserFlow> hiApprovalUserFlows = hiApprovalUserFlowMapper.selectByExample(hiApprovalUserFlowExample);
         return hiApprovalUserFlows;
     }
+
+    @Override
+    public int updateFlowHistory() {
+        return 0;
+    }
+
+    @Override
+    public int updateApprovalFlowStatus(Long applyId, Integer state) {
+        HiApprovalUserFlow hiApprovalUserFlow = new HiApprovalUserFlow();
+        HiApprovalUserFlowExample hiApprovalUserFlowExample = new HiApprovalUserFlowExample();
+        HiApprovalUserFlowExample.Criteria criteria = hiApprovalUserFlowExample.createCriteria();
+        criteria.andApplyOrderDetailIdEqualTo(applyId);
+        hiApprovalUserFlow.setApprovalState(state);
+        hiApprovalUserFlowMapper.updateByExampleSelective(hiApprovalUserFlow,hiApprovalUserFlowExample);
+        return 0;
+    }
 }

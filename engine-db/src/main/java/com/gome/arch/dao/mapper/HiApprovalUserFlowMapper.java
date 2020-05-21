@@ -2,6 +2,7 @@ package com.gome.arch.dao.mapper;
 
 import com.gome.arch.dao.bean.HiApprovalUserFlow;
 import com.gome.arch.dao.bean.HiApprovalUserFlowExample;
+import com.gome.arch.dao.bean.RtApprovalUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +29,12 @@ public interface HiApprovalUserFlowMapper extends Serializable {
     int updateByPrimaryKeySelective(HiApprovalUserFlow record);
 
     int updateByPrimaryKey(HiApprovalUserFlow record);
+
+
+    /**
+     * 根据工单号获取审批规则
+     * @param applyId
+     * @return
+     */
+    public List<RtApprovalUser> getDealUserListByApplyId(Long applyId);
 }

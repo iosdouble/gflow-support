@@ -16,6 +16,7 @@ import java.util.List;
 public interface RtApprovalUserService {
 
     //增加处理人信息
+    @Deprecated
     public int addApprovalUserRelation(TaskTO taskTO);
 
     //根据工单号获取处理信息

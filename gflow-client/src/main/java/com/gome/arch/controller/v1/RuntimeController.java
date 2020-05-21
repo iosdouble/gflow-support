@@ -1,6 +1,7 @@
 package com.gome.arch.controller.v1;
 
 import com.github.pagehelper.PageInfo;
+import com.gome.arch.constant.HTTPSTATE;
 import com.gome.arch.core.engine.v1.runtime.RuntimeService;
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
 import com.gome.arch.dao.bean.RtApprovalDetail;
@@ -35,7 +36,7 @@ public class RuntimeController {
     @Deprecated
     @GetMapping("/getTaskList")
     public PageInfo<ApprovalOrderPOExt> getOrder(){
-        Long userid = 1994L;
+        Long userid = 1992L;
         PageInfo<ApprovalOrderPOExt> approvalOrderPOExtPageInfo = runtimeService.pageOrderApplies(userid, 0, 5);
         return approvalOrderPOExtPageInfo;
     }
@@ -47,8 +48,8 @@ public class RuntimeController {
     public ResponseEntity<String> approvalTask(@RequestBody ApprovalDealVO approvalDealVO){
         log.info("========  "+ JsonUtil.toJson(approvalDealVO));
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.setCode(200);
-        responseEntity.setMsg("numal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
 
         ApprovalDealTO approvalDealTO = new ApprovalDealTO();
         BeanUtils.copyProperties(approvalDealVO,approvalDealTO);
@@ -62,29 +63,43 @@ public class RuntimeController {
         return responseEntity;
     }
 
+    /**
+     * 查看审批流程详情
+     * @param applyId
+     * @return
+     */
     @GetMapping("/getApprovalFlowDetail")
     public ResponseEntity<List<RtApprovalDetail>> getApprovalDetail(@RequestParam(name = "applyId") Long applyId){
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.setCode(200);
-        responseEntity.setMsg("numal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         List<RtApprovalDetail> approvalDetail = runtimeService.getApprovalDetail(applyId);
         responseEntity.setData(approvalDetail);
         return responseEntity;
     }
 
+    /**
+     * 获取工单详情
+     * @param applyId
+     * @return
+     */
     @GetMapping("/getApplyOrderDetail")
     public ResponseEntity<RtApplyOrderDetail> getApplyOrderDetail(@RequestParam(name = "orderId") Long applyId){
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.setCode(200);
-        responseEntity.setMsg("numal");
+        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         RtApplyOrderDetail applyOrderDetailByApplyId = runtimeService.getApplyOrderDetailByApplyId(applyId);
         responseEntity.setData(applyOrderDetailByApplyId);
         return responseEntity;
     }
 
-
-
-
-
-
+    /**
+     * 根据工单号终止当前工单
+     * @param applyId
+     * @return
+     */
+    @DeleteMapping("/endProcess")
+    public ResponseEntity<String> endApprovalProcess(@RequestParam(name = "applyid") Long applyId){
+        return null;
+    }
 }
