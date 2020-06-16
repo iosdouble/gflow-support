@@ -54,7 +54,7 @@ public class RuntimeController {
         responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
         ApprovalDealTO approvalDealTO = new ApprovalDealTO();
         BeanUtils.copyProperties(approvalDealVO,approvalDealTO);
-        approvalDealTO.setDealUserId(1994L);
+        approvalDealTO.setDealUserName("1994");
         if (approvalDealVO.getStatus()==APPROVAL.AGREE){
             runtimeService.updateApprovalAgree(approvalDealTO);
         }else if (approvalDealVO.getStatus()==APPROVAL.REJECT){

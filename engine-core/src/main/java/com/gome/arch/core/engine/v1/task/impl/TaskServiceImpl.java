@@ -73,7 +73,7 @@ public class TaskServiceImpl implements TaskService {
         log.info("start add apply info {} ",JsonUtil.toJson(baseTaskTO));
         BaseApplyTO baseApplyTO = new BaseApplyTO();
         baseApplyTO.setApplyId(baseTaskTO.getApplyId());
-        baseApplyTO.setApplyUserCode(baseTaskTO.getApplyUserCode());
+        baseApplyTO.setApplyUserName(baseTaskTO.getApplyUserName());
         baseApplyTO.setSystemType(baseTaskTO.getSystemType());
         baseApplyTO.setApplyContentDetial(baseTaskTO.getApplyContentDetail());
         baseApplyOrderService.addApplyOrder(baseApplyTO);
@@ -96,7 +96,7 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode, Integer offset, Integer limit) {
+    public PageInfo<BaseApplyOrderTO> getStartTaskList(String applyUserCode, Integer offset, Integer limit) {
         PageHelper.offsetPage(offset, limit);
 //        List<BaseApplyOrder> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode,0);
         List<BaseApplyOrderTO> applyOrderList = baseApplyOrderService.getApplyOrderList(applyUserCode, STATE.INIT);

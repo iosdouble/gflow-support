@@ -40,7 +40,7 @@ public class RtApprovalUserServiceImpl implements RtApprovalUserService {
             rtApprovalUser.setProcessId(taskTO.getProcessId());
             rtApprovalUser.setNodeId(approvalUserVO.getNodeId());
             rtApprovalUser.setNodeOrder(approvalUserVO.getApprovalOrder());
-            rtApprovalUser.setApprovalUserId(approvalUserVO.getApprovalUserId());
+            rtApprovalUser.setApprovalUserName(approvalUserVO.getApprovalUserName());
             rtApprovalUserMapper.insert(rtApprovalUser);
         }
         return 1;

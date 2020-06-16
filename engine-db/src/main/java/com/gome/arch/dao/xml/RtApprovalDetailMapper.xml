@@ -7,7 +7,7 @@
       <arg column="current_node_deal_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="current_process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="apply_order_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="approval_person_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_person_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
@@ -18,7 +18,7 @@
       <arg column="current_node_deal_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="current_process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="apply_order_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="approval_person_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_person_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="approval_person_note" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
@@ -83,7 +83,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, current_node_deal_id, current_process_id, apply_order_id, approval_person_id, 
+    id, current_node_deal_id, current_process_id, apply_order_id, approval_person_name, 
     create_time, last_update_time
   </sql>
   <sql id="Blob_Column_List">
@@ -133,11 +133,11 @@
   </delete>
   <insert id="insert" parameterType="com.gome.arch.dao.bean.RtApprovalDetail">
     insert into rt_approval_detail (id, current_node_deal_id, current_process_id, 
-      apply_order_id, approval_person_id, create_time, 
+      apply_order_id, approval_person_name, create_time, 
       last_update_time, approval_person_note
       )
     values (#{id,jdbcType=BIGINT}, #{currentNodeDealId,jdbcType=BIGINT}, #{currentProcessId,jdbcType=INTEGER}, 
-      #{applyOrderId,jdbcType=BIGINT}, #{approvalPersonId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{applyOrderId,jdbcType=BIGINT}, #{approvalPersonName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{lastUpdateTime,jdbcType=TIMESTAMP}, #{approvalPersonNote,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -156,8 +156,8 @@
       <if test="applyOrderId != null">
         apply_order_id,
       </if>
-      <if test="approvalPersonId != null">
-        approval_person_id,
+      <if test="approvalPersonName != null">
+        approval_person_name,
       </if>
       <if test="createTime != null">
         create_time,
@@ -182,8 +182,8 @@
       <if test="applyOrderId != null">
         #{applyOrderId,jdbcType=BIGINT},
       </if>
-      <if test="approvalPersonId != null">
-        #{approvalPersonId,jdbcType=BIGINT},
+      <if test="approvalPersonName != null">
+        #{approvalPersonName,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -217,8 +217,8 @@
       <if test="record.applyOrderId != null">
         apply_order_id = #{record.applyOrderId,jdbcType=BIGINT},
       </if>
-      <if test="record.approvalPersonId != null">
-        approval_person_id = #{record.approvalPersonId,jdbcType=BIGINT},
+      <if test="record.approvalPersonName != null">
+        approval_person_name = #{record.approvalPersonName,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -240,7 +240,7 @@
       current_node_deal_id = #{record.currentNodeDealId,jdbcType=BIGINT},
       current_process_id = #{record.currentProcessId,jdbcType=INTEGER},
       apply_order_id = #{record.applyOrderId,jdbcType=BIGINT},
-      approval_person_id = #{record.approvalPersonId,jdbcType=BIGINT},
+      approval_person_name = #{record.approvalPersonName,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
       approval_person_note = #{record.approvalPersonNote,jdbcType=LONGVARCHAR}
@@ -254,7 +254,7 @@
       current_node_deal_id = #{record.currentNodeDealId,jdbcType=BIGINT},
       current_process_id = #{record.currentProcessId,jdbcType=INTEGER},
       apply_order_id = #{record.applyOrderId,jdbcType=BIGINT},
-      approval_person_id = #{record.approvalPersonId,jdbcType=BIGINT},
+      approval_person_name = #{record.approvalPersonName,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -273,8 +273,8 @@
       <if test="applyOrderId != null">
         apply_order_id = #{applyOrderId,jdbcType=BIGINT},
       </if>
-      <if test="approvalPersonId != null">
-        approval_person_id = #{approvalPersonId,jdbcType=BIGINT},
+      <if test="approvalPersonName != null">
+        approval_person_name = #{approvalPersonName,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -293,7 +293,7 @@
     set current_node_deal_id = #{currentNodeDealId,jdbcType=BIGINT},
       current_process_id = #{currentProcessId,jdbcType=INTEGER},
       apply_order_id = #{applyOrderId,jdbcType=BIGINT},
-      approval_person_id = #{approvalPersonId,jdbcType=BIGINT},
+      approval_person_name = #{approvalPersonName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       approval_person_note = #{approvalPersonNote,jdbcType=LONGVARCHAR}
@@ -304,7 +304,7 @@
     set current_node_deal_id = #{currentNodeDealId,jdbcType=BIGINT},
       current_process_id = #{currentProcessId,jdbcType=INTEGER},
       apply_order_id = #{applyOrderId,jdbcType=BIGINT},
-      approval_person_id = #{approvalPersonId,jdbcType=BIGINT},
+      approval_person_name = #{approvalPersonName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

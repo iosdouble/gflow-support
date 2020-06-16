@@ -6,7 +6,7 @@
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="apply_order_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="apply_user_code" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="apply_user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="system_type" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="deal_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, apply_order_detail_id, create_time, apply_user_code, system_type, deal_state
+    id, apply_order_detail_id, create_time, apply_user_name, system_type, deal_state
   </sql>
   <select id="selectByExample" parameterType="com.gome.arch.dao.bean.BaseApplyOrderExample" resultMap="BaseResultMap">
     select
@@ -98,10 +98,10 @@
   </delete>
   <insert id="insert" parameterType="com.gome.arch.dao.bean.BaseApplyOrder">
     insert into base_apply_order (id, apply_order_detail_id, create_time, 
-      apply_user_code, system_type, deal_state
+      apply_user_name, system_type, deal_state
       )
     values (#{id,jdbcType=BIGINT}, #{applyOrderDetailId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{applyUserCode,jdbcType=BIGINT}, #{systemType,jdbcType=VARCHAR}, #{dealState,jdbcType=INTEGER}
+      #{applyUserName,jdbcType=VARCHAR}, #{systemType,jdbcType=VARCHAR}, #{dealState,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.gome.arch.dao.bean.BaseApplyOrder">
@@ -116,8 +116,8 @@
       <if test="createTime != null">
         create_time,
       </if>
-      <if test="applyUserCode != null">
-        apply_user_code,
+      <if test="applyUserName != null">
+        apply_user_name,
       </if>
       <if test="systemType != null">
         system_type,
@@ -136,8 +136,8 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="applyUserCode != null">
-        #{applyUserCode,jdbcType=BIGINT},
+      <if test="applyUserName != null">
+        #{applyUserName,jdbcType=VARCHAR},
       </if>
       <if test="systemType != null">
         #{systemType,jdbcType=VARCHAR},
@@ -165,8 +165,8 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.applyUserCode != null">
-        apply_user_code = #{record.applyUserCode,jdbcType=BIGINT},
+      <if test="record.applyUserName != null">
+        apply_user_name = #{record.applyUserName,jdbcType=VARCHAR},
       </if>
       <if test="record.systemType != null">
         system_type = #{record.systemType,jdbcType=VARCHAR},
@@ -184,7 +184,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       apply_order_detail_id = #{record.applyOrderDetailId,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      apply_user_code = #{record.applyUserCode,jdbcType=BIGINT},
+      apply_user_name = #{record.applyUserName,jdbcType=VARCHAR},
       system_type = #{record.systemType,jdbcType=VARCHAR},
       deal_state = #{record.dealState,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -200,8 +200,8 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="applyUserCode != null">
-        apply_user_code = #{applyUserCode,jdbcType=BIGINT},
+      <if test="applyUserName != null">
+        apply_user_name = #{applyUserName,jdbcType=VARCHAR},
       </if>
       <if test="systemType != null">
         system_type = #{systemType,jdbcType=VARCHAR},
@@ -216,7 +216,7 @@
     update base_apply_order
     set apply_order_detail_id = #{applyOrderDetailId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      apply_user_code = #{applyUserCode,jdbcType=BIGINT},
+      apply_user_name = #{applyUserName,jdbcType=VARCHAR},
       system_type = #{systemType,jdbcType=VARCHAR},
       deal_state = #{dealState,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

@@ -25,6 +25,6 @@ public interface TaskService {
 
     //获取开启任务列表
 //    public PageInfo<BaseApplyOrder> getStartTaskList(Long applyUserCode ,Integer offset,Integer limit);
-    public PageInfo<BaseApplyOrderTO> getStartTaskList(Long applyUserCode , Integer offset, Integer limit);
+    public PageInfo<BaseApplyOrderTO> getStartTaskList(String applyUserCode , Integer offset, Integer limit);
 
 }

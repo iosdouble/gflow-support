@@ -20,5 +20,5 @@ public class ApprovalUserVO {
     private Integer approvalOrder;
     private Long nodeId;
     //审批人ID
-    private Long approvalUserId;
+    private String approvalUserName;
 }

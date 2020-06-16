@@ -285,63 +285,73 @@ public class BaseApplyOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeIsNull() {
-            addCriterion("apply_user_code is null");
+        public Criteria andApplyUserNameIsNull() {
+            addCriterion("apply_user_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeIsNotNull() {
-            addCriterion("apply_user_code is not null");
+        public Criteria andApplyUserNameIsNotNull() {
+            addCriterion("apply_user_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeEqualTo(Long value) {
-            addCriterion("apply_user_code =", value, "applyUserCode");
+        public Criteria andApplyUserNameEqualTo(String value) {
+            addCriterion("apply_user_name =", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeNotEqualTo(Long value) {
-            addCriterion("apply_user_code <>", value, "applyUserCode");
+        public Criteria andApplyUserNameNotEqualTo(String value) {
+            addCriterion("apply_user_name <>", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeGreaterThan(Long value) {
-            addCriterion("apply_user_code >", value, "applyUserCode");
+        public Criteria andApplyUserNameGreaterThan(String value) {
+            addCriterion("apply_user_name >", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeGreaterThanOrEqualTo(Long value) {
-            addCriterion("apply_user_code >=", value, "applyUserCode");
+        public Criteria andApplyUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("apply_user_name >=", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeLessThan(Long value) {
-            addCriterion("apply_user_code <", value, "applyUserCode");
+        public Criteria andApplyUserNameLessThan(String value) {
+            addCriterion("apply_user_name <", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeLessThanOrEqualTo(Long value) {
-            addCriterion("apply_user_code <=", value, "applyUserCode");
+        public Criteria andApplyUserNameLessThanOrEqualTo(String value) {
+            addCriterion("apply_user_name <=", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeIn(List<Long> values) {
-            addCriterion("apply_user_code in", values, "applyUserCode");
+        public Criteria andApplyUserNameLike(String value) {
+            addCriterion("apply_user_name like", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeNotIn(List<Long> values) {
-            addCriterion("apply_user_code not in", values, "applyUserCode");
+        public Criteria andApplyUserNameNotLike(String value) {
+            addCriterion("apply_user_name not like", value, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeBetween(Long value1, Long value2) {
-            addCriterion("apply_user_code between", value1, value2, "applyUserCode");
+        public Criteria andApplyUserNameIn(List<String> values) {
+            addCriterion("apply_user_name in", values, "applyUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApplyUserCodeNotBetween(Long value1, Long value2) {
-            addCriterion("apply_user_code not between", value1, value2, "applyUserCode");
+        public Criteria andApplyUserNameNotIn(List<String> values) {
+            addCriterion("apply_user_name not in", values, "applyUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyUserNameBetween(String value1, String value2) {
+            addCriterion("apply_user_name between", value1, value2, "applyUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyUserNameNotBetween(String value1, String value2) {
+            addCriterion("apply_user_name not between", value1, value2, "applyUserName");
             return (Criteria) this;
         }
 

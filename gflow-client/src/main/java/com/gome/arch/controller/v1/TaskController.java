@@ -50,7 +50,7 @@ public class TaskController {
         try{
             BaseTaskTO baseTaskTO = new BaseTaskTO();
             baseTaskTO.setApplyId(applyId);
-            baseTaskTO.setApplyUserCode(baseTaskVO.getApplyUserCode());
+            baseTaskTO.setApplyUserName(baseTaskVO.getApplyUserName());
             baseTaskTO.setSystemType(baseTaskVO.getSystemType());
             baseTaskTO.setApplyContentDetail(baseTaskVO.getApplyContentDetail());
             String orderId = taskService.addTask(baseTaskTO);
@@ -111,7 +111,7 @@ public class TaskController {
         ResponseEntity<PageInfo<BaseApplyOrderTO>> responseEntity = new ResponseEntity<>();
         responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
         responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
-        PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList(1994L, 0, 10);
+        PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList("1994", 0, 10);
         responseEntity.setData(startTaskList);
         return responseEntity;
     }

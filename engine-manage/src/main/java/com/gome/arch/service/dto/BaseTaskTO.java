@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BaseTaskTO {
     private Long applyId;
-    private Long applyUserCode;
+    private String applyUserName;
     private String systemType;
     private String applyContentDetail;
 }

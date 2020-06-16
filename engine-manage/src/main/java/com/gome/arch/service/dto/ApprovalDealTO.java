@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class ApprovalDealTO {
 
     private Integer processId;
-    private Long dealUserId;
+    private String dealUserName;
     private Long applyOrderId;
     private Long currentNode;
     private Long nextNode;

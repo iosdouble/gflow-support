@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 public class BaseTaskVO {
-    private Long applyUserCode;
+    private String  applyUserName;
     private String systemType;
     private String applyContentDetail;
 }

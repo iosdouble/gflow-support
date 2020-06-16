@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
+
 @Mapper
 public interface RtApprovalDetailMapper extends Serializable {
     long countByExample(RtApprovalDetailExample example);
