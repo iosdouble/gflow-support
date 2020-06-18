@@ -56,7 +56,7 @@ public class RuntimeServiceImpl implements RuntimeService {
      * @return
      */
     @Override
-    public PageInfo<ApprovalOrderPOExt> pageOrderApplies(Long userid, int offset, int limit) {
+    public PageInfo<ApprovalOrderPOExt> pageOrderApplies(String userid, int offset, int limit) {
         PageHelper.offsetPage(offset, limit);
         List<ApprovalOrderPOExt> listByUserId = rtApplyOrderService.getApprovalDetailListByUserId(userid);
         PageInfo<ApprovalOrderPOExt> pageInfo = new PageInfo<ApprovalOrderPOExt>(listByUserId);

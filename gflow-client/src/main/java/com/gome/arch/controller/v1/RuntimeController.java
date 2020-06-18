@@ -38,7 +38,7 @@ public class RuntimeController {
     @Deprecated
     @GetMapping("/getTaskList")
     public PageInfo<ApprovalOrderPOExt> getOrder(){
-        Long userid = 1992L;
+        String userid = "1992";
         PageInfo<ApprovalOrderPOExt> approvalOrderPOExtPageInfo = runtimeService.pageOrderApplies(userid, 0, 5);
         return approvalOrderPOExtPageInfo;
     }

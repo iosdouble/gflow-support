@@ -1,5 +1,7 @@
 package com.gome.arch.dao.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class RtApprovalDetail {
@@ -15,6 +17,7 @@ public class RtApprovalDetail {
 
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastUpdateTime;
 
     private String approvalPersonNote;

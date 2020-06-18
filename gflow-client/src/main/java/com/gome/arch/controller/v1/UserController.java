@@ -89,7 +89,7 @@ public class UserController {
     }
 
     @GetMapping("/getOrder")
-    public List<ApprovalOrderPOExt> getOrder(@RequestParam(name = "userid") Long userid){
+    public List<ApprovalOrderPOExt> getOrder(@RequestParam(name = "userid") String userid){
         return rtApplyOrderService.getApprovalDetailListByUserId(userid);
     }
 

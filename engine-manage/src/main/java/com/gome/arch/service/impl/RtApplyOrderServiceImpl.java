@@ -84,7 +84,7 @@ public class RtApplyOrderServiceImpl implements RtApplyOrderService {
      * @return
      */
     @Override
-    public List<ApprovalOrderPOExt> getApprovalDetailListByUserId(Long userid) {
+    public List<ApprovalOrderPOExt> getApprovalDetailListByUserId(String userid) {
         List<ApprovalOrderPOExt> listByUserId = rtApplyOrderMapper.getApprovalDetailListByUserId(userid);
         return listByUserId ;
     }

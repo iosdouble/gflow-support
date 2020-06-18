@@ -54,6 +54,7 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
         BaseApplyOrderExample.Criteria criteria = baseApplyOrderExample.createCriteria();
 //        criteria.andDealStateEqualTo(state);
         criteria.andApplyUserNameEqualTo(applyUserName);
+        baseApplyOrderExample.setOrderByClause("create_time DESC");
         List<BaseApplyOrder> baseApplyOrders = baseApplyOrderMapper.selectByExample(baseApplyOrderExample);
         List<BaseApplyOrderTO> baseApplyOrderTOList = new ArrayList<>();
         for (BaseApplyOrder baseApplyOrder : baseApplyOrders) {

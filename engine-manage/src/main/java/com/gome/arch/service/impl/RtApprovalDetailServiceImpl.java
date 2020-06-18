@@ -48,7 +48,7 @@ public class RtApprovalDetailServiceImpl implements RtApprovalDetailService {
         RtApprovalDetailExample rtApprovalDetailExample = new RtApprovalDetailExample();
         RtApprovalDetailExample.Criteria criteria = rtApprovalDetailExample.createCriteria();
         criteria.andApplyOrderIdEqualTo(applyId);
-        return rtApprovalDetailMapper.selectByExample(rtApprovalDetailExample);
+        return rtApprovalDetailMapper.selectByExampleWithBLOBs(rtApprovalDetailExample);
     }
 
 }

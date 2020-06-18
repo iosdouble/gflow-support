@@ -24,7 +24,7 @@ public class BaseTO {
     private List<ApprovalUserVO> approvalUserVoList;
     //用户ID
     @NullAndRegexValid(paramName="申请用户Code",notNull=true,regex="[0-9]+")
-    private Long applyUserCode;
+    private String applyUserName;
     //申请时间
     private String applyTime;
 }

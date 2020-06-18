@@ -26,7 +26,7 @@ public class BaseApplyOrderTO {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    private Long applyUserCode;
+    private String applyUserName;
 
     private String systemType;
 

@@ -21,7 +21,6 @@ import java.util.List;
  */
 @Api(value = "获取基本的流程管理",description = "基本流程管理,用于测试以及其他地方调用的管理操作",tags = {"流程相关操作的管理"})
 @RestController
-@ApiIgnore
 public class BaseProcessController {
     @Autowired
     private ProcessEngine processEngine;
