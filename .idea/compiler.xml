@@ -13,5 +13,8 @@
         <module name="gflow-client" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gflow-feign-client" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -32,6 +32,7 @@ import java.util.Date;
 @Api(value = "任务操作接口",description = "流程任务管理",tags = {"任务操作接口"})
 @Slf4j
 @RestController
+@RequestMapping
 public class TaskController {
 
     @Autowired
@@ -104,7 +105,8 @@ public class TaskController {
         return responseEntity;
     }
 
-    @GetMapping("/getStartList")
+//    @GetMapping("/getStartList")
+    @RequestMapping( value = "/getStartList",method = RequestMethod.GET)
     @ApiOperation(value = "获取工单列表操作信息",notes = "获取到指定用户当前，所有操作状态的工单信息")
     public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(){
         log.info(" getStartList {} ",new Date());

@@ -7,5 +7,6 @@
     <file url="file://$PROJECT_DIR$/engine-manage" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/engine-util" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gflow-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gflow-feign-client" charset="UTF-8" />
   </component>
 </project>

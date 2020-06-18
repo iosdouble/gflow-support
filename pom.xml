@@ -20,6 +20,7 @@
         <module>engine-manage</module>
         <module>engine-util</module>
         <module>gflow-client</module>
+        <module>gflow-feign-client</module>
     </modules>
 
 
@@ -49,18 +50,30 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-openfeign-core</artifactId>-->
+            <!--<version>2.0.0.RELEASE</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.netflix.hystrix</groupId>-->
+            <!--<artifactId>hystrix-core</artifactId>-->
+            <!--<version>1.5.18</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
 
-    <!--<build>-->
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 
 
 </project>
