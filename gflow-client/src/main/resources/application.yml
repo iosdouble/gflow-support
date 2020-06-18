@@ -1,13 +1,11 @@
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    username: root
-#    password: 123456
-#    url: jdbc:mysql://localhost:3306/gome_flow?characterEncoding=utf-8&useSSL=false
-##mybatis:
-##  mapper-locations: classpath:com/gome/arch/dao/xml/*.xml
-##  type-aliases-package: com.gome.arch.dao.bean
-##
+
+
+feign:
+  hystrix:
+    enabled: true
+
+
+
 eureka:
   client:
     serviceUrl:

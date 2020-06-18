@@ -17,10 +17,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Date 2020/4/21 4:40 PM
  * @Created by nihui
  */
-@Configuration
-@EnableSwagger2
+//@Configuration
+//@EnableSwagger2
 public class SwaggerConfig {
-    @Bean
+//    @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())

@@ -10,6 +10,7 @@
         <module name="engine-db" />
         <module name="engine-manage" />
         <module name="engine-util" />
+        <module name="feign-client" />
         <module name="gflow-client" />
       </profile>
     </annotationProcessing>
