@@ -2,6 +2,7 @@ package com.gome.arch.core.engine.v1.runtime.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.gome.arch.constant.STATE;
 import com.gome.arch.core.engine.v1.runtime.RuntimeService;
 import com.gome.arch.dao.bean.RtApplyOrderDetail;
 import com.gome.arch.dao.bean.RtApprovalDetail;
@@ -55,7 +56,7 @@ public class RuntimeServiceImpl implements RuntimeService {
      * @return
      */
     @Override
-    public PageInfo<ApprovalOrderPOExt> pageOrderApplies(Long userid, int offset, int limit) {
+    public PageInfo<ApprovalOrderPOExt> pageOrderApplies(String userid, int offset, int limit) {
         PageHelper.offsetPage(offset, limit);
         List<ApprovalOrderPOExt> listByUserId = rtApplyOrderService.getApprovalDetailListByUserId(userid);
         PageInfo<ApprovalOrderPOExt> pageInfo = new PageInfo<ApprovalOrderPOExt>(listByUserId);
@@ -70,7 +71,7 @@ public class RuntimeServiceImpl implements RuntimeService {
      */
     @Override
     public int updateApprovalAgree(ApprovalDealTO approvalDealTO) {
-        log.info("======== ApprovalDealTO ========== "+ JsonUtil.toJson(approvalDealTO));
+        log.info("审批同意 {} ",JsonUtil.toJson(approvalDealTO));
         rtApprovalDetailService.insertApprovalDetail(approvalDealTO);
         ApprovalOrderTO  approvalOrderTO = new ApprovalOrderTO();
         approvalOrderTO.setApplyId(approvalDealTO.getApplyOrderId());
@@ -78,13 +79,12 @@ public class RuntimeServiceImpl implements RuntimeService {
         approvalOrderTO.setNextNode(approvalDealTO.getNextNode());
         if (approvalDealTO.getNextNode()==0){
             log.info("完成工单操作");
-            rtApprovalFlowService.updateApprovalFlowStatus(approvalDealTO.getApplyOrderId(),2);
-            rtApplyOrderService.finishApplyOrder(approvalDealTO.getApplyOrderId(),1);
-            rtApplyOrderService.finishBaseApplyOrder(approvalDealTO.getApplyOrderId(),2);
+            rtApprovalFlowService.updateApprovalFlowStatus(approvalDealTO.getApplyOrderId(),STATE.FINISH);
+            rtApplyOrderService.finishApplyOrder(approvalDealTO.getApplyOrderId(),STATE.FINISH);
+            rtApplyOrderService.finishBaseApplyOrder(approvalDealTO.getApplyOrderId(),STATE.FINISH);
         }else {
             rtApplyOrderService.updateApplyOrderOK(approvalOrderTO);
         }
-
         return 0;
     }
 
@@ -96,15 +96,15 @@ public class RuntimeServiceImpl implements RuntimeService {
      */
     @Override
     public int updateApprovalReject(ApprovalDealTO approvalDealTO) {
-        log.info("工单被拒绝了");
+        log.info("审批拒绝 {} ",JsonUtil.toJson(approvalDealTO));
         rtApprovalDetailService.insertApprovalDetail(approvalDealTO);
         ApprovalOrderTO  approvalOrderTO = new ApprovalOrderTO();
         approvalOrderTO.setApplyId(approvalDealTO.getApplyOrderId());
         approvalOrderTO.setCurrentNode(approvalDealTO.getCurrentNode());
         approvalOrderTO.setNextNode(approvalDealTO.getNextNode());
-        rtApprovalFlowService.updateApprovalFlowStatus(approvalDealTO.getApplyOrderId(),3);
-        rtApplyOrderService.finishApplyOrder(approvalDealTO.getApplyOrderId(),3);
-        rtApplyOrderService.finishBaseApplyOrder(approvalDealTO.getApplyOrderId(),3);
+        rtApprovalFlowService.updateApprovalFlowStatus(approvalDealTO.getApplyOrderId(),STATE.REJECT);
+        rtApplyOrderService.finishApplyOrder(approvalDealTO.getApplyOrderId(),STATE.REJECT);
+        rtApplyOrderService.finishBaseApplyOrder(approvalDealTO.getApplyOrderId(),STATE.REJECT);
         return 0;
     }
 

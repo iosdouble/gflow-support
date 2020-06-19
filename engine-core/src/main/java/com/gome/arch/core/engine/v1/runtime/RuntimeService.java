@@ -23,7 +23,7 @@ public interface RuntimeService {
      * @param limit
      * @return
      */
-    public PageInfo<ApprovalOrderPOExt> pageOrderApplies(Long userid,int offset, int limit);
+    public PageInfo<ApprovalOrderPOExt> pageOrderApplies(String userid,int offset, int limit);
 
 
     /**

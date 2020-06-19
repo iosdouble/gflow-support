@@ -39,7 +39,7 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
         BaseApplyOrder baseApplyOrder = new BaseApplyOrder();
         baseApplyOrder.setId(idWorker.nextId());
         baseApplyOrder.setApplyOrderDetailId(baseApplyTO.getApplyId());
-        baseApplyOrder.setApplyUserCode(baseApplyTO.getApplyUserCode());
+        baseApplyOrder.setApplyUserName(baseApplyTO.getApplyUserName());
         baseApplyOrder.setSystemType(baseApplyTO.getSystemType());
         baseApplyOrder.setCreateTime(new Date());
         baseApplyOrder.setDealState(STATE.INIT);
@@ -49,11 +49,12 @@ public class BaseApplyOrderServiceImpl implements BaseApplyOrderService {
     }
 
     @Override
-    public List<BaseApplyOrderTO> getApplyOrderList(Long applyUserCode, Integer state) {
+    public List<BaseApplyOrderTO> getApplyOrderList(String  applyUserName, Integer state) {
         BaseApplyOrderExample baseApplyOrderExample = new BaseApplyOrderExample();
         BaseApplyOrderExample.Criteria criteria = baseApplyOrderExample.createCriteria();
 //        criteria.andDealStateEqualTo(state);
-        criteria.andApplyUserCodeEqualTo(applyUserCode);
+        criteria.andApplyUserNameEqualTo(applyUserName);
+        baseApplyOrderExample.setOrderByClause("create_time DESC");
         List<BaseApplyOrder> baseApplyOrders = baseApplyOrderMapper.selectByExample(baseApplyOrderExample);
         List<BaseApplyOrderTO> baseApplyOrderTOList = new ArrayList<>();
         for (BaseApplyOrder baseApplyOrder : baseApplyOrders) {

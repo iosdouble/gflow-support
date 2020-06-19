@@ -404,63 +404,73 @@ public class RtApprovalUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdIsNull() {
-            addCriterion("approval_user_id is null");
+        public Criteria andApprovalUserNameIsNull() {
+            addCriterion("approval_user_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdIsNotNull() {
-            addCriterion("approval_user_id is not null");
+        public Criteria andApprovalUserNameIsNotNull() {
+            addCriterion("approval_user_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdEqualTo(Long value) {
-            addCriterion("approval_user_id =", value, "approvalUserId");
+        public Criteria andApprovalUserNameEqualTo(String value) {
+            addCriterion("approval_user_name =", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdNotEqualTo(Long value) {
-            addCriterion("approval_user_id <>", value, "approvalUserId");
+        public Criteria andApprovalUserNameNotEqualTo(String value) {
+            addCriterion("approval_user_name <>", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdGreaterThan(Long value) {
-            addCriterion("approval_user_id >", value, "approvalUserId");
+        public Criteria andApprovalUserNameGreaterThan(String value) {
+            addCriterion("approval_user_name >", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("approval_user_id >=", value, "approvalUserId");
+        public Criteria andApprovalUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("approval_user_name >=", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdLessThan(Long value) {
-            addCriterion("approval_user_id <", value, "approvalUserId");
+        public Criteria andApprovalUserNameLessThan(String value) {
+            addCriterion("approval_user_name <", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdLessThanOrEqualTo(Long value) {
-            addCriterion("approval_user_id <=", value, "approvalUserId");
+        public Criteria andApprovalUserNameLessThanOrEqualTo(String value) {
+            addCriterion("approval_user_name <=", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdIn(List<Long> values) {
-            addCriterion("approval_user_id in", values, "approvalUserId");
+        public Criteria andApprovalUserNameLike(String value) {
+            addCriterion("approval_user_name like", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdNotIn(List<Long> values) {
-            addCriterion("approval_user_id not in", values, "approvalUserId");
+        public Criteria andApprovalUserNameNotLike(String value) {
+            addCriterion("approval_user_name not like", value, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdBetween(Long value1, Long value2) {
-            addCriterion("approval_user_id between", value1, value2, "approvalUserId");
+        public Criteria andApprovalUserNameIn(List<String> values) {
+            addCriterion("approval_user_name in", values, "approvalUserName");
             return (Criteria) this;
         }
 
-        public Criteria andApprovalUserIdNotBetween(Long value1, Long value2) {
-            addCriterion("approval_user_id not between", value1, value2, "approvalUserId");
+        public Criteria andApprovalUserNameNotIn(List<String> values) {
+            addCriterion("approval_user_name not in", values, "approvalUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApprovalUserNameBetween(String value1, String value2) {
+            addCriterion("approval_user_name between", value1, value2, "approvalUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApprovalUserNameNotBetween(String value1, String value2) {
+            addCriterion("approval_user_name not between", value1, value2, "approvalUserName");
             return (Criteria) this;
         }
 

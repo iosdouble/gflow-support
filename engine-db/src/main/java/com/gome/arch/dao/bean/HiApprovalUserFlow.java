@@ -13,7 +13,7 @@ public class HiApprovalUserFlow {
 
     private Long nodeId;
 
-    private Long approvalUserId;
+    private String approvalUserName;
 
     private Integer nodeOrder;
 
@@ -25,13 +25,13 @@ public class HiApprovalUserFlow {
 
     private Date lastUpdateTime;
 
-    public HiApprovalUserFlow(Long id, Long applyOrderDetailId, Long submitterId, Integer processId, Long nodeId, Long approvalUserId, Integer nodeOrder, String applyUserDomainDccount, String applyUserEmail, Integer approvalState, Date lastUpdateTime) {
+    public HiApprovalUserFlow(Long id, Long applyOrderDetailId, Long submitterId, Integer processId, Long nodeId, String approvalUserName, Integer nodeOrder, String applyUserDomainDccount, String applyUserEmail, Integer approvalState, Date lastUpdateTime) {
         this.id = id;
         this.applyOrderDetailId = applyOrderDetailId;
         this.submitterId = submitterId;
         this.processId = processId;
         this.nodeId = nodeId;
-        this.approvalUserId = approvalUserId;
+        this.approvalUserName = approvalUserName;
         this.nodeOrder = nodeOrder;
         this.applyUserDomainDccount = applyUserDomainDccount;
         this.applyUserEmail = applyUserEmail;
@@ -83,12 +83,12 @@ public class HiApprovalUserFlow {
         this.nodeId = nodeId;
     }
 
-    public Long getApprovalUserId() {
-        return approvalUserId;
+    public String getApprovalUserName() {
+        return approvalUserName;
     }
 
-    public void setApprovalUserId(Long approvalUserId) {
-        this.approvalUserId = approvalUserId;
+    public void setApprovalUserName(String approvalUserName) {
+        this.approvalUserName = approvalUserName == null ? null : approvalUserName.trim();
     }
 
     public Integer getNodeOrder() {

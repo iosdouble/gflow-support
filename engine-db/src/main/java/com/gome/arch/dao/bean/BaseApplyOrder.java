@@ -9,17 +9,17 @@ public class BaseApplyOrder {
 
     private Date createTime;
 
-    private Long applyUserCode;
+    private String applyUserName;
 
     private String systemType;
 
     private Integer dealState;
 
-    public BaseApplyOrder(Long id, Long applyOrderDetailId, Date createTime, Long applyUserCode, String systemType, Integer dealState) {
+    public BaseApplyOrder(Long id, Long applyOrderDetailId, Date createTime, String applyUserName, String systemType, Integer dealState) {
         this.id = id;
         this.applyOrderDetailId = applyOrderDetailId;
         this.createTime = createTime;
-        this.applyUserCode = applyUserCode;
+        this.applyUserName = applyUserName;
         this.systemType = systemType;
         this.dealState = dealState;
     }
@@ -52,12 +52,12 @@ public class BaseApplyOrder {
         this.createTime = createTime;
     }
 
-    public Long getApplyUserCode() {
-        return applyUserCode;
+    public String getApplyUserName() {
+        return applyUserName;
     }
 
-    public void setApplyUserCode(Long applyUserCode) {
-        this.applyUserCode = applyUserCode;
+    public void setApplyUserName(String applyUserName) {
+        this.applyUserName = applyUserName == null ? null : applyUserName.trim();
     }
 
     public String getSystemType() {

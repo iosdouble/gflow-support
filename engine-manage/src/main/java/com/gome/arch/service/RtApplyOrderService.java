@@ -21,7 +21,7 @@ public interface RtApplyOrderService {
     public List<ApprovalOrderPO> getApprovalListByUserId(Long userid);
 
     //获取工单流程列表
-    public List<ApprovalOrderPOExt> getApprovalDetailListByUserId(Long userid);
+    public List<ApprovalOrderPOExt> getApprovalDetailListByUserId(String userid);
 
     //审批成功
     public int updateApplyOrderOK(ApprovalOrderTO approvalOrderTO);

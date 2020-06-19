@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BaseApplyTO{
     private Long applyId;
-    private Long applyUserCode;
+    private String applyUserName;
     private String systemType;
     private String applyContentDetial;
 }

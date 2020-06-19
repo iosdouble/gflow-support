@@ -32,6 +32,7 @@ import java.util.Date;
 @Api(value = "任务操作接口",description = "流程任务管理",tags = {"任务操作接口"})
 @Slf4j
 @RestController
+@RequestMapping
 public class TaskController {
 
     @Autowired
@@ -47,15 +48,23 @@ public class TaskController {
         log.info(JsonUtil.toJson(baseTaskVO));
         Long applyId = idWorker.nextId();
         ResponseEntity responseEntity = new ResponseEntity();
-        BaseTaskTO baseTaskTO = new BaseTaskTO();
-        baseTaskTO.setApplyId(applyId);
-        baseTaskTO.setApplyUserCode(baseTaskVO.getApplyUserCode());
-        baseTaskTO.setSystemType(baseTaskVO.getSystemType());
-        baseTaskTO.setApplyContentDetail(baseTaskVO.getApplyContentDetail());
-        String s = taskService.addTask(baseTaskTO);
-        responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
-        responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
-        responseEntity.setData(s);
+        try{
+            BaseTaskTO baseTaskTO = new BaseTaskTO();
+            baseTaskTO.setApplyId(applyId);
+            baseTaskTO.setApplyUserName(baseTaskVO.getApplyUserName());
+            baseTaskTO.setSystemType(baseTaskVO.getSystemType());
+            baseTaskTO.setApplyContentDetail(baseTaskVO.getApplyContentDetail());
+            String orderId = taskService.addTask(baseTaskTO);
+            responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
+            responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
+            responseEntity.setData(orderId);
+        }catch (Exception e){
+            log.info(" error {}",e);
+            e.printStackTrace();
+            responseEntity.setCode(HTTPSTATE.HTTP_ERROR.getStateCode());
+            responseEntity.setMsg(HTTPSTATE.HTTP_ERROR.getStateKey());
+            responseEntity.setData("0");
+        }
         return responseEntity;
     }
 
@@ -96,14 +105,16 @@ public class TaskController {
         return responseEntity;
     }
 
-    @GetMapping("/getStartList")
+//    @GetMapping("/getStartList")
+//    @RequestMapping( value = "/getStartList",method = RequestMethod.GET)
     @ApiOperation(value = "获取工单列表操作信息",notes = "获取到指定用户当前，所有操作状态的工单信息")
-    public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(){
+    public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(@RequestParam("page") Integer page,
+                                                                  @RequestParam("limit") Integer limit){
         log.info(" getStartList {} ",new Date());
         ResponseEntity<PageInfo<BaseApplyOrderTO>> responseEntity = new ResponseEntity<>();
         responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
         responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
-        PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList(1994L, 0, 10);
+        PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList("1994", page, limit);
         responseEntity.setData(startTaskList);
         return responseEntity;
     }

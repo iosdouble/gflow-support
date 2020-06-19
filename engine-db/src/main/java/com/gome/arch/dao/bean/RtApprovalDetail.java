@@ -1,5 +1,7 @@
 package com.gome.arch.dao.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class RtApprovalDetail {
@@ -11,20 +13,21 @@ public class RtApprovalDetail {
 
     private Long applyOrderId;
 
-    private Long approvalPersonId;
+    private String approvalPersonName;
 
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastUpdateTime;
 
     private String approvalPersonNote;
 
-    public RtApprovalDetail(Long id, Long currentNodeDealId, Integer currentProcessId, Long applyOrderId, Long approvalPersonId, Date createTime, Date lastUpdateTime, String approvalPersonNote) {
+    public RtApprovalDetail(Long id, Long currentNodeDealId, Integer currentProcessId, Long applyOrderId, String approvalPersonName, Date createTime, Date lastUpdateTime, String approvalPersonNote) {
         this.id = id;
         this.currentNodeDealId = currentNodeDealId;
         this.currentProcessId = currentProcessId;
         this.applyOrderId = applyOrderId;
-        this.approvalPersonId = approvalPersonId;
+        this.approvalPersonName = approvalPersonName;
         this.createTime = createTime;
         this.lastUpdateTime = lastUpdateTime;
         this.approvalPersonNote = approvalPersonNote;
@@ -66,12 +69,12 @@ public class RtApprovalDetail {
         this.applyOrderId = applyOrderId;
     }
 
-    public Long getApprovalPersonId() {
-        return approvalPersonId;
+    public String getApprovalPersonName() {
+        return approvalPersonName;
     }
 
-    public void setApprovalPersonId(Long approvalPersonId) {
-        this.approvalPersonId = approvalPersonId;
+    public void setApprovalPersonName(String approvalPersonName) {
+        this.approvalPersonName = approvalPersonName == null ? null : approvalPersonName.trim();
     }
 
     public Date getCreateTime() {

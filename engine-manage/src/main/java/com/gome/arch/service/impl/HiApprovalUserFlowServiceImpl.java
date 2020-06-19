@@ -38,11 +38,11 @@ public class HiApprovalUserFlowServiceImpl implements HiApprovalUserFlowService 
             HiApprovalUserFlow hiApprovalUserFlow = new HiApprovalUserFlow();
             hiApprovalUserFlow.setId(idWorker.nextId());
             hiApprovalUserFlow.setApplyOrderDetailId(taskTO.getApplyId());
-            hiApprovalUserFlow.setSubmitterId(taskTO.getApplyUserCode());
+            hiApprovalUserFlow.setSubmitterId(1L);
             hiApprovalUserFlow.setProcessId(taskTO.getProcessId());
             hiApprovalUserFlow.setNodeId(approvalUserVO.getNodeId());
             hiApprovalUserFlow.setNodeOrder(approvalUserVO.getApprovalOrder());
-            hiApprovalUserFlow.setApprovalUserId(approvalUserVO.getApprovalUserId());
+            hiApprovalUserFlow.setApprovalUserName(approvalUserVO.getApprovalUserName());
             hiApprovalUserFlow.setApprovalState(STATE.INIT);
             hiApprovalUserFlow.setLastUpdateTime(new Date());
             hiApprovalUserFlowMapper.insert(hiApprovalUserFlow);

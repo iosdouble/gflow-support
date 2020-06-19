@@ -8,24 +8,12 @@
       <arg column="submitter_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="node_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="approval_user_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="node_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="apply_user_domain_dccount" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="apply_user_email" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="approval_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="last_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-    </constructor>
-  </resultMap>
-
-  <resultMap id="BaseRtApprovalUsertMap" type="com.gome.arch.dao.bean.RtApprovalUser">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="apply_order_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="submitter_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="node_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="approval_user_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="node_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -87,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, apply_order_detail_id, submitter_id, process_id, node_id, approval_user_id, node_order, 
-    apply_user_domain_dccount, apply_user_email, approval_state, last_update_time
+    id, apply_order_detail_id, submitter_id, process_id, node_id, approval_user_name, 
+    node_order, apply_user_domain_dccount, apply_user_email, approval_state, last_update_time
   </sql>
   <select id="selectByExample" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlowExample" resultMap="BaseResultMap">
     select
@@ -116,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.gome.arch.dao.bean.HiApprovalUserFlow">
     insert into hi_approval_user_flow (id, apply_order_detail_id, submitter_id, 
-      process_id, node_id, approval_user_id, 
+      process_id, node_id, approval_user_name, 
       node_order, apply_user_domain_dccount, apply_user_email, 
       approval_state, last_update_time)
     values (#{id,jdbcType=BIGINT}, #{applyOrderDetailId,jdbcType=BIGINT}, #{submitterId,jdbcType=BIGINT}, 
-      #{processId,jdbcType=INTEGER}, #{nodeId,jdbcType=BIGINT}, #{approvalUserId,jdbcType=BIGINT}, 
+      #{processId,jdbcType=INTEGER}, #{nodeId,jdbcType=BIGINT}, #{approvalUserName,jdbcType=VARCHAR}, 
       #{nodeOrder,jdbcType=INTEGER}, #{applyUserDomainDccount,jdbcType=VARCHAR}, #{applyUserEmail,jdbcType=VARCHAR}, 
       #{approvalState,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -142,8 +130,8 @@
       <if test="nodeId != null">
         node_id,
       </if>
-      <if test="approvalUserId != null">
-        approval_user_id,
+      <if test="approvalUserName != null">
+        approval_user_name,
       </if>
       <if test="nodeOrder != null">
         node_order,
@@ -177,8 +165,8 @@
       <if test="nodeId != null">
         #{nodeId,jdbcType=BIGINT},
       </if>
-      <if test="approvalUserId != null">
-        #{approvalUserId,jdbcType=BIGINT},
+      <if test="approvalUserName != null">
+        #{approvalUserName,jdbcType=VARCHAR},
       </if>
       <if test="nodeOrder != null">
         #{nodeOrder,jdbcType=INTEGER},
@@ -221,8 +209,8 @@
       <if test="record.nodeId != null">
         node_id = #{record.nodeId,jdbcType=BIGINT},
       </if>
-      <if test="record.approvalUserId != null">
-        approval_user_id = #{record.approvalUserId,jdbcType=BIGINT},
+      <if test="record.approvalUserName != null">
+        approval_user_name = #{record.approvalUserName,jdbcType=VARCHAR},
       </if>
       <if test="record.nodeOrder != null">
         node_order = #{record.nodeOrder,jdbcType=INTEGER},
@@ -251,7 +239,7 @@
       submitter_id = #{record.submitterId,jdbcType=BIGINT},
       process_id = #{record.processId,jdbcType=INTEGER},
       node_id = #{record.nodeId,jdbcType=BIGINT},
-      approval_user_id = #{record.approvalUserId,jdbcType=BIGINT},
+      approval_user_name = #{record.approvalUserName,jdbcType=VARCHAR},
       node_order = #{record.nodeOrder,jdbcType=INTEGER},
       apply_user_domain_dccount = #{record.applyUserDomainDccount,jdbcType=VARCHAR},
       apply_user_email = #{record.applyUserEmail,jdbcType=VARCHAR},
@@ -276,8 +264,8 @@
       <if test="nodeId != null">
         node_id = #{nodeId,jdbcType=BIGINT},
       </if>
-      <if test="approvalUserId != null">
-        approval_user_id = #{approvalUserId,jdbcType=BIGINT},
+      <if test="approvalUserName != null">
+        approval_user_name = #{approvalUserName,jdbcType=VARCHAR},
       </if>
       <if test="nodeOrder != null">
         node_order = #{nodeOrder,jdbcType=INTEGER},
@@ -303,7 +291,7 @@
       submitter_id = #{submitterId,jdbcType=BIGINT},
       process_id = #{processId,jdbcType=INTEGER},
       node_id = #{nodeId,jdbcType=BIGINT},
-      approval_user_id = #{approvalUserId,jdbcType=BIGINT},
+      approval_user_name = #{approvalUserName,jdbcType=VARCHAR},
       node_order = #{nodeOrder,jdbcType=INTEGER},
       apply_user_domain_dccount = #{applyUserDomainDccount,jdbcType=VARCHAR},
       apply_user_email = #{applyUserEmail,jdbcType=VARCHAR},
@@ -312,7 +300,22 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
+
+  <resultMap id="BaseRtApprovalUsertMap" type="com.gome.arch.dao.bean.RtApprovalUser">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="apply_order_detail_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="submitter_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="process_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="node_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="approval_user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="node_order" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+
+
+
   <select id="getDealUserListByApplyId" resultMap="BaseRtApprovalUsertMap" parameterType="java.lang.Long">
-        SELECT id,apply_order_detail_id,submitter_id,process_id,node_id,approval_user_id,node_order FROM hi_approval_user_flow WHERE apply_order_detail_id = #{applyId} ORDER BY node_order ASC;
+        SELECT id,apply_order_detail_id,submitter_id,process_id,node_id,approval_user_name,node_order FROM hi_approval_user_flow WHERE apply_order_detail_id = #{applyId} ORDER BY node_order ASC;
     </select>
 </mapper>

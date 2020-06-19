@@ -28,8 +28,6 @@ public interface RtApprovalUserMapper extends Serializable {
     int updateByPrimaryKeySelective(RtApprovalUser record);
 
     int updateByPrimaryKey(RtApprovalUser record);
-
-
     /**
      * 根据工单号获取审批规则
      * @param applyId

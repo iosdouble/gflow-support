@@ -33,7 +33,7 @@ public class RtApprovalDetailServiceImpl implements RtApprovalDetailService {
         RtApprovalDetail rtApprovalDetail = new RtApprovalDetail();
         rtApprovalDetail.setId(idWorker.nextId());
         rtApprovalDetail.setApplyOrderId(approvalDealVO.getApplyOrderId());
-        rtApprovalDetail.setApprovalPersonId(approvalDealVO.getDealUserId());
+        rtApprovalDetail.setApprovalPersonName(approvalDealVO.getDealUserName());
         rtApprovalDetail.setCurrentProcessId(approvalDealVO.getProcessId());
         rtApprovalDetail.setCurrentNodeDealId(approvalDealVO.getCurrentNode());
         rtApprovalDetail.setApprovalPersonNote(approvalDealVO.getOpinion());
@@ -48,7 +48,7 @@ public class RtApprovalDetailServiceImpl implements RtApprovalDetailService {
         RtApprovalDetailExample rtApprovalDetailExample = new RtApprovalDetailExample();
         RtApprovalDetailExample.Criteria criteria = rtApprovalDetailExample.createCriteria();
         criteria.andApplyOrderIdEqualTo(applyId);
-        return rtApprovalDetailMapper.selectByExample(rtApprovalDetailExample);
+        return rtApprovalDetailMapper.selectByExampleWithBLOBs(rtApprovalDetailExample);
     }
 
 }

@@ -39,5 +39,5 @@ public interface RtApplyOrderMapper extends Serializable {
      */
     List<ApprovalOrderPO> getApprovalListByUserId(Long userid);
 
-    List<ApprovalOrderPOExt> getApprovalDetailListByUserId(Long userid);
+    List<ApprovalOrderPOExt> getApprovalDetailListByUserId(String userid);
 }
