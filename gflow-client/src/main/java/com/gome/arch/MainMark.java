@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
@@ -17,9 +18,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 
 @SpringBootApplication
-//@EnableDiscoveryClient
-@EnableEurekaClient
-//@EnableCircuitBreaker
+@EnableDiscoveryClient
+@EnableFeignClients
+@EnableCircuitBreaker
 @EnableTransactionManagement
 public class MainMark {
     public static void main(String[] args) {

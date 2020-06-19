@@ -1,6 +1,9 @@
 package com.gome.arch.config;
 
+import com.gom.arch.flow.config.ExtendJacksonJsonProvider;
 import com.gome.arch.resource.TaskResource;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.RequestContextFilter;
@@ -15,7 +18,6 @@ import java.util.Set;
  * @Date 2020/6/18 4:01 PM
  * @Created by nihui
  */
-@Configuration
 public class RestJerseyRegister extends ResourceConfig {
     public RestJerseyRegister() {
         register(RequestContextFilter.class);
@@ -27,6 +29,9 @@ public class RestJerseyRegister extends ResourceConfig {
 
     @PostConstruct
     public void initSwagger(){
+        register(ApiListingResource.class);
+        register(SwaggerSerializers.class);
+        register(ExtendJacksonJsonProvider.class);
     }
 
     private Set<Class<?>> findRegisterV1Resources(){

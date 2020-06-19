@@ -2,7 +2,7 @@
 
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 
 
 
@@ -53,6 +53,13 @@ eureka:
 #    serviceUrl:
 #      defaultZone: http://10.115.3.1:8080/eureka/,http://10.115.3.2:8080/eureka/
 #####################数据库扩展配置#######################
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: ${arch.support.swagger2.urlPath:/v2/api-docs}
+
 arch:
   support:
     mysql:
@@ -82,6 +89,22 @@ arch:
         autoDialect:
         closeConn: true #默认值为 true。当使用运行时动态数据源或没有设置 helperDialect 属性自动获取数据库类型时，会自动获取一个数据库连接， 通过该属性来设置是否关闭获取的这个连接
         params: count=countSql  #为了支持startPage(Object params)方法，增加了该参数来配置参数映射
+    jersey2:
+      enabled: true
+      urlMappings: /api/*
+      jaxrsApplicationClass: com.gome.arch.config.RestJerseyRegister
+    swagger2:  #访问地址：http:xxx:8080/swagger-ui.html
+      enabled: true
+      configId: gome-flow-service-swagger2-jersey2
+      title:  流程服务-REST服务接口列表
+      version:  1.0.0
+      contact: nihui
+      schemes: http,https
+      basePath: /api
+      resourcePackage: com.gome.arch.resource
+      prettyPrint: true
+      scan: true
+      urlPath: /api/swagger.json
 spring:
   application:
     name: gome-flow-service

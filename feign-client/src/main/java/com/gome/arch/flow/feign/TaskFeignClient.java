@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
  * @Created by nihui
  */
 @FeignClient(name="gome-flow-service", fallbackFactory = TaskFeignClientFallbackFactory.class,url="${gome-flow-service.feign.url:}")
+@Path("/api/v1/task")
 @Produces(MediaType.APPLICATION_JSON)
 public interface TaskFeignClient {
 
@@ -29,17 +30,17 @@ public interface TaskFeignClient {
 //
 //    public ResponseEntity<String> endTask(@RequestParam(name = "applyId") Long applyId);
 
-//    @GET
-//    @Path("/getStartList")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(
-//            @QueryParam("page") Integer page,
-//            @QueryParam("limit") Integer limit);
-
-
-        @GET
-//    @Path("/getStartList")
+    @GET
+    @Path("/getStartList")
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(
-             Integer page, Integer limit);
+            @QueryParam("page") Integer page,
+            @QueryParam("limit") Integer limit);
+
+
+//        @GET
+////    @Path("/getStartList")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(
+//             Integer page, Integer limit);
 }
