@@ -1,6 +1,9 @@
 package com.gome.arch.config;
 
 import com.gom.arch.flow.config.ExtendJacksonJsonProvider;
+import com.gome.arch.resource.BaseProcessResource;
+import com.gome.arch.resource.HistoryResource;
+import com.gome.arch.resource.RuntimeResource;
 import com.gome.arch.resource.TaskResource;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
@@ -36,7 +39,11 @@ public class RestJerseyRegister extends ResourceConfig {
 
     private Set<Class<?>> findRegisterV1Resources(){
         Set<Class<?>> registerResources=new HashSet<Class<?>>();
+        registerResources.add(BaseProcessResource.class);
         registerResources.add(TaskResource.class);
+        registerResources.add(RuntimeResource.class);
+        registerResources.add(HistoryResource.class);
+
         return registerResources;
     }
 }

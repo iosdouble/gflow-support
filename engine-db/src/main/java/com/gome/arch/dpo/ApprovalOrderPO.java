@@ -1,8 +1,11 @@
 package com.gome.arch.dpo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 /**
  * @Classname ApprovalOrderPO
@@ -23,4 +26,6 @@ public class ApprovalOrderPO {
     private Integer nextNodeId;
     private Integer processFinishStatus;
     private Integer processNodeTotalnumber;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 }

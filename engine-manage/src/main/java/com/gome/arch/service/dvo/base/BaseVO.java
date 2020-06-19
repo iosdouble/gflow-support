@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Data
 public class BaseVO {
+    private String applyUserName;
     //流程ID
     private Integer processId;
     //工单号

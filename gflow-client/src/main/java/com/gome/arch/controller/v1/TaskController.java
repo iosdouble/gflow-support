@@ -105,8 +105,7 @@ public class TaskController {
         return responseEntity;
     }
 
-//    @GetMapping("/getStartList")
-//    @RequestMapping( value = "/getStartList",method = RequestMethod.GET)
+    @GetMapping("/getStartList")
     @ApiOperation(value = "获取工单列表操作信息",notes = "获取到指定用户当前，所有操作状态的工单信息")
     public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(@RequestParam("page") Integer page,
                                                                   @RequestParam("limit") Integer limit){

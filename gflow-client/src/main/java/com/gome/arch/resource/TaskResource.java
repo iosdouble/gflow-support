@@ -2,7 +2,9 @@ package com.gome.arch.resource;
 
 import com.github.pagehelper.PageInfo;
 import com.gome.arch.constant.HTTPSTATE;
+import com.gome.arch.core.engine.v1.ProcessEngine;
 import com.gome.arch.core.engine.v1.task.TaskService;
+import com.gome.arch.dpo.ProcessPO;
 import com.gome.arch.flow.feign.TaskFeignClient;
 import com.gome.arch.json.JsonUtil;
 import com.gome.arch.service.dto.BaseApplyOrderTO;
@@ -22,8 +24,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Classname TaskResource
@@ -31,7 +36,7 @@ import java.util.Date;
  * @Date 2020/6/18 3:59 PM
  * @Created by nihui
  */
-@Api(value = "部门服务")
+@Api(value = "基础任务")
 @Component
 @Path("/v1/task")
 @Slf4j
@@ -68,7 +73,7 @@ public class TaskResource implements TaskFeignClient {
     }
 
 
-    public ResponseEntity<String> startTask(@RequestBody TaskVO taskVO){
+    public ResponseEntity<String> startTask(TaskVO taskVO){
         log.info("startTask {}",JsonUtil.toJson(taskVO));
         ResponseEntity responseEntity = new ResponseEntity();
         TaskTO taskTO = new TaskTO();
@@ -94,13 +99,26 @@ public class TaskResource implements TaskFeignClient {
     }
 
     @Override
-    public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(Integer page,Integer limit ){
+    public ResponseEntity<PageInfo<BaseApplyOrderTO>> getTaskList(String userName, Integer offset,Integer limit ){
         log.info(" getStartList {} ",new Date());
         ResponseEntity<PageInfo<BaseApplyOrderTO>> responseEntity = new ResponseEntity<>();
         responseEntity.setCode(HTTPSTATE.HTTP_OK.getStateCode());
         responseEntity.setMsg(HTTPSTATE.HTTP_OK.getStateKey());
-        PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList("1994", page, limit);
+        PageInfo<BaseApplyOrderTO> startTaskList = taskService.getStartTaskList(userName, offset, limit);
         responseEntity.setData(startTaskList);
+        return responseEntity;
+    }
+
+    @Autowired
+    private ProcessEngine processEngine;
+
+    public ResponseEntity<List<ProcessPO>> getProcessMethod(String tag){
+        log.info("===== "+tag);
+        ResponseEntity responseEntity = new ResponseEntity();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("numal");
+        List<ProcessPO> process = processEngine.createProcess();
+        responseEntity.setData(process);
         return responseEntity;
     }
 

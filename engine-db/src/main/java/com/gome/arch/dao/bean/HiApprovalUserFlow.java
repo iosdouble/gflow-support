@@ -7,7 +7,7 @@ public class HiApprovalUserFlow {
 
     private Long applyOrderDetailId;
 
-    private Long submitterId;
+    private String submitterId;
 
     private Integer processId;
 
@@ -25,7 +25,7 @@ public class HiApprovalUserFlow {
 
     private Date lastUpdateTime;
 
-    public HiApprovalUserFlow(Long id, Long applyOrderDetailId, Long submitterId, Integer processId, Long nodeId, String approvalUserName, Integer nodeOrder, String applyUserDomainDccount, String applyUserEmail, Integer approvalState, Date lastUpdateTime) {
+    public HiApprovalUserFlow(Long id, Long applyOrderDetailId, String submitterId, Integer processId, Long nodeId, String approvalUserName, Integer nodeOrder, String applyUserDomainDccount, String applyUserEmail, Integer approvalState, Date lastUpdateTime) {
         this.id = id;
         this.applyOrderDetailId = applyOrderDetailId;
         this.submitterId = submitterId;
@@ -59,11 +59,11 @@ public class HiApprovalUserFlow {
         this.applyOrderDetailId = applyOrderDetailId;
     }
 
-    public Long getSubmitterId() {
+    public String getSubmitterId() {
         return submitterId;
     }
 
-    public void setSubmitterId(Long submitterId) {
+    public void setSubmitterId(String submitterId) {
         this.submitterId = submitterId;
     }
 

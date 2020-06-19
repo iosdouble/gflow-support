@@ -31,7 +31,7 @@ public class BaseProcessController {
         return processEngine.createProcess(processId);
     }
 
-    @GetMapping("/getProcess")
+//    @GetMapping("/getProcess")
     public ResponseEntity<List<ProcessPO>> getProcess(){
         ResponseEntity responseEntity = new ResponseEntity();
         responseEntity.setCode(200);
