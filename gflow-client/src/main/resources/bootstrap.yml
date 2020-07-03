@@ -1,0 +1,54 @@
+server:
+  port: 8089
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    enabled-by-default: false
+    web:
+      basePath: /mgmt
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true
+      showDetails: ALWAYS
+    info:
+      enabled: true
+    env:
+      enabled: true
+    logfile:
+      enabled: true
+    loggers:
+      enabled: true
+    mappings:
+      enabled: true
+    beans:
+      enabled: true
+    httptrace:
+      enabled: true
+    threaddump:
+      enabled: true
+    heapdump:
+      enabled: true
+    metrics:
+      enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.115.3.1:8080/eureka/,http://10.115.3.2:8080/eureka/
+    enabled: true
+    eureka-service-url-poll-interval-seconds: 300
+    eureka-server-total-connections-per-host: 10
+    eureka-server-total-connections: 30
+    fetch-registry: true
+    register-with-eureka: true
+    availability-zones:
+      defaultRegion: defaultZone
+    region: defaultRegion
+  instance:
+    health-check-url-path: ${management.endpoints.web.basePath}/health
+    status-page-url-path: ${management.endpoints.web.basePath}/info
+

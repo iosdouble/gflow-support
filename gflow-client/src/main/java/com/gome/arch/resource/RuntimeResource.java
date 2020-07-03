@@ -106,4 +106,6 @@ public class RuntimeResource implements RuntimeFeignClient {
     public ResponseEntity<String> endApprovalProcess(@RequestParam(name = "applyid") Long applyId){
         return null;
     }
+
+
 }

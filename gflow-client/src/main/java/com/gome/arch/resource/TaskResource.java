@@ -48,9 +48,15 @@ public class TaskResource implements TaskFeignClient {
     private TaskService taskService;
 
 
+    /**
+     * 提交任务
+     * @param baseTaskVO
+     * @return
+     */
     public ResponseEntity<String> addTask(@RequestBody BaseTaskVO baseTaskVO){
         log.info(JsonUtil.toJson(baseTaskVO));
         Long applyId = idWorker.nextId();
+        // 数据初始化处理
         ResponseEntity responseEntity = new ResponseEntity();
         try{
             BaseTaskTO baseTaskTO = new BaseTaskTO();
@@ -121,5 +127,7 @@ public class TaskResource implements TaskFeignClient {
         responseEntity.setData(process);
         return responseEntity;
     }
+
+
 
 }

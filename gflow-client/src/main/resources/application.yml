@@ -4,21 +4,94 @@ feign:
   hystrix:
     enabled: false
 
+hystrix:
+  stream:
+    queue:
+      enabled: true
+  command:
+    default:
+      fallback:
+        enabled: true
+      requestCache:
+        enabled: true
+      requestLog:
+        enabled: true
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+          numBuckets: 10
+      circuitBreaker:
+        enabled: true
+        requestVolumeThreshold: 20
+        sleepWindowInMilliseconds: 5000
+        errorThresholdPercentage: 50
+        forceOpen: false
+        forceClosed: true
+      healthSnapshot:
+        intervalInMilliseconds: 500
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+  threadpool:
+    default:
+      coreSize: 10
+      maximumSize: 100
+      maxQueueSize: -1
+      queueSizeRejectionThreshild: 50
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+          numBuckets: 10
 
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://10.115.3.1:8080/eureka/,http://10.115.3.2:8080/eureka/
-    enabled: true
-    eureka-service-url-poll-interval-seconds: 300
-    eureka-server-total-connections-per-host: 10
-    eureka-server-total-connections: 30
-    fetch-registry: true
-  instance:
-    hostname: localhost
-    health-check-url-path: ${management.endpoints.web.basePath}/health
-    status-page-url-path: ${management.endpoints.web.basePath}/info
+#设置整体的超时时间
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 10000
+  okToRetryOnAllOperations: true
+  maxAutoRetriesNextServer: 2
+  maxAutoRetries: 1
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      forceRequest: true
+      forceResponse: true
+  sleuth:
+    enabled: false
+    sampler:
+      probability: 1.0
+  session:
+    storeType: REDIS
+    timeout: 3600
+    redis:
+      flushMode: IMMEDIATE
+  #  rabbitmq:
+  #    host: 10.115.3.191
+  #    port: 5672
+  #    username: wyl
+  #    password: wyl
+  redis:
+    host: 10.115.4.149
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        minIdle: 1
+  mvc:
+    favicon:
+      enabled: false
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+  application:
+    name: gome-flow-service
+
 
 #单机直连其他微服务用于调试
 #app-middleware-impl:
@@ -66,9 +139,12 @@ arch:
       standalone:
         enabled: true
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/gome_flow?characterEncoding=utf-8&useSSL=false
-        username: root
-        password: 123456
+#        url: jdbc:mysql://localhost:3306/gome_flow?characterEncoding=utf-8&useSSL=false
+        url: jdbc:mysql://meixin-mysql-one.pre.cloud.db:5310/gome_flow?characterEncoding=utf-8&useSSL=false
+#        username: root
+#        password: 123456
+        username: dev_pw_archcloud
+        password: 26xhviO9f5Dq
         maxActive: 100 # 最大连接数
         initialSize: 5  # 初始连接数
     mybatis:
@@ -105,42 +181,8 @@ arch:
       prettyPrint: true
       scan: true
       urlPath: /api/swagger.json
-spring:
-  application:
-    name: gome-flow-service
-management:
-  server:
-    port: 8081
-  endpoints:
-    enabled-by-default: false
-    web:
-      basePath: /mgmt
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      enabled: true
-      showDetails: ALWAYS
-    info:
-      enabled: true
-    env:
-      enabled: true
-    logfile:
-      enabled: true
-    loggers:
-      enabled: true
-    mappings:
-      enabled: true
-    beans:
-      enabled: true
-    httptrace:
-      enabled: true
-    threaddump:
-      enabled: true
-    heapdump:
-      enabled: true
-    metrics:
-      enabled: true
+
+
 
 
 

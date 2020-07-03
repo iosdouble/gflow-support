@@ -36,7 +36,7 @@ public class RtApprovalUserServiceImpl implements RtApprovalUserService {
             RtApprovalUser rtApprovalUser = new RtApprovalUser();
             rtApprovalUser.setId(idWorker.nextId());
             rtApprovalUser.setApplyOrderDetailId(taskTO.getApplyId());
-            rtApprovalUser.setSubmitterId(1L);
+            rtApprovalUser.setSubmitterId(taskTO.getApplyUserName());
             rtApprovalUser.setProcessId(taskTO.getProcessId());
             rtApprovalUser.setNodeId(approvalUserVO.getNodeId());
             rtApprovalUser.setNodeOrder(approvalUserVO.getApprovalOrder());

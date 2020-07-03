@@ -8,8 +8,8 @@ package com.gome.arch.constant;
  */
 public enum  HTTPSTATE {
     HTTP_OK("normal",200),
-    HTTP_NOT_FUND("NOT_FUND",404),
-    HTTP_ERROR("ERROR",500);
+    HTTP_NOT_FUND("not_fund",404),
+    HTTP_ERROR("error",500);
     private final String stateKey;
     private final Integer stateCode;
 
