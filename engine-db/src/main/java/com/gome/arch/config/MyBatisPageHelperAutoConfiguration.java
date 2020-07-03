@@ -23,8 +23,6 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ConditionalOnClass(value={DataSource.class,SqlSessionFactory.class,PageInterceptor.class})
-//@ConditionalOnBean(name={"mysqlSqlSessionTemplateSelf"})
-//@ConditionalOnBean(value = SqlSessionTemplate.class)
 @ConditionalOnProperty(prefix = "arch.support.mybatis.pagehelper", name = "enabled", havingValue = "true", matchIfMissing = false)
 @AutoConfigureAfter(MybatisAutoConfiguration.class)
 @EnableConfigurationProperties(value={MyBatisPageHelperProperties.class})
